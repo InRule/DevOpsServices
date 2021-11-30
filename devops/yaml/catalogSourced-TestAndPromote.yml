@@ -1,0 +1,57 @@
+parameters:
+  RuleAppName: 'UNSET'
+  SourceCatalogName: 'UNSET'
+  DestinationCatalogName: 'UNSET'
+  SourceLabel: 'UNSET'
+  DestinationLabel: 'UNSET'
+
+jobs:
+- job: Test_${{ parameters.RuleAppName }}
+  pool:
+    vmImage: 'windows-latest'
+  variables:
+  - group: CatalogCredentials${{ parameters.SourceCatalogName }}
+  - name: RuleAppName
+    value: ${{ parameters.RuleAppName }}
+  - name: RuleTestFolder
+    value: $(System.DefaultWorkingDirectory)\Tests\$(RuleAppName)
+  steps:
+  - task: DownloadSecureFile@1
+    inputs:
+      secureFile: 'InRuleLicense.xml'
+  - task: CopyFiles@2
+    inputs:
+      SourceFolder: '$(System.DefaultWorkingDirectory)/Helpers/ExecuteTests'
+      Contents: '**'
+      TargetFolder: '$(Agent.TempDirectory)'
+      OverWrite: true
+  - script: |
+      for %%i in ("$(RuleTestFolder)\*.testsuite") do ( echo Running TestSuitePath:"%%i" )
+      for %%i in ("$(RuleTestFolder)\*.testsuite") do ( .\ExecuteTests.exe -TestSuitePath:"%%i" -CatUri:"$(CatalogUri${{ parameters.SourceCatalogName }})" -CatUsername:"$(CatalogUsername${{ parameters.SourceCatalogName }})" -CatPassword:"$(CatalogPassword${{ parameters.SourceCatalogName }})" -CatRuleAppName:"$(RuleAppName)" -CatLabel:"${{ parameters.SourceLabel }}")
+    displayName: 'Run Tests on $(RuleAppName) Rule App'
+    workingDirectory: $(Agent.TempDirectory)
+- job: Promote_${{ parameters.RuleAppName }}
+  dependsOn: Test_${{ parameters.RuleAppName }}
+  pool:
+    vmImage: 'windows-latest'
+  variables:
+  - group: CatalogCredentials${{ parameters.SourceCatalogName }}
+  - group: CatalogCredentials${{ parameters.DestinationCatalogName }}
+  - name: RuleAppName
+    value: ${{ parameters.RuleAppName }}
+  - name: Label
+    value: ${{ parameters.Label }}
+  steps:
+  - task: DownloadSecureFile@1
+    inputs:
+      secureFile: 'InRuleLicense.xml'
+  - task: CopyFiles@2
+    inputs:
+      SourceFolder: '$(System.DefaultWorkingDirectory)/Helpers/PromoteRuleApp'
+      Contents: '**'
+      TargetFolder: '$(Agent.TempDirectory)'
+      OverWrite: true
+  - script: |
+      .\PromoteRuleApp.exe -RuleAppName:"$(RuleAppName)" -Comment:"Publish from CI/CD pipeline" -SrcCatUri:"$(CatalogUri${{ parameters.SourceCatalogName }})" -SrcCatUser:"$(CatalogUsername${{ parameters.SourceCatalogName }})" -SrcCatPass:"$(CatalogPassword${{ parameters.SourceCatalogName }})" -SourceLabel:"${{ parameters.SourceLabel }}" -DestCatUri:"$(CatalogUri${{ parameters.DestinationCatalogName }})" -DestCatUser:"$(CatalogUsername${{ parameters.DestinationCatalogName }})" -DestCatPass:"$(CatalogPassword${{ parameters.DestinationCatalogName }})" -DestLabel:"${{ parameters.DestinationLabel }}"
+    displayName: 'Promote $(RuleAppName)'
+    workingDirectory: $(Agent.TempDirectory)

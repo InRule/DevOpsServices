@@ -1,0 +1,11 @@
+trigger: none
+
+jobs:
+- template: catalogSourced-TestAndPromote.yml
+  parameters:
+    RuleAppName: InvoiceRules
+    SourceCatalogName: DEV
+    DestinationCatalogName: UAT
+    SourceLabel: LIVE
+    DestinationLabel: LIVE
+    

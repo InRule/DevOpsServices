@@ -1,0 +1,52 @@
+[
+  {
+    "name": "AesEncryptDecryptKey",
+    "value": "b14ca5898a4e4133bbce2ea2315a1916",
+    "slotSetting": false
+  },
+  {
+    "name": "ApiKeyAuthentication.ApiKey",
+    "value": "89864797-265F-4697-AC92-4E2A3F9771F0",
+    "slotSetting": false
+  },
+  {
+    "name": "CatalogPassword",
+    "value": "",
+    "slotSetting": false
+  },
+  {
+    "name": "CatalogUri",
+    "value": "https://[catalog_service].azurewebsites.net/Service.svc",
+    "slotSetting": false
+  },
+  {
+    "name": "CatalogUsername",
+    "value": "",
+    "slotSetting": false
+  },
+  {
+    "name": "InRuleCICDServiceUri",
+    "value": "https://[CICD_service].azurewebsites.net/Service.svc/api",
+    "slotSetting": false
+  },
+  {
+    "name": "IsCloudBased",
+    "value": "true",
+    "slotSetting": false
+  },
+  {
+    "name": "LookBackPeriodInMinutes",
+    "value": "5",
+    "slotSetting": false
+  },
+  {
+    "name": "RuleApps",
+    "value": "",
+    "slotSetting": false
+  },
+  {
+    "name": "ScheduleAppSetting",
+    "value": "0 */5 * * * *",
+    "slotSetting": false
+  }
+]

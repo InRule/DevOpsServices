@@ -1,0 +1,327 @@
+[
+  {
+    "name": "AesEncryptDecryptKey",
+    "value": "b14ca5898a4e4133bbce2ea2315a1916",
+    "slotSetting": false
+  },
+  {
+    "name": "AppInsights.AppInsightsInstrumentationKey",
+    "value": "85562642-a7d4-45a7-a46a-77f288323fab",
+    "slotSetting": false
+  },
+  {
+    "name": "ApprovalFlow.ApplyLabelApprover",
+    "value": "admin",
+    "slotSetting": false
+  },
+  {
+    "name": "ApprovalFlow.FilterByLabels",
+    "value": "LIVE",
+    "slotSetting": false
+  },
+  {
+    "name": "ApprovalFlow.RequesterNotificationChannel",
+    "value": "Slack Email",
+    "slotSetting": false
+  },
+  {
+    "name": "ApprovalFlow.NotificationChannel",
+    "value": "Slack",
+    "slotSetting": false
+  },
+  {
+    "name": "aspnet:UseTaskFriendlySynchronizationContext",
+    "value": "true",
+    "slotSetting": false
+  },
+  {
+    "name": "Box.BoxClientId",
+    "value": "",
+    "slotSetting": false
+  },
+  {
+    "name": "Box.BoxClientSecret",
+    "value": "",
+    "slotSetting": false
+  },
+  {
+    "name": "Box.BoxDeveloperToken",
+    "value": "",
+    "slotSetting": false
+  },
+  {
+    "name": "Box.BoxUploadFolderID",
+    "value": "",
+    "slotSetting": false
+  },
+  {
+    "name": "CatalogEvents",
+    "value": "CheckinRuleApp ApplyLabel OverwriteRuleApp CreateRuleApp CheckoutDefs UndoCheckout CreateLabel DeleteRuleApp RemoveLabel RenameLabel",
+    "slotSetting": false
+  },
+  {
+    "name": "CatalogPassword",
+    "value": "password",
+    "slotSetting": false
+  },
+  {
+    "name": "CatalogUsername",
+    "value": "admin",
+    "slotSetting": false
+  },
+  {
+    "name": "DebugNotifications",
+    "value": "Slack",
+    "slotSetting": false
+  },
+  {
+    "name": "DevOps.DevOpsOrganization",
+    "value": "",
+    "slotSetting": false
+  },
+  {
+    "name": "DevOps.DevOpsPipelineID",
+    "value": "",
+    "slotSetting": false
+  },
+  {
+    "name": "DevOps.DevOpsProject",
+    "value": "",
+    "slotSetting": false
+  },
+  {
+    "name": "DevOps.DevOpsToken",
+    "value": "",
+    "slotSetting": false
+  },
+  {
+    "name": "Email.EmailSendFrom",
+    "value": "",
+    "slotSetting": false
+  },
+  {
+    "name": "Email.EmailSendFromName",
+    "value": "",
+    "slotSetting": false
+  },
+  {
+    "name": "Email.EmailSendTo",
+    "value": "",
+    "slotSetting": false
+  },
+  {
+    "name": "Email.EmailSendToName",
+    "value": "",
+    "slotSetting": false
+  },
+  {
+    "name": "Email.SendGridApiKey",
+    "value": "",
+    "slotSetting": false
+  },
+  {
+    "name": "EventGrid.EventGridTopicEndpoint",
+    "value": "",
+    "slotSetting": false
+  },
+  {
+    "name": "EventGrid.EventGridTopicKey",
+    "value": "",
+    "slotSetting": false
+  },
+  {
+    "name": "FilterEventsByUser",
+    "value": "",
+    "slotSetting": false
+  },
+  {
+    "name": "GitHub.GitHubFolder",
+    "value": "",
+    "slotSetting": false
+  },
+  {
+    "name": "GitHub.GitHubProductName",
+    "value": "",
+    "slotSetting": false
+  },
+  {
+    "name": "GitHub.GitHubProductVersion",
+    "value": "",
+    "slotSetting": false
+  },
+  {
+    "name": "GitHub.GitHubRepo",
+    "value": "",
+    "slotSetting": false
+  },
+  {
+    "name": "GitHub.GitHubToken",
+    "value": "",
+    "slotSetting": false
+  },
+  {
+    "name": "IsCloudBased",
+    "value": "true",
+    "slotSetting": true
+  },
+  {
+    "name": "Java.JavaDistributionApiKey",
+    "value": "",
+    "slotSetting": false
+  },
+  {
+    "name": "Java.JavaDistributionInPath",
+    "value": "",
+    "slotSetting": false
+  },
+  {
+    "name": "Java.JavaDistributionOutPath",
+    "value": "",
+    "slotSetting": false
+  },
+  {
+    "name": "Java.JavaDistributionUri",
+    "value": "",
+    "slotSetting": false
+  },
+  {
+    "name": "Java.NotificationChannel",
+    "value": "",
+    "slotSetting": false
+  },
+  {
+    "name": "Java.UploadTo",
+    "value": "",
+    "slotSetting": false
+  },
+  {
+    "name": "JavaScript.JavaScriptDistributionApiKey",
+    "value": "",
+    "slotSetting": false
+  },
+  {
+    "name": "JavaScript.JavaScriptDistributionOutPath",
+    "value": "",
+    "slotSetting": false
+  },
+  {
+    "name": "JavaScript.JavaScriptDistributionUri",
+    "value": "",
+    "slotSetting": false
+  },
+  {
+    "name": "JavaScript.NotificationChannel",
+    "value": "",
+    "slotSetting": false
+  },
+  {
+    "name": "JavaScript.UploadTo",
+    "value": "",
+    "slotSetting": false
+  },
+  {
+    "name": "OnApplyLabel",
+    "value": "Slack ApprovalFlow",
+    "slotSetting": false
+  },
+  {
+    "name": "OnCheckinRuleApp",
+    "value": "Slack",
+    "slotSetting": false
+  },
+  {
+    "name": "OnCheckoutDefs",
+    "value": "Slack",
+    "slotSetting": false
+  },
+  {
+    "name": "OnUndoCheckout",
+    "value": "",
+    "slotSetting": false
+  },
+  {
+    "name": "OnAny",
+    "value": "Slack",
+    "slotSetting": false
+  },
+  {
+    "name": "RuleAppDiffReport.NotificationChannel",
+    "value": "Slack",
+    "slotSetting": false
+  },
+  {
+    "name": "RuleAppDiffReport.UploadTo",
+    "value": "",
+    "slotSetting": false
+  },
+  {
+    "name": "RuleAppReport.NotificationChannel",
+    "value": "Slack",
+    "slotSetting": false
+  },
+  {
+    "name": "RuleAppReport.UploadTo",
+    "value": "",
+    "slotSetting": false
+  },
+  {
+    "name": "ServiceBus.NotificationChannel",
+    "value": "",
+    "slotSetting": false
+  },
+  {
+    "name": "ServiceBus.ServiceBusConnectionString",
+    "value": "",
+    "slotSetting": false
+  },
+  {
+    "name": "ServiceBus.ServiceBusQueue",
+    "value": "",
+    "slotSetting": false
+  },
+  {
+    "name": "ServiceBus.ServiceBusTopic",
+    "value": "",
+    "slotSetting": false
+  },
+  {
+    "name": "Slack.SlackWebhookUrl",
+    "value": "",
+    "slotSetting": false
+  },
+  {
+    "name": "Sql.DatabaseConnectionString",
+    "value": "",
+    "slotSetting": false
+  },
+  {
+    "name": "TestSuite.NotificationChannel",
+    "value": "",
+    "slotSetting": false
+  },
+  {
+    "name": "TestSuite.TestSuiteGitHub",
+    "value": "",
+    "slotSetting": false
+  },
+  {
+    "name": "TestSuite.TestSuitesPath",
+    "value": "",
+    "slotSetting": false
+  },
+  {
+    "name": "TestSuite.TestSuitesResultsPath",
+    "value": "",
+    "slotSetting": false
+  },
+  {
+    "name": "TestSuite.UploadTo",
+    "value": "",
+    "slotSetting": false
+  },
+  {
+    "name": "WEBSITE_NODE_DEFAULT_VERSION",
+    "value": "10.14.1",
+    "slotSetting": false
+  }
+]

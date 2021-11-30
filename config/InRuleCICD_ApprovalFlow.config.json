@@ -1,0 +1,17 @@
+﻿[
+  {
+    "name": "ApprovalFlow.ApplyLabelApprover",
+    "value": "admin",
+    "slotSetting": false
+  },
+  {
+    "name": "ApprovalFlow.NotificationChannel",
+    "value": "Slack Email",
+    "slotSetting": false
+  },
+  {
+    "name": "ApprovalFlow.RequesterNotificationChannel",
+    "value": "MyTeams MySlack MyEmail",
+    "slotSetting": false
+  }
+]

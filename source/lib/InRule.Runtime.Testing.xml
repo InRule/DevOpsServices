@@ -1,0 +1,3414 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>InRule.Runtime.Testing</name>
+    </assembly>
+    <members>
+        <member name="T:InRule.Runtime.Testing.Commands.RequeryDelegateCommand">
+            <summary>
+            Raises the <see cref="E:System.Windows.Input.ICommand.CanExecuteChanged"/> event when the <see cref="T:System.Windows.Input.CommandManager"/> requests
+            a requery. This is useful in the mode in which the regression tester tree operates as the <see cref="T:System.Windows.Controls.MenuItem"/>s only
+            query the commands' <see cref="M:System.Windows.Input.ICommand.CanExecute(System.Object)"/> once -- ever -- by default and relies on the commands
+            to raise the <see cref="E:System.Windows.Input.ICommand.CanExecuteChanged"/> event themselves.
+            </summary>
+        </member>
+        <member name="T:InRule.Runtime.Testing.Commands.NamespaceDoc">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:InRule.Runtime.Testing.Controls.ContainerNodeMap">
+            <summary>
+            For each state container that has been displayed in the test tree, this tracks the tree nodes by value id which have been realized
+            Each tree node must register and register itself through the node map to ensure updates are efficiently routed back to the tree nodes
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Controls.ContainerNodeMap.RegisterValueReference(System.Int32,InRule.Runtime.Testing.Controls.EntityTesterTreeNode)">
+            <summary>
+            Adds a tree node to the list of nodes tracked for this container
+            </summary>
+            <param name="infoId"></param>
+            <param name="treeNode"></param>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Controls.ContainerNodeMap.UnregisterValueReference(System.Int32,InRule.Runtime.Testing.Controls.EntityTesterTreeNode)">
+            <summary>
+            Removes a tree node from the list of nodes tracked by this container
+            </summary>
+            <param name="infoId"></param>
+            <param name="treeNode"></param>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Controls.ContainerNodeMap.GetValueNodes(System.Int32)">
+            <summary>
+            Returns the set of value nodes which have been realized by the tree for the given info id
+            The root node for an entity will be returned from this list
+            </summary>
+            <param name="infoId"></param>
+            <returns></returns>
+        </member>
+        <member name="T:InRule.Runtime.Testing.Controls.ContextMenuTag">
+            <summary>
+            Tags for the different items in context menus.
+            </summary>
+        </member>
+        <member name="F:InRule.Runtime.Testing.Controls.ContextMenuTag.Remove">
+            <summary>
+            Remove a member.
+            </summary>
+        </member>
+        <member name="F:InRule.Runtime.Testing.Controls.ContextMenuTag.AddExistingMember">
+            <summary>
+            Add an existing member.
+            </summary>
+        </member>
+        <member name="F:InRule.Runtime.Testing.Controls.ContextMenuTag.CreateNewEntity">
+            <summary>
+            Create a new entity.
+            </summary>
+        </member>
+        <member name="F:InRule.Runtime.Testing.Controls.ContextMenuTag.SelectExistingEntity">
+            <summary>
+            Select an existing entity.
+            </summary>
+        </member>
+        <member name="F:InRule.Runtime.Testing.Controls.ContextMenuTag.ClearCollection">
+            <summary>
+            Clear the collection.
+            </summary>
+        </member>
+        <member name="T:InRule.Runtime.Testing.Controls.EndPointOverridesControl">
+            <summary>
+            EndPointOverridesControl
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Controls.EndPointOverridesControl.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Controls.EntityPickerControl.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:InRule.Runtime.Testing.Controls.EntityTesterNodeMap">
+            <summary>
+            Storage graph which maps container/valueinfos to realized tree nodes
+            - Responsible for propagating changes from both the user and the execution log back into the tree
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Controls.EntityTesterNodeMap.RegisterContainerReference(System.Guid,InRule.Runtime.Testing.Controls.EntityTesterTreeNode)">
+            <summary>
+            When the value of a tree node is a container (or context container) it is registered here 
+            </summary>
+            <param name="containerId"></param>
+            <param name="containerRootNode"></param>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Controls.EntityTesterNodeMap.RegisterValueReference(InRule.Runtime.Element,InRule.Runtime.Testing.Controls.EntityTesterTreeNode)">
+            <summary>
+            Called by each node to register the ids for the value it holds
+            </summary>
+            <param name="element"></param>
+            <param name="treeNode"></param>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Controls.EntityTesterNodeMap.UpdateValidation(System.Guid,System.Int32)">
+            <summary>
+            Handles changes from the execution log and forces any realized nodes to refresh their validation messages
+            </summary>
+            <param name="containerId"></param>
+            <param name="infoId"></param>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Controls.EntityTesterNodeMap.UpdateEntityValidation(System.Guid)">
+            <summary>
+            Handles changes from the execution log specificially for entities and forces any realized nodes to refresh their validation messages
+            </summary>
+            <param name="containerId"></param>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Controls.EntityTesterNodeMap.UpdateActivation(System.Guid,System.Int32)">
+            <summary>
+            When the activation for a ruleset has changed, this forwards the activation change to the respective tree nodes that have been realized
+            </summary>
+            <param name="containerId"></param>
+            <param name="infoId"></param>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Controls.EntityTesterNodeMap.UpdateRuleSetParameters">
+            <summary>
+            Special case handler which goes through all the rule set parameter nodes and updates their value/validation
+            The rule execution log does not return messages for ruleset parameters, so this must be done brute force after every execution
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Controls.EntityTesterNodeMap.UpdateElementValue(System.Guid,System.Int32)">
+            <summary>
+            Handles changes to elements and routes them to their respective realized tree nodes
+            </summary>
+            <param name="containerId"></param>
+            <param name="valueId"></param>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Controls.JsonTreeView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Controls.XmlTreeView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Controls.AutomationPeers.EntityTesterControlAutomationPeer.#ctor(InRule.Runtime.Testing.Controls.EntityTesterControl)">
+            <summary>
+            Initializes a new instance of the EntityTesterControlPeer class.
+            </summary>
+            <param name="owner">Owning DropDownButton</param>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Controls.AutomationPeers.EntityTesterTreeListViewAutomationPeer.System#Windows#Automation#Provider#IGridProvider#ColumnCount">
+            <summary>
+            number of columns in the grid
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Controls.AutomationPeers.EntityTesterTreeListViewAutomationPeer.System#Windows#Automation#Provider#IGridProvider#RowCount">
+            <summary>
+            number of rows in the grid
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Controls.AutomationPeers.EntityTesterTreeListViewAutomationPeer.System#Windows#Automation#Provider#IGridProvider#GetItem(System.Int32,System.Int32)">
+            <summary>
+            Obtain the IRawElementProviderSimple at an absolute position
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Controls.AutomationPeers.EntityTesterTreeListViewAutomationPeer.OnColumnCollectionChanged(System.Object,System.Collections.Specialized.NotifyCollectionChangedEventArgs)">
+            <summary>
+            Fire ColumnCount changed event for GridPattern
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Controls.AutomationPeers.EntityTesterTreeListViewCellAutomationPeer.#ctor(System.Windows.FrameworkElement,System.Int32)">
+            <summary>
+            Initializes a new instance of the EntityTesterTreeListViewCellAutomationPeer class.
+            </summary>
+            <param name="owner">
+            The owning object.
+            </param>
+            <param name="column">
+            The column.
+            </param>
+        </member>
+        <member name="T:InRule.Runtime.Testing.Controls.AutomationPeers.NamespaceDoc">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Controls.AutomationPeers.DropDownButtonAutomationPeer.#ctor(InRule.Runtime.Testing.Controls.DropDownButton)">
+            <summary>
+            Initializes a new instance of the DropDownButtonAutomationPeer class.
+            </summary>
+            <param name="owner">Owning DropDownButton</param>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Controls.EntityTesterListControl.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Controls.ListPickerControl.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Controls.TreeViewHelper.ToggleExpandCollapse(System.Windows.Controls.ItemsControl,System.Boolean)">
+            <summary>
+            Expands all children of a TreeView
+            </summary>
+            <param name="itemsControl">The TreeView whose children will be expanded</param>
+            <param name="expand">if set to <c>true</c> [expand] the container and its items else collapse the container and its items.</param>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Controls.TreeViewHelper.ExpandSubContainers(System.Windows.Controls.ItemsControl,System.Boolean)">
+            <summary>
+            Expands all children of a TreeView or TreeViewItem
+            </summary>
+            <param name="itemsControl">The TreeView or TreeViewItem containing the children to expand</param>
+            <param name="expand">if set to <c>true</c> [expand] the container and its items else collapse the container and its items.</param>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Controls.TreeViewHelper.IsExpanded(System.Windows.Controls.ItemsControl,InRule.Runtime.Testing.Controls.EntityTesterTreeNode)">
+            <summary>
+            Finds the provided object in an ItemsControl's children and returns if it is expanded.
+            </summary>
+            <param name="parentContainer">The parent container whose children will be searched for the selected item</param>
+            <param name="itemToSelect">The item to find</param>
+            <returns>True if the item is found and expanded, false otherwise</returns>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Controls.TreeViewHelper.ExpandAndSelectItem(System.Windows.Controls.ItemsControl,InRule.Runtime.Testing.Controls.EntityTesterTreeNode,System.Boolean)">
+            <summary>
+            Finds the provided object in an ItemsControl's children and selects it
+            </summary>
+            <param name="parentContainer">The parent container whose children will be searched for the selected item</param>
+            <param name="itemToSelect">The item to select</param>         
+            <param name="select">if set to <c>true</c> [select] the item that is found.</param>
+            <returns>True if the item is found and selected, false otherwise</returns>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Controls.TreeViewHelper.GetVisualCount(System.Windows.DependencyObject)">
+            <summary>
+            Counts all visuals within the visual tree.
+            </summary>
+            <param name="visual">It's of type DO but we know it can only be a Visual or Visual3D. </param>
+            <returns>Number of visuals in the visual tree.</returns>
+        </member>
+        <member name="T:InRule.Runtime.Testing.Controls.NamespaceDoc">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:InRule.Runtime.Testing.Controls.WindowCycler.NamespaceDoc">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Controls.CommandPresenter.CanExecuteRemoveCollectionMember(System.Object,System.Windows.Input.CanExecuteRoutedEventArgs)">
+            <summary>
+            Enables or disable the "Clear Reference/View XML/Save XML" menuitems on entity reference fields if the entity field value is null. 
+            Also checks to make sure the EntityTesterControl is in Entity XML mode.
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Controls.DropDownButton.AutomationDropDownButtonClick">
+            <summary>
+            This method is called when button is clicked via IInvokeProvider.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Controls.EntityTesterCheckBox.IsNull">
+            <summary>
+            Gets or sets a value indicating whether this instance is null.
+            </summary>
+            <value>
+            <c>true</c> if this instance is null; otherwise, <c>false</c>.
+            </value>
+            <remarks>
+            Typically, this property is set to true when the user presses Ctrl-0.
+            </remarks>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Controls.EntityTesterComboBox.IsNull">
+            <summary>
+            Gets or sets a value indicating whether this instance is null.
+            </summary>
+            <value>
+            <c>true</c> if this instance is null; otherwise, <c>false</c>.
+            </value>
+            <remarks>
+            Typically, this property is set to true when the user presses Ctrl-0.
+            </remarks>
+        </member>
+        <member name="F:InRule.Runtime.Testing.Controls.EntityTesterControl.ThrowOnError">
+            <summary>
+            Helper flag for unit tests to get their exceptions instead of messagebox.
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Controls.EntityTesterControl.GetExpandedElementIds">
+            <summary>
+            Walks the current tree and collects the elements which are currently expanded
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Controls.EntityTesterControl.WhenTreeListViewSizeChanged(System.Object,System.Windows.SizeChangedEventArgs)">
+            <summary>
+            Handles the last column stretching to the available width in the TreeListView.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Controls.EntityTesterControl.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:InRule.Runtime.Testing.Controls.EntityTesterTreeViewItem">
+            <summary>
+            Implements a selectable item in a TreeView control.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Controls.EntityTesterTreeViewItem.Level">
+            <summary>
+            Item's hierarchy in the tree
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Controls.EntityTesterTreeViewItem.OnItemsSourceChanged(System.Collections.IEnumerable,System.Collections.IEnumerable)">
+            <summary>
+            Called when the <see cref="P:System.Windows.Controls.ItemsControl.ItemsSource"/> property changes. 
+            The method sets the virtual item/node count and also based on whether the current node is expanded or collapsed, the data/ui gets virtualized.
+            </summary>
+            <param name="oldValue">Old value of the <see cref="P:System.Windows.Controls.ItemsControl.ItemsSource"/> property.</param>
+            <param name="newValue">New value of the <see cref="P:System.Windows.Controls.ItemsControl.ItemsSource"/> property.</param>
+        </member>
+        <member name="T:InRule.Runtime.Testing.Controls.EntityTesterTextBox">
+            <summary>
+            Custom TextBox which overrides OnLostKeyBoardFocus. 
+            </summary>
+            <remarks>
+            Toolbar buttons do not acquire focus when they are clicked. 
+            This means the TextBox does not lose focus, which, in turn, means the source update does not occur.
+            </remarks>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Controls.EntityTesterTextBox.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:InRule.Runtime.Testing.Controls.EntityTesterTextBox"/> class.
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Controls.EntityTesterTextBox.OnLostKeyboardFocus(System.Windows.Input.KeyboardFocusChangedEventArgs)">
+            <summary>
+            Invoked whenever an unhandled <see cref="E:System.Windows.Input.Keyboard.LostKeyboardFocus"/> attached routed 
+            event reaches an element derived from this class in its route. 
+            </summary>
+            <param name="e">
+            Provides data about the event.
+            </param>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Controls.EntityTesterTextBox.OnPreviewKeyDown(System.Windows.Input.KeyEventArgs)">
+            <summary>
+            Called when the <see cref="E:System.Windows.UIElement.KeyDown"/> occurs.
+            </summary>
+            <param name="e">
+            The event data.
+            </param>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Controls.EntityTesterTextBox.IsNull">
+            <summary>
+            Gets or sets a value indicating whether this instance is null.
+            </summary>
+            <value>
+            <c>true</c> if this instance is null; otherwise, <c>false</c>.
+            </value>
+            <remarks>
+            Typically, this property is set to true when the user presses Ctrl-0.
+            </remarks>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Controls.EntityTesterTextBox.Value">
+            <summary>
+            Gets the value of this instance.
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Controls.EntityTesterTextBox.RevertValue">
+            <summary>
+            Sets the value of this instance to the empty string.
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Controls.EntityTesterTextBox.OnGotKeyboardFocus(System.Windows.Input.KeyboardFocusChangedEventArgs)">
+            <summary>
+            Invoked whenever an unhandled <see cref="E:System.Windows.Input.Keyboard.GotKeyboardFocus"/> attached routed 
+            event reaches an element derived from this class in its route. 
+            </summary>
+            <param name="e">
+            Provides data about the event.
+            </param>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Controls.EntityTesterTreeNode.RegisterReferencedContainerIds">
+            <summary>
+            Notifies the value map of the container and to route changes to this node
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Controls.EntityTesterTreeNode.UnregisterReferencedContainerIds">
+            <summary>
+            Notifies the value map that this node no longer needs to have changes routed to this node for the referenced containers
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Controls.EntityTesterTreeNode.IsSelfReferencing">
+            <summary>
+            Gets a value indicating whether this instance is self referencing.
+            </summary>
+            <value>
+            	<c>true</c> if this instance is self referencing; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Controls.EntityTesterTreeNode.EnsureChildNodesAreRealized">
+            <summary>
+            Ensures that the child nodes of this node are real nodes and not the dummy node which drives the virtual expansion
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Controls.EntityTesterTreeNode.ElementDomHelpers.ExpandMatchingElementIds(InRule.Runtime.Testing.Controls.EntityTesterTreeNode,System.Collections.Generic.HashSet{System.String})">
+            <summary>
+            Walks the tree downhill and looks for nodes to expand based on element id
+            </summary>
+            <param name="node"></param>
+            <param name="previouslyExpandedElementIds"></param>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Controls.IEntityTesterEditor.IsNull">
+            <summary>
+            Gets or sets a value indicating whether this instance is null.
+            </summary>
+            <value>
+            <c>true</c> if this instance is null; otherwise, <c>false</c>.
+            </value>
+            <remarks>
+            Typically, this property is set to true when the user presses Ctrl-0.
+            </remarks>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Controls.SyntaxEditorHelper.LoadLanguageDefinitionFromResourceStream(System.String)">
+            <summary>
+            Loads a language definition (.langdef file) from a resource stream.
+            </summary>
+            <param name="filename">The filename.</param>
+            <returns>The <see cref="T:ActiproSoftware.Text.ISyntaxLanguage"/> that was loaded.</returns>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Converters.BooleanConverter`1.TrueValue">
+            <summary>
+            The converted value that corresponds to <c>true</c>.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Converters.BooleanConverter`1.FalseValue">
+            <summary>
+            The converted value that corresponds to <c>false</c>.
+            </summary>
+        </member>
+        <member name="T:InRule.Runtime.Testing.Converters.BooleanToDimensionConverter">
+            <summary>
+            Represents a converter that converts Boolean values to and from Width and Height values.
+            </summary>
+            <remarks>
+            <c>True</c> converts to Double.NaN, which is interpreted as "Auto".
+            <c>False</c> converts to 0, which hides the element by making its width or height zero.
+            </remarks>
+        </member>
+        <member name="T:InRule.Runtime.Testing.Converters.TimeSpanToMillisecondsConverter">
+            <summary>
+            Represents a converter that converts a TimeSpan value to milliseconds, rounded to the nearest .001 millisecond.
+            </summary>
+        </member>
+        <member name="T:InRule.Runtime.Testing.Converters.VisibilityConverter">
+            <summary>
+            Parameter is space-delimited true/false values. For example, if parameter is 'Hidden Visible', Visibility.Hidden will
+            be returned if the value is true; otherwise, Visibility.Visible is returned. 
+            </summary>
+        </member>
+        <member name="T:InRule.Runtime.Testing.Converters.NamespaceDoc">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:InRule.Runtime.Testing.DecisionTester">
+            <summary>
+            Provides ability to test Decisions by launching an irVerify window.
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.DecisionTester.GetWindow(InRule.Runtime.Decision)">
+            <summary>
+            Returns the entity tester window with default tester options.
+            </summary>
+            <param name="decision">The decision.</param>
+            <returns>IIrVerifyWindow</returns>
+        </member>
+        <member name="M:InRule.Runtime.Testing.DecisionTester.GetWindow(InRule.Runtime.Decision,InRule.Runtime.Testing.EntityTesterOptions)">
+            <summary>
+            Returns the entity tester window with entity tester options. Should be used when loading the window with available entity tester options.
+            </summary>
+            <param name="decision">The decision.</param>
+            <param name="entityTesterOptions">The entity tester options.</param>
+            <returns>IIrVerifyWindow</returns>
+        </member>
+        <member name="M:InRule.Runtime.Testing.DecisionTester.GetWindow(InRule.Runtime.Decision,InRule.Runtime.Testing.EntityTesterOptions,InRule.Runtime.Testing.JumpToRuleSourceEventHandler)">
+            <summary>
+            Returns the entity tester window with entity tester options. Should be used when loading the window with available entity tester options.
+            </summary>
+            <param name="decision">The decision.</param>
+            <param name="entityTesterOptions">The entity tester options.</param>
+            <param name="jumpToSourceHandler">The event handler to jump to source element.</param>
+            <returns>IIrVerifyWindow</returns>
+        </member>
+        <member name="T:InRule.Runtime.Testing.EntityStateViewer">
+            <summary>
+            Displays entity state.
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Extensions.ExceptionExtensions.GetMessage(System.Exception)">
+            <summary>
+            Returns verbose information (ToString()) when executed from DEBUG build; otherwise, the 
+            standard text (Message).
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Extensions.DataStateDefExtensions.LoadTestScenario(InRule.Repository.Regression.DataStateDef,InRule.Runtime.RuleSession,InRule.Runtime.Element)">
+            <summary>
+            Loads the test scenario from a <see cref="T:InRule.Runtime.RuleSession"/>.
+            </summary>
+            <param name="dataStateDef">
+            The data state definition.
+            </param>
+            <param name="ruleSession">
+            The rule session.
+            </param>
+            <param name="rootElement">
+            The root test element.
+            </param>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Extensions.DataStateDefExtensions.SaveTestScenario(InRule.Repository.Regression.DataStateDef,InRule.Runtime.RuleSession)">
+            <summary>
+            Saves the test scenario into a <see cref="T:InRule.Runtime.RuleSession"/>.
+            </summary>
+            <param name="dataStateDef">
+            The data state definition.
+            </param>
+            <param name="ruleSession">
+            The rule session.
+            </param>
+        </member>
+        <member name="T:InRule.Runtime.Testing.Extensions.Compatibility.NamespaceDoc">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:InRule.Runtime.Testing.Extensions.ElementValueExtensions">
+            <summary>
+            Extension methods for the <see cref="T:InRule.Runtime.ElementValue"/> class.
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Extensions.ElementValueExtensions.GetDataType(InRule.Runtime.ElementValue)">
+            <summary>
+            Gets the data type of the ElementValue.
+            </summary>
+            <param name="elementValue">The element value.</param>
+            <returns>
+            The data type of the ElementValue.
+            </returns>
+        </member>
+        <member name="T:InRule.Runtime.Testing.Extensions.NamespaceDoc">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Extensions.TestDefExtensions.ExpectedIterations(InRule.Repository.Regression.TestDef)">
+            <summary>
+            Indicates how many "apply rules" iterations this test is expected to execute.
+            </summary>
+            <param name="testDef">
+            The test definition.
+            </param>
+            <returns>
+            For an assertion or compare test, always 1.
+            For a performance test, the iteration count, plus two if a warmup has been requested.
+            </returns>
+        </member>
+        <member name="T:InRule.Runtime.Testing.JumpToRuleSourceEventHandler">
+            <summary>
+            JumpToRuleSource EventHandler declaration
+            </summary>
+        </member>
+        <member name="T:InRule.Runtime.Testing.JumpToRuleSourceEventArgs">
+            <summary>
+            JumpToRuleSource args object (passed to EventHandler)
+            </summary>
+        </member>
+        <member name="T:InRule.Runtime.Testing.NamespaceDoc">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:InRule.Runtime.Testing.Forms.NamespaceDoc">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:InRule.Runtime.Testing.Logging.NamespaceDoc">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:InRule.Runtime.Testing.ObjectModel.NamespaceDoc">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:InRule.Runtime.Testing.Properties.NamespaceDoc">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:InRule.Runtime.Testing.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="T:InRule.Runtime.Testing.Regression.NamespaceDoc">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:InRule.Runtime.Testing.Regression.Controls.NamespaceDoc">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:InRule.Runtime.Testing.Regression.Converters.NamespaceDoc">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:InRule.Runtime.Testing.Regression.Editors.NamespaceDoc">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:InRule.Runtime.Testing.Regression.Exceptions.NamespaceDoc">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:InRule.Runtime.Testing.Regression.Exceptions.InvalidDataStateOverrideException">
+            <summary>
+            Represents an Exception identifying an invalid <see cref="T:InRule.Repository.Regression.DataStateOverrideDef"/> instance encountered during test execution.
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Regression.Exceptions.InvalidDataStateOverrideException.#ctor(InRule.Repository.Regression.DataStateOverrideDef.DataOverrideDefType,System.String,System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:InRule.Runtime.Testing.Regression.Exceptions.InvalidDataStateOverrideException"/> class.
+            </summary>
+            <param name="targetPath">The target path of the override.</param>
+            <param name="type">The type of the override.</param>
+            <param name="value">The value of the override.</param>
+            <param name="inner">Any inner exception thrown, or null.</param>
+        </member>
+        <member name="T:InRule.Runtime.Testing.Regression.Exceptions.MissingRootContextException">
+            <summary>
+            Represents an exception alerting that the root context <see cref="T:InRule.Repository.Regression.TestContextDef"/> is missing from the <see cref="T:InRule.Repository.Regression.TestDef"/>.
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Regression.Exceptions.MissingRootContextException.#ctor(System.String)">
+            <summary>
+            Initialized a new instance of the <see cref="T:InRule.Runtime.Testing.Regression.Exceptions.MissingRootContextException"/> class.
+            </summary>
+            <param name="message">The message describing the exception.</param>
+        </member>
+        <member name="T:InRule.Runtime.Testing.Regression.Exceptions.MissingTestSuiteRuleApplicationDefException">
+            <summary>
+            Represents an exception describing that a <see cref="T:InRule.Repository.Regression.TestSuiteDef"/> does not have an active <see cref="T:InRule.Repository.RuleApplicationDef"/> assigned to it.
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Regression.Exceptions.MissingTestSuiteRuleApplicationDefException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:InRule.Runtime.Testing.Regression.Exceptions.MissingTestSuiteRuleApplicationDefException"/> class.
+            </summary>
+            <param name="message">The message describing the exception.</param>
+        </member>
+        <member name="T:InRule.Runtime.Testing.Regression.Exceptions.TestResultsLoadException">
+            <summary>
+            Represents an exception thrown during TestResultCollection deserialization.
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Regression.Exceptions.TestResultsLoadException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:InRule.Runtime.Testing.Regression.Exceptions.TestResultsLoadException"/> class.
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="T:InRule.Runtime.Testing.Regression.Runtime.NamespaceDoc">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:InRule.Runtime.Testing.Regression.Runtime.Persistence.NamespaceDoc">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:InRule.Runtime.Testing.Regression.Runtime.Persistence.TestResultsPersistenceProvider">
+            <summary>
+            An abstract base class representing a RegressionTesting TestResult persistence provider.
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Regression.Runtime.Persistence.TestResultsPersistenceProvider.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Regression.Runtime.Persistence.TestResultsPersistenceProvider.CreateNewTestResults">
+            <summary>
+            Creates a new empty instance of a TestResult container in the provider implementation for writing.
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Regression.Runtime.Persistence.TestResultsPersistenceProvider.Open">
+            <summary>
+            Opens an existing TestResult container from the provider implementation for reading.
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Regression.Runtime.Persistence.TestResultsPersistenceProvider.Close">
+            <summary>
+            Closes the current TestResult container in the provider implementation to prevent any further reads or writes.
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Regression.Runtime.Persistence.TestResultsPersistenceProvider.StoreResults(InRule.Runtime.Testing.Regression.TestResultCollection)">
+            <summary>
+            Writes the <see cref="T:InRule.Runtime.Testing.Regression.TestResultCollection"/> to the provider implementation.
+            </summary>
+            <param name="results">The <see cref="T:InRule.Runtime.Testing.Regression.TestResultCollection"/> to write.</param>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Regression.Runtime.Persistence.TestResultsPersistenceProvider.StoreRuleApp(InRule.Repository.RuleApplicationDef)">
+            <summary>
+            Writes the <see cref="T:InRule.Repository.RuleApplicationDef"/> associated with this TestSuite execution to the provider implementation.
+            </summary>
+            <param name="ruleAppDef">The <see cref="T:InRule.Repository.RuleApplicationDef"/> to write.</param>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Regression.Runtime.Persistence.TestResultsPersistenceProvider.StoreTestSuite(InRule.Repository.Regression.TestSuiteDef)">
+            <summary>
+            Writes the <see cref="T:InRule.Repository.Regression.TestSuiteDef"/> to the provider implementation.
+            </summary>
+            <param name="testSuite">The <see cref="T:InRule.Repository.Regression.TestSuiteDef"/> to write.</param>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Regression.Runtime.Persistence.TestResultsPersistenceProvider.StoreCompositeHashCode(System.Int32)">
+            <summary>
+            Stores the composite hash of TestResultCollection + RuleApplicationDef + TestSuite.
+            </summary>
+            <param name="hashCode">The hash code to store.</param>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Regression.Runtime.Persistence.TestResultsPersistenceProvider.LoadResults">
+            <summary>
+            Reads the <see cref="T:InRule.Runtime.Testing.Regression.TestResultCollection"/> from the provider implementation.
+            </summary>
+            <returns>The <see cref="T:InRule.Runtime.Testing.Regression.TestResultCollection"/>to read.</returns>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Regression.Runtime.Persistence.TestResultsPersistenceProvider.LoadRuleApp(System.Int32@)">
+            <summary>
+            Reads the <see cref="T:InRule.Repository.RuleApplicationDef"/> from the provider implementation.
+            </summary>
+            <returns>The <see cref="T:InRule.Repository.RuleApplicationDef"/>to read.</returns>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Regression.Runtime.Persistence.TestResultsPersistenceProvider.LoadTestSuite(System.Int32@)">
+            <summary>
+            Reads the <see cref="T:InRule.Repository.Regression.TestSuiteDef"/> from the provider implementation.
+            </summary>
+            <returns>The <see cref="T:InRule.Repository.Regression.TestSuiteDef"/>to read.</returns>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Regression.Runtime.Persistence.TestResultsPersistenceProvider.LoadCompositeHashCode">
+            <summary>
+            Loads the composite hash of TestResultCollection + RuleApplicationDef + TestSuite.
+            </summary>
+            <returns>The stored composite hash code.</returns>
+        </member>
+        <member name="T:InRule.Runtime.Testing.Regression.Runtime.Persistence.ZipFileTestResultsPersistenceProvider">
+            <summary>
+            Represents a zip file TestResult persistence provider.  This stores the test results,
+            <see cref="T:InRule.Repository.RuleApplicationDef"/> and <see cref="T:InRule.Repository.Regression.TestSuiteDef"/> in separate files in a zip file container.
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Regression.Runtime.Persistence.ZipFileTestResultsPersistenceProvider.#ctor(System.String,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:InRule.Runtime.Testing.Regression.Runtime.Persistence.ZipFileTestResultsPersistenceProvider"/> class.
+            </summary>
+            <param name="resultFilePath">The location of the zip file on the file system.</param>
+            <param name="overwrite">Whether to overwrite an existing file if it already exists at the specified location.</param>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Regression.Runtime.Persistence.ZipFileTestResultsPersistenceProvider.CreateNewTestResults">
+            <summary>
+            Creates a new zip file container for the TestResult data.
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Regression.Runtime.Persistence.ZipFileTestResultsPersistenceProvider.Open">
+            <summary>
+            Opens an existing TestResult zip file for reading.
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Regression.Runtime.Persistence.ZipFileTestResultsPersistenceProvider.Close">
+            <summary>
+            Closes the zip file, preventing any further reads or writes.
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Regression.Runtime.Persistence.ZipFileTestResultsPersistenceProvider.StoreResults(InRule.Runtime.Testing.Regression.TestResultCollection)">
+            <summary>
+            Writes the <see cref="T:InRule.Runtime.Testing.Regression.TestResultCollection"/> to the zip file.
+            </summary>
+            <param name="results">The <see cref="T:InRule.Runtime.Testing.Regression.TestResultCollection"/> to write.</param>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Regression.Runtime.Persistence.ZipFileTestResultsPersistenceProvider.StoreRuleApp(InRule.Repository.RuleApplicationDef)">
+            <summary>
+            Writes the <see cref="T:InRule.Repository.RuleApplicationDef"/> associated with this TestSuite execution to the zip file.
+            </summary>
+            <param name="ruleAppDef">The <see cref="T:InRule.Repository.RuleApplicationDef"/> to write.</param>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Regression.Runtime.Persistence.ZipFileTestResultsPersistenceProvider.StoreTestSuite(InRule.Repository.Regression.TestSuiteDef)">
+            <summary>
+            Writes the <see cref="T:InRule.Repository.Regression.TestSuiteDef"/> to the zip file.
+            </summary>
+            <param name="testSuite">The <see cref="T:InRule.Repository.Regression.TestSuiteDef"/> to write.</param>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Regression.Runtime.Persistence.ZipFileTestResultsPersistenceProvider.StoreCompositeHashCode(System.Int32)">
+            <summary>
+            Writes the composite hash code of the TestResultCollection, RuleApplicationDef and TestSuite files.
+            </summary>
+            <param name="hashCode">The composite hash code.</param>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Regression.Runtime.Persistence.ZipFileTestResultsPersistenceProvider.LoadResults">
+            <summary>
+            Reads the <see cref="T:InRule.Runtime.Testing.Regression.TestResultCollection"/> from the zip file.
+            </summary>
+            <returns>The <see cref="T:InRule.Runtime.Testing.Regression.TestResultCollection"/>to read.</returns>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Regression.Runtime.Persistence.ZipFileTestResultsPersistenceProvider.LoadRuleApp(System.Int32@)">
+            <summary>
+            Reads the <see cref="T:InRule.Repository.RuleApplicationDef"/> from the zip file.
+            </summary>
+            <returns>The <see cref="T:InRule.Repository.RuleApplicationDef"/>to read.</returns>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Regression.Runtime.Persistence.ZipFileTestResultsPersistenceProvider.LoadTestSuite(System.Int32@)">
+            <summary>
+            Reads the <see cref="T:InRule.Repository.Regression.TestSuiteDef"/> from the zip file.
+            </summary>
+            <returns>The <see cref="T:InRule.Repository.Regression.TestSuiteDef"/>to read.</returns>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Regression.Runtime.Persistence.ZipFileTestResultsPersistenceProvider.LoadCompositeHashCode">
+            <summary>
+            Reads the composite hash code of the TestResultCollection, RuleApplicationDef and TestSuite files.
+            </summary>
+            <returns>The composite hash code.</returns>
+        </member>
+        <member name="T:InRule.Runtime.Testing.Regression.Runtime.RegressionTestingSession">
+            <summary>
+            Represents a RegressionTesting session capable of executing tests from a <see cref="T:InRule.Repository.Regression.TestSuiteDef"/>.
+            </summary>
+        </member>
+        <member name="F:InRule.Runtime.Testing.Regression.Runtime.RegressionTestingSession.WARMUP_ITERATIONS">
+            <summary>
+            The number of iterations to run if warmup is requested on a Performance test.
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Regression.Runtime.RegressionTestingSession.#ctor(InRule.Runtime.Testing.Session.TestingSessionManager,InRule.Repository.Regression.TestSuiteDef)">
+            <summary>
+            Initializes a new instance of the <see cref="T:InRule.Runtime.Testing.Regression.Runtime.RegressionTestingSession"/> class, using the <see cref="T:InRule.Repository.RuleApplicationDef"/> currently
+            associated with the <see cref="P:InRule.Repository.Regression.TestSuiteDef.ActiveRuleApplicationDef"/> property.
+            </summary>
+            <param name="manager">The <see cref="T:InRule.Runtime.Testing.Session.TestingSessionManager"/> to create new <see cref="!:RuleServiceConnection"/> instance for each test in the <see cref="T:InRule.Repository.Regression.TestSuiteDef"/>.</param>
+            <param name="testSuite">The <see cref="T:InRule.Repository.Regression.TestSuiteDef"/> containing the tests to execute.</param>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Regression.Runtime.RegressionTestingSession.#ctor(InRule.Runtime.Testing.Session.TestingSessionManager,InRule.Runtime.RuleApplicationReference,InRule.Repository.Regression.TestSuiteDef)">
+            <summary>
+            Initializes a new instance of the <see cref="T:InRule.Runtime.Testing.Regression.Runtime.RegressionTestingSession"/> class, using the <see cref="T:InRule.Repository.RuleApplicationDef"/>
+            represented by the <see cref="T:InRule.Repository.RuleApplicationDef"/> argument.
+            </summary>
+            <param name="manager">The <see cref="T:InRule.Runtime.Testing.Session.TestingSessionManager"/> to create new <see cref="!:RuleServiceConnection"/> instance for each test in the <see cref="T:InRule.Repository.Regression.TestSuiteDef"/>.</param>
+            <param name="ruleAppRef">The <see cref="T:InRule.Repository.RuleApplicationDef"/> representing the <see cref="T:InRule.Repository.RuleApplicationDef"/> to associate with the <see cref="T:InRule.Repository.Regression.TestSuiteDef"/>.</param>
+            <param name="testSuite">The <see cref="T:InRule.Repository.Regression.TestSuiteDef"/> containing the tests to execute.</param>
+        </member>
+        <member name="E:InRule.Runtime.Testing.Regression.Runtime.RegressionTestingSession.TestStart">
+            <summary>
+            Event fires prior to each test executing.
+            </summary>
+        </member>
+        <member name="E:InRule.Runtime.Testing.Regression.Runtime.RegressionTestingSession.TestComplete">
+            <summary>
+            Event fires when a test is complete.
+            </summary>
+        </member>
+        <member name="E:InRule.Runtime.Testing.Regression.Runtime.RegressionTestingSession.IterationComplete">
+            <summary>
+            Event fires when a test iteration is complete.
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Regression.Runtime.RegressionTestingSession.ExecuteAllTests">
+            <summary>
+            Executes all enabled tests in the associated <see cref="T:InRule.Repository.Regression.TestSuiteDef"/>.
+            </summary>
+            <returns>A <see cref="T:InRule.Runtime.Testing.Regression.TestResultCollection"/> containing the results of the tests executed.</returns>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Regression.Runtime.RegressionTestingSession.ExecuteTests(InRule.Repository.Regression.FolderDef)">
+            <summary>
+            Executes all enabled tests contained in the specified <see cref="T:InRule.Repository.Regression.FolderDef"/> and all of its subfolders.
+            </summary>
+            <param name="folder">The folder containing tests to execute.</param>
+            <returns>A <see cref="T:InRule.Runtime.Testing.Regression.TestResultCollection"/> containing the results of the tests executed.</returns>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Regression.Runtime.RegressionTestingSession.ExecuteTests(System.Collections.Generic.IEnumerable{System.Guid})">
+            <summary>
+            Executes all enabled tests from a list of test identifiers.
+            </summary>
+            <param name="tests">
+            The list of test identifiers.
+            </param>
+            <returns>
+            A <see cref="T:InRule.Runtime.Testing.Regression.TestResultCollection"/> containing the results of the tests executed.
+            </returns>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Regression.Runtime.RegressionTestingSession.ExecuteTests(System.Collections.Generic.IEnumerable{System.Guid},System.Threading.CancellationToken)">
+            <summary>
+            Executes all enabled tests from a list of test identifiers.
+            </summary>
+            <param name="tests">
+            The list of test identifiers.
+            </param>
+            <param name="cancellationToken">
+            The token that indicates if the user has clicked Cancel on the progress window.
+            </param>
+            <returns>
+            A <see cref="T:InRule.Runtime.Testing.Regression.TestResultCollection"/> containing the results of the tests executed.
+            </returns>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Regression.Runtime.RegressionTestingSession.ExecuteTests(System.Guid)">
+            <summary>
+            Executes all enabled tests contained in the specified identifier's <see cref="T:InRule.Repository.Regression.FolderDef"/> and all of its subfolders.
+            </summary>
+            <param name="folderId">The identifier of the folder containing tests to execute.</param>
+            <returns>A <see cref="T:InRule.Runtime.Testing.Regression.TestResultCollection"/> containing the results of the tests executed.</returns>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Regression.Runtime.RegressionTestingSession.ExecuteTests(System.Collections.Generic.IEnumerable{InRule.Repository.Regression.FolderDef})">
+            <summary>
+            Executes all enabled tests contained in each <see cref="T:InRule.Repository.Regression.FolderDef"/> and all of their subfolders from the list provided. 
+            </summary>
+            <param name="folders">List of folders containing tests to execute.</param>
+            <returns>A <see cref="T:InRule.Runtime.Testing.Regression.TestResultCollection"/> containing the results of the tests executed.</returns>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Regression.Runtime.RegressionTestingSession.ExecuteTests(System.Collections.Generic.IEnumerable{InRule.Repository.Regression.FolderDef},System.Collections.Generic.IEnumerable{InRule.Repository.Regression.TestDef})">
+            <summary>
+            Executes all enabled tests contained in each <see cref="T:InRule.Repository.Regression.FolderDef"/> and all of their subfolders from the list provided,
+            along with all the individual <see cref="T:InRule.Repository.Regression.TestDef"/> instances in the second list.
+            </summary>
+            <param name="tests">List of tests to execute.</param>
+            <param name="folders">List of folders containing tests to execute.</param>
+            <returns>A <see cref="T:InRule.Runtime.Testing.Regression.TestResultCollection"/> containing the results of the tests executed.</returns>
+        </member>
+        <member name="T:InRule.Runtime.Testing.Regression.AssertionResult">
+            <summary>
+            Represents the result of an assertion, indicating whether it passed or failed, and any failure information.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Regression.AssertionResult.FormattedExpectedValue">
+            <summary>
+            Gets the formatted expected value using the current culture
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Regression.AssertionResult.FormattedActualValue">
+            <summary>
+            Gets the formatted actual value using the current culture
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Regression.AssertionResult.Passed">
+            <summary>
+            Gets or sets whether the assertion passed or failed.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Regression.AssertionResult.AssertionDef">
+            <summary>
+            Gets or sets the <see cref="P:InRule.Runtime.Testing.Regression.AssertionResult.AssertionDef"/> from the authored <see cref="T:InRule.Repository.Regression.TestSuiteDef"/>.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Regression.AssertionResult.AssertionDefId">
+            <summary>
+            Gets or sets the serializable identifier of the <see cref="P:InRule.Runtime.Testing.Regression.AssertionResult.AssertionDef"/> instance associated with this assertion result.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Regression.AssertionResult.ActualValue">
+            <summary>
+            Gets or sets the string representation of the executed assertion value.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Regression.AssertionResult.ExpectedValue">
+            <summary>
+            Gets or sets string representation of the expected assertion value as defined in the <see cref="P:InRule.Runtime.Testing.Regression.AssertionResult.AssertionDef"/>.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Regression.AssertionResult.Target">
+            <summary>
+            Gets or sets the string representation of the element path of the assertion value.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Regression.AssertionResult.DisplayText">
+            <summary>
+            Gets or sets the textual representation of the assertion as seen in the user interface.
+            </summary>
+        </member>
+        <member name="T:InRule.Runtime.Testing.Regression.AssertionResultCollection">
+            <summary>
+            Represents a collection of <see cref="T:InRule.Runtime.Testing.Regression.AssertionResult"/> instances.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Regression.AssertionResultCollection.Item(System.Guid)">
+            <summary>
+            Gets an assertion by the specified identifier.
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:InRule.Runtime.Testing.Regression.IterationTestResult">
+            <summary>
+            The test results from a performance test iteration.
+            </summary>
+        </member>
+        <member name="F:InRule.Runtime.Testing.Regression.IterationTestResult.MAX_PERFORMANCE_REPORTS">
+            <summary>
+            The maximum number of performance reports that will be available.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Regression.IterationTestResult.Counter">
+            <summary>
+            The iteration counter (1-based).
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Regression.IterationTestResult.ClockRunningTime">
+            <summary>
+            The execution time for this iteration (measured by stopwatch).
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Regression.IterationTestResult.ClockRunningTimeTicks">
+            <summary>
+            XML serializable version of <see cref="P:InRule.Runtime.Testing.Regression.IterationTestResult.ClockRunningTime"/>.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Regression.IterationTestResult.ExecutionLog">
+            <summary>
+            The execution time for this iteration.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Regression.IterationTestResult.TotalRunningTime">
+            <summary>
+            The execution time for this iteration (measured by stopwatch).
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Regression.IterationTestResult.TotalRunningTimeTicks">
+            <summary>
+            XML serializable version of <see cref="P:InRule.Runtime.Testing.Regression.IterationTestResult.TotalRunningTime"/>.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Regression.IterationTestResult.RuleExecutionTime">
+            <summary>
+            Aggregate evaluation time for rules during this execution sequence.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Regression.IterationTestResult.RuleExecutionTimeTicks">
+            <summary>
+            XML serializable version of <see cref="P:InRule.Runtime.Testing.Regression.IterationTestResult.RuleExecutionTime"/>.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Regression.IterationTestResult.MetadataCompileTime">
+            <summary>
+            Aggregate time for runtime metadata generation during this execution sequence.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Regression.IterationTestResult.MetadataCompileTimeTicks">
+            <summary>
+            XML serializable version of <see cref="P:InRule.Runtime.Testing.Regression.IterationTestResult.MetadataCompileTime"/>.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Regression.IterationTestResult.FunctionCompileTime">
+            <summary>
+            Aggregate time for .NET delegate generation during this execution sequence.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Regression.IterationTestResult.FunctionCompileTimeTicks">
+            <summary>
+            XML serializable version of <see cref="P:InRule.Runtime.Testing.Regression.IterationTestResult.FunctionCompileTime"/>.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Regression.IterationTestResult.LoadXmlTime">
+            <summary>
+            The time spent loading Entity XML state.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Regression.IterationTestResult.LoadXmlTimeTicks">
+            <summary>
+            XML serializable version of <see cref="P:InRule.Runtime.Testing.Regression.IterationTestResult.LoadXmlTime"/>.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Regression.IterationTestResult.LoadTestScenarioTime">
+            <summary>
+            The time spent loading TestScenario state.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Regression.IterationTestResult.LoadTestScenarioTimeTicks">
+            <summary>
+            XML serializable version of <see cref="P:InRule.Runtime.Testing.Regression.IterationTestResult.LoadTestScenarioTime"/>.
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Regression.IterationTestResult.CreateHeaders">
+            <summary>
+            Creates the values to place in a file header row.
+            </summary>
+            <returns>
+            A list of strings containing column headers.
+            </returns>
+            <remarks>
+            Any additions/deletions/rearrangements here should have corresponding changes in <see cref="M:InRule.Runtime.Testing.Regression.IterationTestResult.CreateDetailRows(System.String)"/>.
+            </remarks>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Regression.IterationTestResult.CreateDetailRows(System.String)">
+            <summary>
+            Creates the values to place in a file detail row.
+            </summary>
+            <returns>
+            A list of strings containing the values for the various iteration measurements.
+            </returns>
+            <remarks>
+            Any additions/deletions/rearrangements here should have corresponding changes in <see cref="M:InRule.Runtime.Testing.Regression.IterationTestResult.CreateHeaders"/>.
+            </remarks>
+        </member>
+        <member name="T:InRule.Runtime.Testing.Regression.TestCompleteEventHandler">
+            <summary>
+            Represents the method that will handle a <see cref="E:InRule.Runtime.Testing.Regression.Runtime.RegressionTestingSession.TestComplete"/> event.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="args">The <see cref="T:InRule.Runtime.Testing.Regression.TestCompleteEventArgs"/> that contains the result of an executed test.</param>
+        </member>
+        <member name="T:InRule.Runtime.Testing.Regression.TestCompleteEventArgs">
+            <summary>
+            Represents the result of an executed test fired from a <see cref="E:InRule.Runtime.Testing.Regression.Runtime.RegressionTestingSession.TestComplete"/> event.
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Regression.TestCompleteEventArgs.#ctor(InRule.Runtime.Testing.Regression.TestResult)">
+            <summary>
+            Initializes a new instace of the <see cref="T:InRule.Runtime.Testing.Regression.TestCompleteEventArgs"/> class.
+            </summary>
+            <param name="result">The result of an executed test.</param>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Regression.TestCompleteEventArgs.Result">
+            <summary>
+            Gets or sets the result of an executed test.
+            </summary>
+        </member>
+        <member name="T:InRule.Runtime.Testing.Regression.TestResultCollection">
+            <summary>
+            Represents an immutable collection of <see cref="T:InRule.Runtime.Testing.Regression.TestResult"/> instances.
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Regression.TestResultCollection.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the collection of <see cref="T:InRule.Runtime.Testing.Regression.TestResult"/> instances.
+            </summary>
+            <returns>An <see cref="T:System.Collections.Generic.IEnumerator`1" /> object that can be used to iterate through the collection.</returns>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Regression.TestResultCollection.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the collection of <see cref="T:InRule.Runtime.Testing.Regression.TestResult"/> instances.
+            </summary>
+            <returns>An <see cref="T:System.Collections.IEnumerator"/> object that can be used to iterate through the collection.</returns>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Regression.TestResultCollection.Dispose">
+            <summary>
+            Will clean-up any temp files used by the 
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Regression.TestResultCollection.Item(System.Guid)">
+            <summary>
+            Gets a <see cref="T:InRule.Runtime.Testing.Regression.TestResult"/> by <see cref="T:InRule.Repository.Regression.TestDef"/> identifier.
+            </summary>
+            <param name="id">The identifier of the result's original <see cref="T:InRule.Repository.Regression.TestDef"/>.</param>
+            <returns>The <see cref="T:InRule.Runtime.Testing.Regression.TestResult"/> that matches the specified identifier found in the collection, otherwise null.</returns>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Regression.TestResultCollection.SaveAs(System.String)">
+            <summary>
+            Saves this <see cref="T:InRule.Runtime.Testing.Regression.TestResultCollection"/> with the specified persistence provider.
+            </summary>
+            <param name="resultsFilePath">The location for the results file.</param>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Regression.TestResultCollection.LoadFrom(System.String)">
+            <summary>
+            Loads an existing <see cref="T:InRule.Runtime.Testing.Regression.TestResultCollection"/> from a <see cref="T:InRule.Runtime.Testing.Regression.Runtime.Persistence.TestResultsPersistenceProvider"/>.
+            </summary>
+            <param name="resultsFilePath">The path to load from.</param>
+            <returns>The <see cref="T:InRule.Runtime.Testing.Regression.TestResultCollection"/> loaded from the persistence provider.</returns>
+        </member>
+        <member name="T:InRule.Runtime.Testing.Regression.TestStartEventHandler">
+            <summary>
+            Represents the method that will handle a <see cref="E:InRule.Runtime.Testing.Regression.Runtime.RegressionTestingSession.TestStart"/> event.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="args">The <see cref="T:InRule.Runtime.Testing.Regression.TestStartEventArgs"/> that contains the <see cref="T:InRule.Repository.Regression.TestDef"/> to be executed.</param>
+        </member>
+        <member name="T:InRule.Runtime.Testing.Regression.TestStartEventArgs">
+            <summary>
+            Represents the <see cref="T:InRule.Repository.Regression.TestDef"/> to be executed fired from <see cref="E:InRule.Runtime.Testing.Regression.Runtime.RegressionTestingSession.TestStart"/> event.
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Regression.TestStartEventArgs.#ctor(InRule.Repository.Regression.TestDef)">
+            <summary>
+            Initializes a new instance of the <see cref="T:InRule.Runtime.Testing.Regression.TestStartEventArgs"/> class.
+            </summary>
+            <param name="test">The <see cref="T:InRule.Repository.Regression.TestDef"/> to be executed.</param>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Regression.TestStartEventArgs.Test">
+            <summary>
+            Gets or sets the <see cref="T:InRule.Repository.Regression.TestDef"/> to be executed.
+            </summary>
+        </member>
+        <member name="T:InRule.Runtime.Testing.Regression.TestResult">
+            <summary>
+            Represents the aggregate result of all the tests' assertions, indicating whether any of them passed or failed.
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Regression.TestResult.ToTabSeparatedString">
+            <summary>
+            Creates a tab separated string, suitable for copying to the clipboard, then pasting into Excel.
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Regression.TestResult.ToExcelFile(System.String)">
+            <summary>
+            Writes the performance test results to an Excel file.
+            </summary>
+            <param name="filename">
+            The file name.
+            </param>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Regression.TestResult.Passed">
+            <summary>
+            Gets or sets whether the all the assertions passed.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Regression.TestResult.WasCancelled">
+            <summary>
+            Indicates if the test was cancelled
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Regression.TestResult.TestDef">
+            <summary>
+            Gets or sets the <see cref="P:InRule.Runtime.Testing.Regression.TestResult.TestDef"/> from the authored <see cref="T:InRule.Repository.Regression.TestSuiteDef"/>.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Regression.TestResult.TestDefId">
+            <summary>
+            Gets or sets the serializable identifier of the <see cref="P:InRule.Runtime.Testing.Regression.TestResult.TestDef"/> instance associated with this test result.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Regression.TestResult.Duration">
+            <summary>
+            Gets or sets the duration of the test execution.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Regression.TestResult.XmlDuration">
+            <summary>
+            Gets or sets the string representation of the test execution duration. 
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Regression.TestResult.RuleExecutionLog">
+            <summary>
+            Gets or sets the optional <see cref="P:InRule.Runtime.Testing.Regression.TestResult.RuleExecutionLog"/> from this test execution.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Regression.TestResult.XmlRuleTrace">
+            <summary>
+            Gets or sets the optional XML rule trace from this test execution.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Regression.TestResult.XmlRuleTraceString">
+            <summary>
+            The XML serializable version of <see cref="P:InRule.Runtime.Testing.Regression.TestResult.XmlRuleTrace"/>.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Regression.TestResult.RuntimeErrorMessage">
+            <summary>
+            Gets or sets the runtime error message if the assertions are not tested due to rule execution errors.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Regression.TestResult.AssertionResults">
+            <summary>
+            Gets or sets the <see cref="T:InRule.Runtime.Testing.Regression.AssertionResultCollection"/> associated with this test result.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Regression.TestResult.IterationTestResults">
+            <summary>
+            For a Performance test, the <see cref="P:InRule.Runtime.Testing.Regression.TestResult.IterationTestResults"/> results of each iteration.
+            </summary>
+        </member>
+        <member name="T:InRule.Runtime.Testing.Services.NamespaceDoc">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:InRule.Runtime.Testing.Services.RuleSessionService">
+            <summary>
+            Provides a wrapper for the RuleSession that fires state-related events since the RuleSession itself doesn't.
+            </summary>
+        </member>
+        <member name="T:InRule.Runtime.Testing.Services.TestSessionService">
+            <summary>
+            Used to Cache the Template Engine, possible to make it more specific.. make it a Template Engine Cache.
+            </summary>
+        </member>
+        <member name="T:InRule.Runtime.Testing.Session.NamespaceDoc">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:InRule.Runtime.Testing.Session.InProcessConnectionFactory">
+            <summary>
+            Represents an <see cref="T:InRule.Runtime.Testing.Session.IConnectionFactory"/> factory to create new instance for <see cref="T:InRule.Repository.Regression.TestDef"/> execution.
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Session.InProcessConnectionFactory.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:InRule.Runtime.Testing.Session.InProcessConnectionFactory"/> class.
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Session.InProcessConnectionFactory.#ctor(InRule.Repository.EndPoints.EndPointDefCollection)">
+            <summary>
+            Initializes a new instance of the <see cref="T:InRule.Runtime.Testing.Session.InProcessConnectionFactory"/> class with EndPoint overrides.
+            </summary>
+            <param name="endPointOverrides">The EndPoint overrides to apply to each new connection.</param>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Session.InProcessConnectionFactory.InRule#Runtime#Testing#Session#IConnectionFactory#EndPointOverrides">
+            <summary>
+            Gets or sets any EndPoint overrides.
+            </summary>
+        </member>
+        <member name="T:InRule.Runtime.Testing.Session.TestingSessionManager">
+            <summary>
+            Represents a <see cref="T:InRule.Runtime.RuleSession"/> manager for irVerify sessions and RegressionTesting sessions.
+            Its primary function is to construct a valid <see cref="T:InRule.Runtime.RuleSession"/> state from the combination of <see cref="T:InRule.Repository.Regression.DataStateDef"/> instances
+            associated with the specified <see cref="T:InRule.Repository.Regression.TestDef"/>.
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Session.TestingSessionManager.Dispose">
+            <summary>
+            Disposes any associated <see cref="T:InRule.Runtime.RuleSession"/> instances.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Session.TestingSessionManager.ConnectionFactory">
+            <summary>
+            Currently used to give external access to factory's EndPointOverrides
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Session.TestingSessionManager.#ctor(InRule.Runtime.Testing.Session.IConnectionFactory)">
+            <summary>
+            Initializes a new instance of the <see cref="T:InRule.Runtime.Testing.Session.TestingSessionManager"/> class.
+            </summary>
+            <param name="factory">An instance of <see cref="T:InRule.Runtime.Testing.Session.IConnectionFactory"/> used to create <see cref="T:InRule.Runtime.RuleSession"/> instances. </param>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Session.TestingSessionManager.CreateTestingSession(InRule.Runtime.RuleApplicationReference,InRule.Repository.Regression.TestDef,System.String@)">
+            <summary>
+            Returns a new <see cref="T:InRule.Runtime.RuleSession"/> constructed from the <see cref="T:InRule.Repository.Regression.DataStateDef"/> instances associated with the specified <see cref="T:InRule.Repository.Regression.TestDef"/>.
+            </summary>
+            <param name="ruleAppRef">
+            The <see cref="T:InRule.Runtime.RuleApplicationReference"/> to create the <see cref="T:InRule.Runtime.RuleSession"/> for.
+            </param>
+            <param name="test">
+            The <see cref="T:InRule.Repository.Regression.TestDef"/> containing <see cref="T:InRule.Repository.Regression.DataStateDef"/> instances.
+            </param>
+            <param name="rootEntityId">
+            The root Element ID generated for the test.
+            </param>
+            <returns>
+            A new <see cref="T:InRule.Runtime.RuleSession"/> constructed from the <see cref="T:InRule.Repository.Regression.DataStateDef"/> instances.
+            </returns>
+        </member>
+        <member name="T:InRule.Runtime.Testing.Tracing.NamespaceDoc">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:InRule.Runtime.Testing.Tracing.Controls.NamespaceDoc">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:InRule.Runtime.Testing.Tracing.Controls.Expressions.NamespaceDoc">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:InRule.Runtime.Testing.Tracing.Controls.HyperlinkTextBlock">
+            <summary>
+            Interaction logic for HyperlinkTextBlock.xaml
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Tracing.Controls.HyperlinkTextBlock.OnClick">
+            <summary>
+            Raises the <see cref="E:InRule.Runtime.Testing.Tracing.Controls.HyperlinkTextBlock.Click"/> event.
+            </summary>
+        </member>
+        <member name="F:InRule.Runtime.Testing.Tracing.Controls.HyperlinkTextBlock.IsHyperlinkProperty">
+            <summary>
+            Dependency Property supporting the <see cref="P:InRule.Runtime.Testing.Tracing.Controls.HyperlinkTextBlock.IsHyperlink"/> property.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Tracing.Controls.HyperlinkTextBlock.IsHyperlink">
+            <summary>
+            Indicates whether this instance is a hyperlink.
+            </summary>
+            <value>
+            <c>true</c> if this instance is a hyperlink; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="F:InRule.Runtime.Testing.Tracing.Controls.HyperlinkTextBlock.HyperlinkToolTipProperty">
+            <summary>
+            Dependency property supporting the <see cref="P:InRule.Runtime.Testing.Tracing.Controls.HyperlinkTextBlock.HyperlinkToolTip"/> property.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Tracing.Controls.HyperlinkTextBlock.HyperlinkToolTip">
+            <summary>
+            The hyperlink tool tip.
+            </summary>
+            <value>
+            The hyperlink tool tip.
+            </value>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Tracing.Controls.HyperlinkTextBlock.OnHyperlinkToolTipChangedCallback(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            Handles the <see cref="T:System.Windows.PropertyChangedCallback"/> event for the <see cref="P:InRule.Runtime.Testing.Tracing.Controls.HyperlinkTextBlock.HyperlinkToolTip"/> dependency property.
+            </summary>
+            <param name="d">
+            The dependency object.
+            </param>
+            <param name="e">
+            The <see cref="T:System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.
+            </param>
+        </member>
+        <member name="F:InRule.Runtime.Testing.Tracing.Controls.HyperlinkTextBlock.TextToolTipProperty">
+            <summary>
+            Dependency property supporting the <see cref="P:InRule.Runtime.Testing.Tracing.Controls.HyperlinkTextBlock.TextToolTip"/> property.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Tracing.Controls.HyperlinkTextBlock.TextToolTip">
+            <summary>
+            The text tool tip.
+            </summary>
+            <value>
+            The text tool tip.
+            </value>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Tracing.Controls.HyperlinkTextBlock.OnTextToolTipChangedCallback(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            Handles the <see cref="T:System.Windows.PropertyChangedCallback"/> event for the <see cref="P:InRule.Runtime.Testing.Tracing.Controls.HyperlinkTextBlock.TextToolTip"/> dependency property.
+            </summary>
+            <param name="d">
+            The dependency object.
+            </param>
+            <param name="e">
+            The <see cref="T:System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.
+            </param>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Tracing.Controls.HyperlinkTextBlock.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:InRule.Runtime.Testing.Tracing.Controls.TraceEventEvaluationView">
+            <summary>
+            Interaction logic for TraceEventEvaluationView.xaml
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Tracing.Controls.TraceEventEvaluationView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:InRule.Runtime.Testing.Tracing.Controls.DivideByValueConverter">
+            <summary>
+            Divides the value by the converter parameter
+            </summary>
+        </member>
+        <member name="T:InRule.Runtime.Testing.Tracing.ViewModels.NamespaceDoc">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:InRule.Runtime.Testing.Tracing.ViewModels.TraceHoverEvent">
+            <summary>
+            Event used to trigger the highlighting between source and result expression pairs
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:InRule.Runtime.Testing.Tracing.ShowLastTraceInIrAuthorEventHandler">
+            <summary>
+            Show last trace in irAuthor EventHandler declaration
+            </summary>
+        </member>
+        <member name="T:InRule.Runtime.Testing.Tracing.ShowLastTraceInIrAuthorEventArgs">
+            <summary>
+            ShowLastTraceInIrAuthor args object (passed to EventHandler)
+            </summary>
+        </member>
+        <member name="T:InRule.Runtime.Testing.Views.NamespaceDoc">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:InRule.Runtime.Testing.Views.AssertionEditor">
+            <summary>
+            Interaction logic for AssertionEditor.xaml
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Views.AssertionEditor.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Views.BlankView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Views.DataStateView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Views.DisplayNameView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Views.EntityStateViewerView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Views.PerformanceReportView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Views.TestRunnerView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:InRule.Runtime.Testing.Views.TestSuiteSettingsView">
+            <summary>
+            Interaction logic for TestSuiteSettingsView.xaml
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Views.TestSuiteSettingsView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Views.TestSuiteTreeView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Views.TestSuiteView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Views.TestView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:InRule.Runtime.Testing.Views.EntityTesterView">
+            <summary>
+            EntityTesterView
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Views.EntityTesterView.CanAddUpdateEntityDataState(System.Object,System.Windows.Input.CanExecuteRoutedEventArgs)">
+            <summary>
+            Determines whether this instance can add or update the entity data state.
+            </summary>
+            <param name="sender">
+            The sender.
+            </param>
+            <param name="e">
+            The <see cref="T:System.Windows.Input.CanExecuteRoutedEventArgs"/> instance containing the event data.
+            </param>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Views.EntityTesterView.CanAddUpdateRootDataState(System.Object,System.Windows.Input.CanExecuteRoutedEventArgs)">
+            <summary>
+            Determines whether this instance can add or update the root data state.
+            </summary>
+            <param name="sender">
+            The sender.
+            </param>
+            <param name="e">
+            The <see cref="T:System.Windows.Input.CanExecuteRoutedEventArgs"/> instance containing the event data.
+            </param>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Views.EntityTesterView.WhenHyperlinkClicked(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Called when any of the four hyperlinks (Value Changes, Notifications, Validation Changes, and Errors) in the Summary pane is clicked.
+            </summary>
+            <param name="sender">
+            The sender.
+            </param>
+            <param name="e">
+            The <see cref="T:System.Windows.RoutedEventArgs"/> instance containing the event data.
+            </param>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Views.EntityTesterView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:InRule.Runtime.Testing.ViewModels.NamespaceDoc">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:InRule.Runtime.Testing.ViewModels.EntityStateViewerViewModel.DetailView">
+            <summary>
+            Identifies what level of detail the XML view is to show, corresponding to choices on the View menu.
+            </summary>
+        </member>
+        <member name="F:InRule.Runtime.Testing.ViewModels.EntityStateViewerViewModel.DetailView.EntityXml">
+            <summary>
+            Entity XML view.
+            </summary>
+        </member>
+        <member name="F:InRule.Runtime.Testing.ViewModels.EntityStateViewerViewModel.DetailView.EntityJson">
+            <summary>
+            Entity JSON view.
+            </summary>
+        </member>
+        <member name="F:InRule.Runtime.Testing.ViewModels.EntityStateViewerViewModel.DetailView.TempState">
+            <summary>
+            Temporary state view.
+            </summary>
+        </member>
+        <member name="E:InRule.Runtime.Testing.ViewModels.EntityStateViewerViewModel.RequestClose">
+            <summary>
+            Raised by the ViewModel to ask the View to close itself.
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.ViewModels.EntityStateViewerViewModel.RaiseRequestClose">
+            <summary>
+            Raises the <see cref="E:InRule.Runtime.Testing.ViewModels.EntityStateViewerViewModel.RequestClose"/> event.
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.ViewModels.TestFolderViewModel.GetModelTestDef(InRule.Runtime.Testing.ViewModels.TreeViewItemViewModelBase,InRule.Repository.Regression.TestType)">
+            <summary>
+            Gets a TestDef to serve as a model for a new one.
+            </summary>
+            <param name="viewModel">
+            The TestFolderViewModel to look in.
+            </param>
+            <param name="type">
+            The test type. The resulting model TestDef must be the same type as we are looking for.
+            </param>
+            <returns>
+            A TestDef of the same type as the search. It will be in the same folder, or in a parent folder.
+            Sibling folders are not searched.
+            If no model TestDef is found, the method returns null.
+            </returns>
+        </member>
+        <member name="F:InRule.Runtime.Testing.ViewModels.TestSuiteViewModel._selectedTests">
+            <summary>
+            Backing variable for the <see cref="P:InRule.Runtime.Testing.ViewModels.TestSuiteViewModel.SelectedTests"/> property.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.ViewModels.TestSuiteViewModel.SelectedTests">
+            <summary>
+            Tests selected in the TestRunner view.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.ViewModels.TestSuiteViewModel.HasTestDefSummaryStats">
+            <summary>
+            Indicates if the performance test definition has summary statistics set. 
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.ViewModels.TestSuiteViewModel.HasTestDefDetailStats">
+            <summary>
+            Indicates if the performance test definition has detail statistics set. 
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.ViewModels.TestSuiteViewModel.HasTestDefAnyStats">
+            <summary>
+            Indicates if the performance test definition has either summary or detail statistics set. 
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.ViewModels.TestSuiteViewModel.TestRunnerView">
+            <summary>
+            Gets or sets the TestRunnerView.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.ViewModels.TestViewModel.IsThisAnAssertionTest">
+            <summary>
+            Indicates if this in an Assertion test.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.ViewModels.TestViewModel.IsThisACompareTest">
+            <summary>
+            Indicates if this in a Compare test.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.ViewModels.TestViewModel.IsThisAPerformanceTest">
+            <summary>
+            Indicates if this in a Performance test.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.ViewModels.TestViewModel.PerfTestIterationList">
+            <summary>
+            Possible values for Number of Iterations in a performance test
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.ViewModels.ViewModelBase.DisplayName">
+            <summary>
+            Returns the user-friendly name of this object.
+            Child classes can set this property to a new value,
+            or override it to determine the value on-demand.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.ViewModels.ViewModelBase.ThrowOnInvalidPropertyName">
+            <summary>
+            Returns whether an exception is thrown, or if a Debug.Fail() is used
+            when an invalid property name is passed to the VerifyPropertyName method.
+            The default value is false, but subclasses used by unit tests might 
+            override this property's getter to return true.
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.ViewModels.ViewModelBase.Dispose">
+            <summary>
+            Invoked when this object is being removed from the application
+            and will be subject to garbage collection.
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.ViewModels.ViewModelBase.VerifyPropertyName(System.String)">
+            <summary>
+            Warns the developer if this object does not have
+            a public property with the specified name. This 
+            method does not exist in a Release build.
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.ViewModels.ViewModelBase.OnPropertyChanged(System.String)">
+            <summary>
+            Raises this object's PropertyChanged event.
+            </summary>
+            <param name="propertyName">The property that has a new value.</param>
+        </member>
+        <member name="M:InRule.Runtime.Testing.ViewModels.ViewModelBase.Finalize">
+            <summary>
+            Useful for ensuring that ViewModel objects are properly garbage collected.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.ViewModels.IrVerifyViewModel.IsSessionTabSelected">
+            <summary>
+            Indicates if the current tab is a Session tab.
+            </summary>
+        </member>
+        <member name="F:InRule.Runtime.Testing.ViewModels.IrVerifyViewModel._isTestSuiteTabToolsTabVisible">
+            <summary>
+            Backing variable for the <see cref="P:InRule.Runtime.Testing.ViewModels.IrVerifyViewModel.IsTestSuiteTabToolsTabVisible"/> property.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.ViewModels.IrVerifyViewModel.IsTestSuiteTabToolsTabVisible">
+            <summary>
+            Indicates if the Test Suite Tools context ribbon is visible.
+            </summary>
+        </member>
+        <member name="T:InRule.Runtime.Testing.Windows.NamespaceDoc">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Windows.ConfirmUpdateDataStateWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Windows.CreateTestWizard.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Windows.DataStateEditorWindow.FileCompare(System.String,System.String)">
+            <summary>
+            This method accepts two strings the represent two files to 
+            compare. A return value of 0 indicates that the contents of the files</summary>
+            are the same. A return value of any other value indicates that the <param name="file1"></param>
+            files are not the same.
+            <param name="file2"></param>
+            <returns>True if the files are the same, false if not.</returns>
+            <remarks>From http://support.microsoft.com/kb/320348</remarks>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Windows.DataStateEditorWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Windows.DataStateMappingsWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Windows.DataStateOverridesWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Windows.EntityXmlEditorWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Windows.IncompatibleRuleApplicationWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Windows.IrVerifyOptionsWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Windows.RuleExecutionLogViewerWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Windows.SelectDataStateMappingWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Windows.SelectDataStateWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Windows.ShowAllWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Windows.TextBoxWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:InRule.Runtime.Testing.EntityTester">
+            <summary>
+            Provides visual testing services.
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.EntityTester.GetWindow(InRule.Runtime.Entity,InRule.Runtime.Testing.EntityTesterOptions)">
+            <summary>
+            Returns the entity tester window marked with entity tester options. Should be used when loading the window with available entity tester options.
+            </summary>
+            <param name="entity">The entity.</param>
+            <param name="entityTesterOptions">The entity tester options.</param>
+            <returns>IIrVerifyWindow</returns>
+        </member>
+        <member name="M:InRule.Runtime.Testing.EntityTester.Show(InRule.Runtime.Entity)">
+            <overloads>
+            Show non-modal entity tester window
+            </overloads>
+            <summary>
+            Show non-modal entity tester window for specified entity
+            </summary>
+            <param name="entity"></param>
+            <returns>Entity tester window</returns>
+        </member>
+        <member name="M:InRule.Runtime.Testing.EntityTester.Show(InRule.Runtime.Entity,InRule.Runtime.Testing.EntityTesterOptions)">
+            <summary>
+            Show non-modal entity tester window for specified entity, with specified EntityTesterOptions.
+            </summary>
+            <param name="entity">The entity.</param>
+            <param name="entityTesterOptions">The entity tester options.</param>
+            <returns>IIrVerifyWindow</returns>
+        </member>
+        <member name="M:InRule.Runtime.Testing.EntityTester.Show(InRule.Runtime.Entity,InRule.Runtime.Testing.JumpToRuleSourceEventHandler)">
+            <summary>
+            Show non-modal entity tester window for specified entity, with specified rule source event handler.
+            </summary>
+            <param name="entity"></param>
+            <param name="jumpToSourceHandler"></param>
+            <returns>Entity tester window</returns>
+        </member>
+        <member name="M:InRule.Runtime.Testing.EntityTester.Show(InRule.Runtime.RuleSet,InRule.Runtime.Testing.EntityTesterOptions)">
+            <summary>
+            Shows the IrVerify Window for the specified ruleset.
+            </summary>
+            <param name="ruleset">The ruleset.</param>
+            <param name="entityTesterOptions">Current entity tester options.</param>
+            <returns>IIrVerifyWindow</returns>
+        </member>
+        <member name="M:InRule.Runtime.Testing.EntityTester.Show(InRule.Runtime.RuleSet,InRule.Runtime.Testing.JumpToRuleSourceEventHandler)">
+            <summary>
+            Shows the IrVerify Window for the specified ruleset.
+            </summary>
+            <param name="ruleset">The ruleset.</param>
+            <param name="jumpToSourceHandler">The jump to source handler - irAuthor</param>
+            <returns>IIrVerifyWindow</returns>
+        </member>
+        <member name="M:InRule.Runtime.Testing.EntityTester.ShowDialog(InRule.Runtime.Entity)">
+            <overloads>
+            Show modal entity tester window
+            </overloads>
+            <summary>
+            Show modal entity tester window for specified entity
+            </summary>
+            <param name="entity"></param>
+            <returns>Entity tester window. </returns>
+        </member>
+        <member name="M:InRule.Runtime.Testing.EntityTester.ShowDialog(InRule.Runtime.Entity,InRule.Runtime.Testing.JumpToRuleSourceEventHandler)">
+            <summary>
+            Show modal entity tester window for specified entity, with specified rule source event handler.
+            </summary>
+            <param name="entity"></param>
+            <param name="jumpToSourceHandler"></param>
+            <returns>Entity tester window.</returns>
+        </member>
+        <member name="T:InRule.Runtime.Testing.EntityTesterOptions">
+            <summary>
+            Options specific to irVerify.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.EntityTesterOptions.AutoShowEntityComments">
+            <summary>
+            Entity comments. This setting is used to disable the view of comments while testing the rules.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.EntityTesterOptions.AutoSaveTempState">
+            <summary>
+            Checkbox value indicating whether to include tempstate in the saved test scenario. 
+            save-test-scenario will always exclude tempstate. This can be overridden by the user.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.EntityTesterOptions.EnableRevertSnapshot">
+            <summary>
+            Gets or sets whether to enable the state snapshot taken prior to the first rule execution.
+            This snapshot may be reloaded using the Revert button.
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.RelayCommand.#ctor(InRule.Runtime.Testing.ViewModels.ViewModelBase,InRule.Common.Utilities.IExceptionSink,InRule.Runtime.Testing.Commands.ExecutedModelCommandEventHandler)">
+            <summary>
+            Creates a new command that can always execute.
+            </summary>
+            <param name="model">
+            The ViewModel which manages this command.
+            </param>
+            <param name="exceptionSink">
+            The exception sink.
+            </param>
+            <param name="execute">
+            The execution logic.
+            </param>
+        </member>
+        <member name="M:InRule.Runtime.Testing.RelayCommand.#ctor(InRule.Runtime.Testing.ViewModels.ViewModelBase,InRule.Common.Utilities.IExceptionSink,InRule.Runtime.Testing.Commands.ExecutedModelCommandEventHandler,InRule.Runtime.Testing.Commands.CanExecuteModelCommandEventHandler)">
+            <summary>
+            Creates a new command that can conditionally execute, and handles specific exceptions.
+            </summary>
+            <param name="model">
+            The ViewModel which manages this command.
+            </param>
+            <param name="exceptionSink">
+            The exception sink.
+            </param>
+            <param name="execute">
+            The execution logic.
+            </param>
+            <param name="canExecute">
+            The execution status logic.
+            </param>
+        </member>
+        <member name="M:InRule.Runtime.Testing.RuleAppTestProxy.MarshalJumpToRuleSource(System.Object,InRule.Runtime.Testing.JumpToRuleSourceEventArgs)">
+            <summary>
+            Send the "JumpToRuleSource" request back to the main UI thread
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.RuleAppTestProxy.MarshalShowLastTraceInIrAuthor(System.Object,InRule.Runtime.Testing.Tracing.ShowLastTraceInIrAuthorEventArgs)">
+            <summary>
+            Send the "ShowLastTraceInIrAuthor" request back to the main UI thread
+            </summary>
+        </member>
+        <member name="T:InRule.Runtime.Testing.Strings">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings._0____1__member_">
+            <summary>
+              Looks up a localized string similar to {0} ({1} member).
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings._0____1__members_">
+            <summary>
+              Looks up a localized string similar to {0} ({1} members).
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings._0___no_members_">
+            <summary>
+              Looks up a localized string similar to {0} (no members).
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings._0__of__1__assertion_s__passed">
+            <summary>
+              Looks up a localized string similar to {0} of {1} assertion(s) passed.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings._0__seconds">
+            <summary>
+              Looks up a localized string similar to {0} seconds.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings._0__Test_s__Failed">
+            <summary>
+              Looks up a localized string similar to {0} Test(s) Failed.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings._0__Test_s__Passed">
+            <summary>
+              Looks up a localized string similar to {0} Test(s) Passed.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Actions_executed">
+            <summary>
+              Looks up a localized string similar to Actions executed.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Activate">
+            <summary>
+              Looks up a localized string similar to Activate.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Active">
+            <summary>
+              Looks up a localized string similar to Active.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Activity">
+            <summary>
+              Looks up a localized string similar to Activity.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Actual">
+            <summary>
+              Looks up a localized string similar to Actual.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Add">
+            <summary>
+              Looks up a localized string similar to Add.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Add_Assertion_Test">
+            <summary>
+              Looks up a localized string similar to Add Assertion Test.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Add_Compare_Test">
+            <summary>
+              Looks up a localized string similar to Add Compare Test.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Add_existing__0__to__1____">
+            <summary>
+              Looks up a localized string similar to Add existing {0} to {1}....
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Add_new__0_">
+            <summary>
+              Looks up a localized string similar to Add new {0}.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Add_new_member">
+            <summary>
+              Looks up a localized string similar to Add new member.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Add_Performance_Test">
+            <summary>
+              Looks up a localized string similar to Add Performance Test.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Add_Test_Folder">
+            <summary>
+              Looks up a localized string similar to Add Test Folder.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Add_to_Watch_List">
+            <summary>
+              Looks up a localized string similar to Add to Watch List.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Add_Update_Test_Suite_Data_State___">
+            <summary>
+              Looks up a localized string similar to Add/Update Test Suite Data State....
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.All">
+            <summary>
+              Looks up a localized string similar to All.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Allows_re_use_of_other_Entity_Data_States_">
+            <summary>
+              Looks up a localized string similar to Allows re-use of other Entity Data States..
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Allows_you_to_select_an_existing_data_state_to_use_for_input_Select_this_if_an_existing_data_state_contains_the_data_you_would_like_to_test_against_">
+            <summary>
+              Looks up a localized string similar to Allows you to select an existing data state to use for input. Select this if an existing data state contains the data you would like to test against. .
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Apply_Rules">
+            <summary>
+              Looks up a localized string similar to Apply Rules.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Are_you_sure_you_want_to_cancel_">
+            <summary>
+              Looks up a localized string similar to Are you sure you want to cancel?.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Are_you_sure_you_want_to_delete___0___">
+            <summary>
+              Looks up a localized string similar to Are you sure you want to delete &apos;{0}&apos;?.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Assertion_Test">
+            <summary>
+              Looks up a localized string similar to Assertion Test.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Assertion_Test_Description">
+            <summary>
+              Looks up a localized string similar to Assertion tests compare data against specified criteria. Select this option if only a few data points must be tested or tests other than equality are required..
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Assertions">
+            <summary>
+              Looks up a localized string similar to Assertions.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Cancel">
+            <summary>
+              Looks up a localized string similar to Cancel.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Cancelled">
+            <summary>
+              Looks up a localized string similar to Cancelled.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Clear_collection">
+            <summary>
+              Looks up a localized string similar to Clear collection.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Clear_reference">
+            <summary>
+              Looks up a localized string similar to Clear reference.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Clear_search_filter">
+            <summary>
+              Looks up a localized string similar to Clear search filter.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Collapse_All">
+            <summary>
+              Looks up a localized string similar to Collapse All.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Compare_Test">
+            <summary>
+              Looks up a localized string similar to Compare Test.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Compare_test_description">
+            <summary>
+              Looks up a localized string similar to Compare tests ensure that all data points match a specified data set. Select this option if all data points must equal specific values..
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Context">
+            <summary>
+              Looks up a localized string similar to Context.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Copy">
+            <summary>
+              Looks up a localized string similar to Copy.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Copy_All">
+            <summary>
+              Looks up a localized string similar to Copy All.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Copy_Selected">
+            <summary>
+              Looks up a localized string similar to Copy Selected.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Copy_to_Clipboard">
+            <summary>
+              Looks up a localized string similar to Copy to Clipboard.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Create_a_Data_State_with_current_values">
+            <summary>
+              Looks up a localized string similar to Create a Data State with _current values.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Create_a_Data_State_with_pre_execution_values">
+            <summary>
+              Looks up a localized string similar to Create a Data State with _pre-execution values.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Create_Assertion_test">
+            <summary>
+              Looks up a localized string similar to Create _Assertion test.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Create_Compare_test">
+            <summary>
+              Looks up a localized string similar to Create _Compare test.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Create_new__0_">
+            <summary>
+              Looks up a localized string similar to Create new {0}.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Create_new_Data_State___">
+            <summary>
+              Looks up a localized string similar to Create new Data State....
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Create_Performance_test">
+            <summary>
+              Looks up a localized string similar to Create _Performance test.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Create_Test">
+            <summary>
+              Looks up a localized string similar to Create Test.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Cut">
+            <summary>
+              Looks up a localized string similar to Cut.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Data">
+            <summary>
+              Looks up a localized string similar to Data.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Data_State">
+            <summary>
+              Looks up a localized string similar to Data State.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Data_State_Editor">
+            <summary>
+              Looks up a localized string similar to Data State Editor.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Data_State_Overrides">
+            <summary>
+              Looks up a localized string similar to Data State Overrides.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Data_State_Overrides_overview">
+            <summary>
+              Looks up a localized string similar to Enter the type, path and value (in the case of Set Value types) of the overrides below. The Path syntax is dotted, for example: Invoice.LineItems[2].Quantity.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Deactivate">
+            <summary>
+              Looks up a localized string similar to Deactivate.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Delete">
+            <summary>
+              Looks up a localized string similar to Delete.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Delete_All">
+            <summary>
+              Looks up a localized string similar to Delete All.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Delete_Selected">
+            <summary>
+              Looks up a localized string similar to Delete Selected.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Detail_Statistics">
+            <summary>
+              Looks up a localized string similar to Detail Statistics.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Detail_Statistics_tooltip">
+            <summary>
+              Looks up a localized string similar to Enables detailed statistics in the execution log. This enables RuleSet, Rule and Action timings. Required for detail level information for the  Performance Statistics report..
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Done">
+            <summary>
+              Looks up a localized string similar to Done.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Duplicate">
+            <summary>
+              Looks up a localized string similar to Duplicate.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Edit___">
+            <summary>
+              Looks up a localized string similar to Edit....
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Edit_Data_State">
+            <summary>
+              Looks up a localized string similar to Edit Data State.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Edit_data_state_tooltip">
+            <summary>
+              Looks up a localized string similar to Only test scenario data states may be edited from here. Entity data states may be edited from the tests that use them..
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Enable">
+            <summary>
+              Looks up a localized string similar to Enable.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Enabled">
+            <summary>
+              Looks up a localized string similar to Enabled.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.End_Point_Overrides">
+            <summary>
+              Looks up a localized string similar to End Point Overrides.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Entities">
+            <summary>
+              Looks up a localized string similar to Entities.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Entity_Data_State">
+            <summary>
+              Looks up a localized string similar to Entity Data State.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Entity_JSON">
+            <summary>
+              Looks up a localized string similar to Entity JSON.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Entity_rule_set">
+            <summary>
+              Looks up a localized string similar to Entity rule set.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Entity_Rule_Set2">
+            <summary>
+              Looks up a localized string similar to Entity Rule Set.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Entity_State">
+            <summary>
+              Looks up a localized string similar to Entity State.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Entity_XML">
+            <summary>
+              Looks up a localized string similar to Entity XML.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Errors">
+            <summary>
+              Looks up a localized string similar to Errors.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Execution_Messages">
+            <summary>
+              Looks up a localized string similar to Execution Messages.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Execution_Messages_tooltip">
+            <summary>
+              Looks up a localized string similar to Enables feedback messages and rule changes in the execution log. This includes RuleSet, Rule and Action execution messages..
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Execution_Options">
+            <summary>
+              Looks up a localized string similar to Execution Options.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Execution_Trace_Viewer">
+            <summary>
+              Looks up a localized string similar to Execution Trace Viewer.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Execution_type">
+            <summary>
+              Looks up a localized string similar to Execution type.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Exit">
+            <summary>
+              Looks up a localized string similar to Exit.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Expand_All">
+            <summary>
+              Looks up a localized string similar to Expand All.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Expected">
+            <summary>
+              Looks up a localized string similar to Expected.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Expected_data_state">
+            <summary>
+              Looks up a localized string similar to Expected data state.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Export">
+            <summary>
+              Looks up a localized string similar to Export.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Failed">
+            <summary>
+              Looks up a localized string similar to Failed.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.File">
+            <summary>
+              Looks up a localized string similar to File.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Filter_trace_events">
+            <summary>
+              Looks up a localized string similar to Filter trace events.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Folder">
+            <summary>
+              Looks up a localized string similar to Folder.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.General">
+            <summary>
+              Looks up a localized string similar to General.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Heterogeneous_Entity_State">
+            <summary>
+              Looks up a localized string similar to Heterogeneous Entity State.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Home">
+            <summary>
+              Looks up a localized string similar to Home.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Include_rule_execution_log">
+            <summary>
+              Looks up a localized string similar to Include rule execution log.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Include_rule_trace">
+            <summary>
+              Looks up a localized string similar to Include rule trace.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Input_data_state">
+            <summary>
+              Looks up a localized string similar to Input data state.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Item">
+            <summary>
+              Looks up a localized string similar to Item.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Load">
+            <summary>
+              Looks up a localized string similar to Load.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Load___">
+            <summary>
+              Looks up a localized string similar to Load....
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Load_Entity_State">
+            <summary>
+              Looks up a localized string similar to Load Entity State.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Load_Test_Scenario">
+            <summary>
+              Looks up a localized string similar to Load Test Scenario.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Loads_data_into_the_active_session_">
+            <summary>
+              Looks up a localized string similar to Loads data into the active session..
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Mappings">
+            <summary>
+              Looks up a localized string similar to Mappings.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Member__0_">
+            <summary>
+              Looks up a localized string similar to Member {0}.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Message">
+            <summary>
+              Looks up a localized string similar to Message.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Metrics">
+            <summary>
+              Looks up a localized string similar to Metrics.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Move_Down">
+            <summary>
+              Looks up a localized string similar to Move Down.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Move_Up">
+            <summary>
+              Looks up a localized string similar to Move Up.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Name">
+            <summary>
+              Looks up a localized string similar to Name.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.New">
+            <summary>
+              Looks up a localized string similar to New.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.New___">
+            <summary>
+              Looks up a localized string similar to New....
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.New_Session">
+            <summary>
+              Looks up a localized string similar to New Session.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.New_Test_Suite">
+            <summary>
+              Looks up a localized string similar to New Test Suite.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Notes">
+            <summary>
+              Looks up a localized string similar to Notes.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Notifications">
+            <summary>
+              Looks up a localized string similar to Notifications.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Number_of_iterations">
+            <summary>
+              Looks up a localized string similar to Number of iterations.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.OK">
+            <summary>
+              Looks up a localized string similar to OK.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Open_in_irAuthor">
+            <summary>
+              Looks up a localized string similar to Open in irAuthor.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Open_in_New_Window">
+            <summary>
+              Looks up a localized string similar to Open in New Window.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Open_Test_Results">
+            <summary>
+              Looks up a localized string similar to Open Test Results....
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Open_Test_Suite">
+            <summary>
+              Looks up a localized string similar to Open Test Suite.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Options">
+            <summary>
+              Looks up a localized string similar to Options.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Overrides">
+            <summary>
+              Looks up a localized string similar to Overrides.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Passed">
+            <summary>
+              Looks up a localized string similar to Passed.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Paste">
+            <summary>
+              Looks up a localized string similar to Paste.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Path">
+            <summary>
+              Looks up a localized string similar to Path.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Pending">
+            <summary>
+              Looks up a localized string similar to Pending.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Perform_warm_up">
+            <summary>
+              Looks up a localized string similar to Perform warm-up.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Perform_warmup_tooltip">
+            <summary>
+              Looks up a localized string similar to This option eliminates cold start overhead by running two iterations before gathering performance information. This eliminates .NET overhead while the InRule engine starts up..
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Performance">
+            <summary>
+              Looks up a localized string similar to Performance.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Performance_Statistics">
+            <summary>
+              Looks up a localized string similar to Performance Statistics.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Performance_Test">
+            <summary>
+              Looks up a localized string similar to Performance Test.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Performance_test_description">
+            <summary>
+              Looks up a localized string similar to Performance tests allow you to get an idea of how quickly the rules will execute under different conditions. Select this option if you want to generate data that you can use to analyze performance of the rules..
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Regression">
+            <summary>
+              Looks up a localized string similar to Regression.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Regression_test_settings">
+            <summary>
+              Looks up a localized string similar to Regression test settings.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Regression_test_settings_tooltip">
+            <summary>
+              Looks up a localized string similar to These options only apply to Assertion and Compare tests..
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Regression_Testing">
+            <summary>
+              Looks up a localized string similar to Regression Testing.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Remove">
+            <summary>
+              Looks up a localized string similar to Remove.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Remove__0_">
+            <summary>
+              Looks up a localized string similar to Remove {0}.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Remove_Data_State">
+            <summary>
+              Looks up a localized string similar to Remove Data State.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Remove_from_Watch_List">
+            <summary>
+              Looks up a localized string similar to Remove from Watch List.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Reset">
+            <summary>
+              Looks up a localized string similar to Reset.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Result">
+            <summary>
+              Looks up a localized string similar to Result.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Root_context">
+            <summary>
+              Looks up a localized string similar to Root context.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Root_entity_name">
+            <summary>
+              Looks up a localized string similar to Root entity name.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Rule_Engine_Feedback">
+            <summary>
+              Looks up a localized string similar to Rule Engine Feedback.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Rule_sets_fired">
+            <summary>
+              Looks up a localized string similar to Rule sets fired.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Rule_Tracing">
+            <summary>
+              Looks up a localized string similar to Rule Tracing.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Rule_Values">
+            <summary>
+              Looks up a localized string similar to Rule Values.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Rule_Values_tooltip">
+            <summary>
+              Looks up a localized string similar to Enables rule values to be captured so that they can be accessed using the SDK..
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Rules_evaluated">
+            <summary>
+              Looks up a localized string similar to Rules evaluated.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Run">
+            <summary>
+              Looks up a localized string similar to Run.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Run_All">
+            <summary>
+              Looks up a localized string similar to Run All.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Run_All_Tests">
+            <summary>
+              Looks up a localized string similar to Run All Tests.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Run_Test">
+            <summary>
+              Looks up a localized string similar to Run Test.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Run_Tests">
+            <summary>
+              Looks up a localized string similar to Run Tests.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Running__0_">
+            <summary>
+              Looks up a localized string similar to Running {0}.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Running_tests___">
+            <summary>
+              Looks up a localized string similar to Running tests....
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Save">
+            <summary>
+              Looks up a localized string similar to Save.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Save___">
+            <summary>
+              Looks up a localized string similar to Save....
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Save_As___">
+            <summary>
+              Looks up a localized string similar to Save As....
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Save_Entity_State">
+            <summary>
+              Looks up a localized string similar to Save Entity State.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Save_Test_Scenario">
+            <summary>
+              Looks up a localized string similar to Save Test Scenario.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Save_Test_Suite">
+            <summary>
+              Looks up a localized string similar to Save Test Suite.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Save_the_values_as_they_currently_exist_in_the_active_session_">
+            <summary>
+              Looks up a localized string similar to Save the values as they currently exist in the active session..
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Save_the_values_that_existed_before_the_first_rule_execution__Apply_Rules__of_the_active_session_">
+            <summary>
+              Looks up a localized string similar to Save the values that existed before the first rule execution (Apply Rules) of the active session..
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Save_to_Excel">
+            <summary>
+              Looks up a localized string similar to Save to Excel.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Saves_all_entities_and_values_in_a_single_data_state_">
+            <summary>
+              Looks up a localized string similar to Saves all entities and values in a single data state..
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Search">
+            <summary>
+              Looks up a localized string similar to Search.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.seconds">
+            <summary>
+              Looks up a localized string similar to seconds.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Select_an_existing_input_Data_State">
+            <summary>
+              Looks up a localized string similar to Select an existing input Data State.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Select_existing__0____">
+            <summary>
+              Looks up a localized string similar to Select existing {0}....
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Select_existing_Data_State___">
+            <summary>
+              Looks up a localized string similar to Select existing Data State....
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Session">
+            <summary>
+              Looks up a localized string similar to Session.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Show">
+            <summary>
+              Looks up a localized string similar to Show.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Show_Detail">
+            <summary>
+              Looks up a localized string similar to Show Detail.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Show_Details">
+            <summary>
+              Looks up a localized string similar to Show Details.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Show_Evaluation_Detail">
+            <summary>
+              Looks up a localized string similar to Show Evaluation Detail.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.State_changes">
+            <summary>
+              Looks up a localized string similar to State changes.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.State_Changes_tooltip">
+            <summary>
+              Looks up a localized string similar to Enables state change messages in the execution log, including calculations and collection member add/delete..
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.State_Changes2">
+            <summary>
+              Looks up a localized string similar to State Changes.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.State_Identifier">
+            <summary>
+              Looks up a localized string similar to State Identifier.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Status">
+            <summary>
+              Looks up a localized string similar to Status.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Stop_test_on_assertion_failure">
+            <summary>
+              Looks up a localized string similar to Stop test on assertion failure.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Suite_Failed">
+            <summary>
+              Looks up a localized string similar to Suite Failed.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Suite_Passed">
+            <summary>
+              Looks up a localized string similar to Suite Passed.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Summart_Statistics_tooltip">
+            <summary>
+              Looks up a localized string similar to Enables summary statistics in the execution log, info-level event log and RuleSession. Required for summary level information for the Performance Statistics report..
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Summary">
+            <summary>
+              Looks up a localized string similar to Summary.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Summary_Statistics">
+            <summary>
+              Looks up a localized string similar to Summary Statistics.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Target">
+            <summary>
+              Looks up a localized string similar to Target.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Test">
+            <summary>
+              Looks up a localized string similar to Test.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Test_Data">
+            <summary>
+              Looks up a localized string similar to Test Data.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Test_Folder">
+            <summary>
+              Looks up a localized string similar to Test Folder.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Test_Name">
+            <summary>
+              Looks up a localized string similar to Test Name.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Test_Results">
+            <summary>
+              Looks up a localized string similar to Test Results.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Test_Runner">
+            <summary>
+              Looks up a localized string similar to Test Runner.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Test_Scenario">
+            <summary>
+              Looks up a localized string similar to Test Scenario.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Test_Scenario_Data_State">
+            <summary>
+              Looks up a localized string similar to Test Scenario Data State.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Test_Suite">
+            <summary>
+              Looks up a localized string similar to Test Suite.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Test_Suite_Tools">
+            <summary>
+              Looks up a localized string similar to Test Suite Tools.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Testing">
+            <summary>
+              Looks up a localized string similar to Testing.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Tests">
+            <summary>
+              Looks up a localized string similar to Tests.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.The_data_has_changed_and_will_be_lost_if_you_cancel_">
+            <summary>
+              Looks up a localized string similar to The data has changed and will be lost if you cancel..
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.This_test_also_requires_an_expected_Data_State_">
+            <summary>
+              Looks up a localized string similar to This test also requires an expected Data State..
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.This_test_requires_an_input_Data_State_">
+            <summary>
+              Looks up a localized string similar to This test requires an input Data State..
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Time">
+            <summary>
+              Looks up a localized string similar to Time.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.To_file___">
+            <summary>
+              Looks up a localized string similar to To file....
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Total_Action_execution_time">
+            <summary>
+              Looks up a localized string similar to Total Action execution time.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Total_execution_time">
+            <summary>
+              Looks up a localized string similar to Total execution time.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Total_Rule_evaluation_time">
+            <summary>
+              Looks up a localized string similar to Total Rule evaluation time.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Trace_Event_Detail">
+            <summary>
+              Looks up a localized string similar to Trace Event Detail.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Type">
+            <summary>
+              Looks up a localized string similar to Type.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Unknown">
+            <summary>
+              Looks up a localized string similar to Unknown.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Use_an_existing_Data_State">
+            <summary>
+              Looks up a localized string similar to Use an e_xisting Data State.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Validation_changes">
+            <summary>
+              Looks up a localized string similar to Validation changes.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Validation_Changes2">
+            <summary>
+              Looks up a localized string similar to Validation Changes.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Validations_must_match">
+            <summary>
+              Looks up a localized string similar to Validations must match.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Value">
+            <summary>
+              Looks up a localized string similar to Value.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.View">
+            <summary>
+              Looks up a localized string similar to View.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.View_All">
+            <summary>
+              Looks up a localized string similar to View All.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.View_Entity_State">
+            <summary>
+              Looks up a localized string similar to View Entity State.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.View_Log">
+            <summary>
+              Looks up a localized string similar to View Log.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.View_Trace">
+            <summary>
+              Looks up a localized string similar to View Trace.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Watch_List">
+            <summary>
+              Looks up a localized string similar to Watch List.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.What_type_of_test_would_you_like_to_create_">
+            <summary>
+              Looks up a localized string similar to What type of test would you like to create?.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Which_type_of_data_state_would_you_like_to_create_">
+            <summary>
+              Looks up a localized string similar to Which type of data state would you like to create?.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Testing.Strings.Would_you_like_to_save_test_suite___0___before_closing_">
+            <summary>
+              Looks up a localized string similar to Would you like to save test suite &apos;{0}&apos; before closing?.
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.Utilities.FileUtility.CopyOverRO(System.String,System.String,System.Boolean)">
+            <summary>
+            Copy specified file/uri-content to destination, clearing destination RO flag if nec.
+            </summary>
+            <param name="srcFileOrUri"></param>
+            <param name="destFile"></param>
+            <param name="onlyIfDifferent">Content is copied only if different from existing destination content</param>
+            <remarks>Creates targetdirs, clears target file attribs as nec.</remarks>
+            <returns>true if file copied (vs skipped since same).</returns>
+        </member>
+        <member name="M:InRule.Runtime.Testing.IrVerifyWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Testing.UserSettings.Reset">
+            <summary>
+            Resets the settings to their default values.
+            </summary>
+        </member>
+        <member name="T:InRule.Runtime.Tracing.ExecutionTraceEventDetailsView">
+            <summary>
+            A control to display Trace Event attributes and evaluations.
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Tracing.ExecutionTraceEventDetailsView.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:InRule.Runtime.Tracing.ExecutionTraceEventDetailsView"/>.
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Tracing.ExecutionTraceEventDetailsView.Load(InRule.Runtime.Testing.Tracing.ViewModels.TraceEventViewModel)">
+            <summary>
+            Loads a <see cref="T:InRule.Runtime.Tracing.Events.TraceEvent"/> to be displayed.
+            </summary>
+            <param name="traceEvent"></param>
+        </member>
+        <member name="M:InRule.Runtime.Tracing.ExecutionTraceEventDetailsView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:InRule.Runtime.Tracing.ExecutionTraceView">
+            <summary>
+            A Trace Event viewer control to view the results of a .ruletrace file or IExecutionTrace instance.
+            </summary>
+            <summary>
+            ExecutionTraceView
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Tracing.ExecutionTraceView.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:InRule.Runtime.Tracing.ExecutionTraceView"/>.
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Tracing.ExecutionTraceView.Load(InRule.Runtime.RuleExecutionLog)">
+            <summary>
+            Loads an execution trace from a <see cref="T:InRule.Runtime.RuleExecutionLog"/> instance to populate the Trace Event viewer.
+            This overload will provide a progress dialog as the trace is being processed.
+            </summary>
+            <param name="log">An instance of <see cref="T:InRule.Runtime.RuleExecutionLog"/>.</param>
+        </member>
+        <member name="M:InRule.Runtime.Tracing.ExecutionTraceView.Load(InRule.Runtime.Tracing.IExecutionTrace)">
+            <summary>
+            Loads an execution trace instance to populate the Trace Event viewer.
+            </summary>
+            <param name="trace">An instance of <see cref="T:InRule.Runtime.Tracing.IExecutionTrace"/>.</param>
+        </member>
+        <member name="M:InRule.Runtime.Tracing.ExecutionTraceView.Load(System.String)">
+            <summary>
+            Loads an execution trace from a .ruletrace file to populate the Trace Event viewer.
+            </summary>
+            <param name="ruleTraceFilePath">The path to a .ruletrace file.</param>
+        </member>
+        <member name="P:InRule.Runtime.Tracing.ExecutionTraceView.ShowExportMenu">
+            <summary>
+            Gets or sets whether to show the Export menu. Visible by default.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Tracing.ExecutionTraceView.EventFilterText">
+            <summary>
+            Gets or sets the filter text.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Tracing.ExecutionTraceView.SelectedTraceEvent">
+            <summary>
+            Gets the current selected <see cref="T:InRule.Runtime.Tracing.Events.TraceEvent"/>.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Tracing.ExecutionTraceView.DetailPopupMode">
+            <summary>
+            Gets or sets the window popup mode for the Trace Event details. Default is ShowInExistingWindow.
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Tracing.ExecutionTraceView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:InRule.Runtime.Tracing.TraceEventDetailPopupMode">
+            <summary>
+             Specifies how the TraceEvent Evaluation Detail popup window is presented.
+            </summary>
+        </member>
+        <member name="F:InRule.Runtime.Tracing.TraceEventDetailPopupMode.Hidden">
+            <summary>
+            Do not show the Evaluation Detail window.
+            </summary>
+        </member>
+        <member name="F:InRule.Runtime.Tracing.TraceEventDetailPopupMode.ShowInNewWindow">
+            <summary>
+            Create a new window for each Evaluation Detail.
+            </summary>
+        </member>
+        <member name="F:InRule.Runtime.Tracing.TraceEventDetailPopupMode.ShowInExistingWindow">
+            <summary>
+            Reuse the same window for each Evaluaiton Detail.
+            </summary>
+        </member>
+        <member name="T:InRule.Runtime.Tracing.ExecutionTraceEventDetailsWindow">
+            <summary>
+            A window to display Trace Event attributes and evaluations.
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Tracing.ExecutionTraceEventDetailsWindow.Load(InRule.Runtime.Testing.Tracing.ViewModels.TraceEventViewModel)">
+            <summary>
+            Loads a <see cref="T:InRule.Runtime.Tracing.Events.TraceEvent"/> to be displayed.
+            </summary>
+            <param name="traceEvent"></param>
+        </member>
+        <member name="M:InRule.Runtime.Tracing.ExecutionTraceEventDetailsWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:InRule.Runtime.Tracing.ExecutionTraceWindow">
+            <summary>
+            A Trace Event viewer window to view the results of a .ruletrace file or IExecutionTrace instance.
+            </summary>
+            <summary>
+            ExecutionTraceWindow
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Tracing.ExecutionTraceWindow.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:InRule.Runtime.Tracing.ExecutionTraceWindow"/>/
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Tracing.ExecutionTraceWindow.Show(InRule.Runtime.RuleExecutionLog)">
+            <summary>
+            Creates a new instance of <see cref="T:InRule.Runtime.Tracing.ExecutionTraceWindow"/> and loads a <see cref="T:InRule.Runtime.RuleExecutionLog"/> instance to populate the Trace Event viewer.
+            This overload will provide a progress dialog as the trace is being processed.
+            </summary>
+            <param name="log">An instance of <see cref="T:InRule.Runtime.RuleExecutionLog"/>.</param>
+            <returns>A new instance of <see cref="T:InRule.Runtime.Tracing.ExecutionTraceWindow"/>.</returns>
+        </member>
+        <member name="M:InRule.Runtime.Tracing.ExecutionTraceWindow.Show(InRule.Runtime.Tracing.IExecutionTrace)">
+            <summary>
+            Creates a new instance of <see cref="T:InRule.Runtime.Tracing.ExecutionTraceWindow"/> and loads an <see cref="T:InRule.Runtime.Tracing.IExecutionTrace"/> instance to populate the Trace Event viewer.
+            </summary>
+            <param name="trace">An instance of <see cref="T:InRule.Runtime.Tracing.IExecutionTrace"/> to load.</param>
+            <returns>A new instance of <see cref="T:InRule.Runtime.Tracing.ExecutionTraceWindow"/>.</returns>
+        </member>
+        <member name="M:InRule.Runtime.Tracing.ExecutionTraceWindow.Show(System.String)">
+            <summary>
+            Creates a new instance of <see cref="T:InRule.Runtime.Tracing.ExecutionTraceWindow"/> and loads an execution trace from a .ruletrace file.
+            </summary>
+            <param name="ruleTraceFilePath">The path to a .ruletrace file.</param>
+            <returns>A new instance of <see cref="T:InRule.Runtime.Tracing.ExecutionTraceWindow"/>.</returns>
+        </member>
+        <member name="M:InRule.Runtime.Tracing.ExecutionTraceWindow.Load(InRule.Runtime.RuleExecutionLog)">
+            <summary>
+            Loads an execution trace from a <see cref="T:InRule.Runtime.RuleExecutionLog"/> instance to populate the Trace Event viewer.
+            This overload will provide a progress dialog as the trace is being processed.
+            </summary>
+            <param name="log">An instance of <see cref="T:InRule.Runtime.RuleExecutionLog"/>.</param>
+        </member>
+        <member name="M:InRule.Runtime.Tracing.ExecutionTraceWindow.Load(InRule.Runtime.Tracing.IExecutionTrace)">
+            <summary>
+            Loads an execution trace instance to populate the Trace Event viewer.
+            </summary>
+            <param name="trace">An instance of <see cref="T:InRule.Runtime.Tracing.IExecutionTrace"/>.</param>
+        </member>
+        <member name="M:InRule.Runtime.Tracing.ExecutionTraceWindow.Load(System.String)">
+            <summary>
+            Loads an execution trace from a .ruletrace file to populate the Trace Event viewer.
+            </summary>
+            <param name="ruleTraceFilePath">The path to a .ruletrace file.</param>
+        </member>
+        <member name="P:InRule.Runtime.Tracing.ExecutionTraceWindow.ShowExportMenu">
+            <summary>
+            Gets or sets whether to show the Export menu. Visible by default.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Tracing.ExecutionTraceWindow.EventFilterText">
+            <summary>
+            Gets or sets the filter text.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Tracing.ExecutionTraceWindow.SelectedTraceEvent">
+            <summary>
+            Gets the current selected <see cref="T:InRule.Runtime.Tracing.Events.TraceEvent"/>.
+            </summary>
+        </member>
+        <member name="P:InRule.Runtime.Tracing.ExecutionTraceWindow.DetailPopupMode">
+            <summary>
+            Gets or sets the window popup mode for the Trace Event details. Default is ShowInExistingWindow.
+            </summary>
+        </member>
+        <member name="M:InRule.Runtime.Tracing.ExecutionTraceWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
+            </summary>
+        </member>
+    </members>
+</doc>

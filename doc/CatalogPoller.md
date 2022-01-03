@@ -48,12 +48,12 @@ az group create --name RESOURCE_GROUP_NAME --location LOCATION
 Azure Functions requires an Azure Storage account when you create a function app instance. Function app and storage account names must be unique. [Azure Files](https://docs.microsoft.com/en-us/azure/storage/files/storage-files-introduction) must be used to store and run your function app code in a [Consumption Plan](https://docs.microsoft.com/en-us/azure/azure-functions/consumption-plan) and [Premium Plan](https://docs.microsoft.com/en-us/azure/azure-functions/functions-premium-plan).
 ```powershell
 # Example: az storage account create --name storageaccount-cicd --location eastus --resource-group inrule-prod-rg --sku Standard_LRS
-az astorage account create --name STORAGE_ACCOUNT_NAME --location LOCATION --resource-group RESOURCE_GROUP_NAME --sku Standard_LRS
+az storage account create --name STORAGE_ACCOUNT_NAME --location LOCATION --resource-group RESOURCE_GROUP_NAME --sku Standard_LRS
 ```
 
 ### Create Azure function
 
-Command for creating the poller serverless function app in the resource group.  Note that the functions version value used here is 2, but it must be changed to 1, in function's Azure configuration, once the function is deployed. 
+Command for creating the poller serverless function app in the resource group.  **Note that the functions version value used here is 2, but it must be changed to 1, in function's Azure configuration, once the function is deployed.** 
 ```powershell
 # Example: az functionapp create --name inrule-cicd-catalog-poller --storage-account storageaccount-cicd --consumption-plan-location eastus --resource-group inrule-prod-rg --functions-version 2
 az functionapp create --name POLLER_FUNCTION_NAME --storage-account STORAGE_ACCOUNT_NAME --consumption-plan-location LOCATION --resource-group RESOURCE_GROUP_NAME --functions-version 2

@@ -35,20 +35,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="InRule.Authoring, Version=5.6.0.232, Culture=neutral, PublicKeyToken=1feb8dd25b1ceb6b, processorArchitecture=MSIL">
+    <Reference Include="InRule.Authoring, Version=5.7.1.236, Culture=neutral, PublicKeyToken=1feb8dd25b1ceb6b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\InRule_v5.7.1\irSDK\bin\InRule.Authoring.dll</HintPath>
+      <HintPath>..\lib\InRule.Authoring.dll</HintPath>
     </Reference>
     <Reference Include="InRule.Common, Version=5.7.2.240, Culture=neutral, PublicKeyToken=1feb8dd25b1ceb6b, processorArchitecture=MSIL">
-      <HintPath>..\packages\InRule.Common.5.7.2\lib\net472\InRule.Common.dll</HintPath>
+      <HintPath>packages\InRule.Common.5.7.2\lib\net472\InRule.Common.dll</HintPath>
     </Reference>
     <Reference Include="InRule.Repository, Version=5.7.2.240, Culture=neutral, PublicKeyToken=1feb8dd25b1ceb6b, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\InRule.Repository.5.7.2\lib\net472\InRule.Repository.dll</HintPath>
+      <HintPath>packages\InRule.Repository.5.7.2\lib\net472\InRule.Repository.dll</HintPath>
     </Reference>
     <Reference Include="InRule.Repository.XmlSerializers, Version=5.7.2.240, Culture=neutral, PublicKeyToken=1feb8dd25b1ceb6b, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\InRule.Repository.5.7.2\lib\net472\InRule.Repository.XmlSerializers.dll</HintPath>
+      <HintPath>packages\InRule.Repository.5.7.2\lib\net472\InRule.Repository.XmlSerializers.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Bcl.AsyncInterfaces.5.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>

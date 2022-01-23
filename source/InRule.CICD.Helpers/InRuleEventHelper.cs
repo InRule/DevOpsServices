@@ -174,7 +174,7 @@ namespace InRule.CICD.Helpers
                         }
                         else if (handlerType == InRuleEventHelperType.DevOps)
                         {
-                            AzureDevOpsApiHelper.QueuePipelineBuild(handler);
+                            AzureDevOpsApiHelper.QueuePipelineBuild(handler, GetRuleAppName(eventData.RepositoryUri.ToString(), eventData.GUID.ToString()));
                         }
                         else if (handlerType == InRuleEventHelperType.EventLog)
                         {

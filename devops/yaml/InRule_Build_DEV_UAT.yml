@@ -1,9 +1,14 @@
+parameters:
+  - name: ruleAppName
+    type: string
+    default: 'N/A'
+
 trigger: none
 
 jobs:
 - template: catalogSourced-TestAndPromote.yml
   parameters:
-    RuleAppName: InvoiceRules
+    RuleAppName: ${{ parameters.ruleAppName }}
     SourceCatalogName: DEV
     DestinationCatalogName: UAT
     SourceLabel: LIVE

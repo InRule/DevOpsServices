@@ -28,7 +28,7 @@ Before you get started, you'll need the make sure you have the following:
 * If not using ARM templates  [PowerShell](https://docs.microsoft.com/en-us/powershell/scripting/powershell-scripting) version 3.0 or later is installed. To see which version you have, run `$PSVersionTable.PSVersion.ToString()` command in your PowerShell terminal window.
 
 
-## irCatalog Setup
+## irCatalog® Setup
 
 Setup irCatalog either with a new install or from an existing installation
 * [Azure](ircatalog-azure.md)

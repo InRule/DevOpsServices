@@ -1,7 +1,7 @@
 ## ARM Template Deployment
 Deploying CI/CD with an ARM template is the easiest route as all of it can be done directly in the Azure portal.
 
-* First download the [CI/CD ARM template zip file](../releases/InRule.CICD.ARMTemplates).
+* First download the [CI/CD ARM template zip file](https://github.com/InRule/CI-CD/raw/main/releases/InRule.CICD.ARMTemplates.zip).
 * From the Azure Portal search for **Deploy a custom template**.
 * Once the custom deployment screen loads select **Build your own template in the editor**.
 

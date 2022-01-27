@@ -39,10 +39,7 @@ What is this and how does it work?  irCatalog emits many lifecycle events (check
 
 
 ### Documentation and Samples
-* [Deployment and configuration](doc/deployment.md)
-* irCatalog - [Local deployment](doc/ircatalog-local.md) or [in Azure](doc/ircatalog-azure.md)
-* [Enable WCF Listener](doc/InRuleCICD_WcfBehaviorExtension.md)
-* [InRule CI/CD app service](doc/InRuleCICDService.md)
+* [CI/CD Deployment and configuration](doc/deployment.md)
 * [CI/CD Architecture with SaaS / InRule catalog poller](doc/CatalogPoller.md)
 * [Orchestration by configuration](doc/OrchestrationByConfiguration.md)
 * [Understanding and using notifications](doc/Notifications.md)
@@ -56,5 +53,6 @@ What is this and how does it work?  irCatalog emits many lifecycle events (check
 * [Generate Java rule application (JAR file) with irDistribution](doc/Java.md)
 * [Generate JavaScript rule application with irDistribution](doc/JavaScript.md)
 * [Jscrambler enhanced JavaScript protection](doc/jscrambler.md)
+* [Snowflake Javascript rule integration](doc/Snowflake.md)
 * [CI/CD approval flow](doc/ApprovalFlow.md)
 * [Configure where to upload files, like GitHub](doc/UploadTo.md)

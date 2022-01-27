@@ -2,16 +2,53 @@
 
 If you have not done so already, please read the [prerequisites](deployment.md#prerequisites) before you get started.
 
-#### Deploying a new instance:
+#### Steps to setup the CI/CD service:
 
-* [App Service Deployment](#deployment)
-* [App Service Configuration](#configure-inrule-cicd-service)
+* Deployment options
+  * [ARM Template Deployment](#ARM-Template-Deployment)
+  * [Using PowerShell and Azure CLI](#Deployment-using-PowerShell-and-Azure-CLI)
+    
+* Install or update irCatalog® Service
+  * [Install or update irCatalog® Service](ircatalog-azure.md)
 
+* Enable WCF Service
+  * [Configuring irCatalog WCF Service for the Event Listener](InRuleCICD_WcfBehaviorExtension.md)
+  
+* Configure the service:
+  * [App Service Configuration](#configure-inrule-cicd-service)
+
+## ARM Template Deployment
+Deploying CI/CD with an ARM template is the easiest route as all of it can be done directly in the Azure portal.
+
+* First download the [CI/CD ARM template zip file](../releases/InRule.CICD.ARMTemplates).
+* From the Azure Portal search for **Deploy a custom template**.
+* Once the custom deployment screen loads select **Build your own template in the editor**.
+
+    ![Azure App Service Editor](../images/InRuleCICD_ARM_BuildYourOwnTemplate.png)
+
+* Select **Load file** on the next screen and upload the **InRule.CICD.Runtime.Service.json** from the zip file downloaded above. Once loaded click **Save** at the bottom of the screen.
+
+    ![LoadFile](../images/InRuleCICD_ARM_LoadFile.png)
+
+* Now load the paramaters file by clicking **Edit parameters**. On the next screen select **Load file** again and load the **InRule.CICD.Runtime.Service.parameters.json** file. Click **Save** once complete. 
+  
+    ![EditParameters](../images/InRuleCICD_ARM_EditParameters.png)
+
+* Choose the resource group to be used and Iif installing a new service leave **Create Or Update CICD Service Plan** as **true** and type the desired CI/CD app service name, app service plan and plan Sku. If upgrading set to **false** and enter the existing app service plan and app service name where CI/CD was previosuly installed. A finished example is below:
+
+    ![ARMTemplateScreen](../images/InRuleCICD_ARM_ARMTemplateScreen.png)
+
+* The last step is to deploy the license file to the newly created CI/CD app service. This can easily be done by using the App Service Editor from within the CI/CD app service. Under the Development Tools in the left hand navigation of the app service click the app service editor as shown below, then click **Go** when that page loads. Right click on some blank space under WWWROOT and click **Upload Files** to upload the InRuleLicense.xml file. 
+
+
+    ![AppServiceEditor](../images/InRuleCICD_ARM_AppServiceEditor.png)
+
+* The app service editor can also be launched from the KUDU console by adding .scm before the base URL and add dev at the end. Here is an example: https://mysite.scm.azurewebsites.net/dev
 ---
-## Deployment
+## PowerShell and Azure CLI Deployment
 
 ### Sign in to Microsoft Azure
-First, [open a PowerShell prompt](https://docs.microsoft.com/en-us/powershell/scripting/setup/starting-windows-powershell) and use the Microsoft Azure® CLI to [sign in](https://docs.microsoft.com/en-us/cli/azure/authenticate-azure-cli) to your Microsoft Azure subscription:
+First, [open a PowerShell prompt](https://docs.microsoft.com/en-us/powershell/scripting/windows-powershell/starting-windows-powershell) and use the Microsoft Azure® CLI to [sign in](https://docs.microsoft.com/en-us/cli/azure/authenticate-azure-cli) to your Microsoft Azure subscription:
 ```powershell
 az login
 ```

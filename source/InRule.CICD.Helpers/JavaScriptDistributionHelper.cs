@@ -36,9 +36,10 @@ namespace InRule.CICD.Helpers
             string NotificationChannel = SettingsManager.Get($"{moniker}.NotificationChannel");
             string UploadTo = SettingsManager.Get($"{moniker}.UploadTo");
             string jscramblerEnable = SettingsManager.Get($"{moniker}.JscramblerEnable").ToLower();
+            string snowflakeEnable = SettingsManager.Get($"{moniker}.SnowflakeEnable").ToLower();
 
             TimeSpan SleepTimeout = TimeSpan.FromSeconds(15);
-            string Prefix = "JAVASCRIPT DISTRIBUTION";
+            string Prefix = "JAVASCRIPT DISTRIBUTION CHECK";
 
             var channels = NotificationChannel.Split(' ');
             var uploadChannels = UploadTo.Split(' ');
@@ -127,18 +128,14 @@ namespace InRule.CICD.Helpers
                     else
                     {
                         var downloadUrl = returnPackage.PackagedApplicationDownloadUrl.ToString();
-
                         HttpResponseMessage resultDownload = await client.GetAsync(downloadUrl);
                         if (!resultDownload.IsSuccessStatusCode)
                         {
                             errors.AppendLine(await resultDownload.Content.ReadAsStringAsync());
                         }
                         var jsContent = await resultDownload.Content.ReadAsStringAsync();
-
                         var fileName = ruleApplication.Name + "_" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".js";
                         var filePath = Path.Combine(DestinationPath, fileName);
-
-
 
                         if (jscramblerEnable == "true")
                         {
@@ -146,7 +143,6 @@ namespace InRule.CICD.Helpers
                             {
                                 await NotificationHelper.NotifyAsync($"Jscrambler process start.", Prefix, "Debug");
                                 await JscramblerHelper.CallJscramblerAPIAsync(jsContent, DestinationPath, fileName);
-
                                 jsContent = File.ReadAllText(filePath);
                             }
                             catch (Exception ex)
@@ -154,6 +150,19 @@ namespace InRule.CICD.Helpers
                                 await NotificationHelper.NotifyAsync($"Jscramble error: {ex.Message}", Prefix, "Debug");
                             }
 
+                        }
+                        
+                        if (snowflakeEnable == "true")
+                        {
+                            try
+                            {
+                                await NotificationHelper.NotifyAsync($"Snowflake process start.", Prefix, "Debug");
+                                await SnowflakeHelper.CallSnowflakeHelper(jsContent, ruleApplicationRef);
+                            }
+                            catch (Exception ex)
+                            {
+                                await NotificationHelper.NotifyAsync($"Snowflake error: {ex.Message}", Prefix, "Debug");
+                            }
                         }
 
                         foreach (var uploadChannel in uploadChannels)

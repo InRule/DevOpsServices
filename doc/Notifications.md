@@ -111,7 +111,7 @@ The initial offering comes with a number of notification channels: **Slack, Team
     <add key="OnCheckinRuleApp" value="Teams" />
     <add key="OnUndoCheckout" value="MyTeams"/>
 
-    <add key="MyTeams.TeamsWebhookUrl" value="https://xxxxxxx.webhook.office.com/webhookb2/yyyyyyyyyyyyyyyyyyyyyy/IncomingWebhook/zzzzzzzzzzzzzzzzzzzzzzz1"/>
+    <add key="Teams.TeamsWebhookUrl" value="https://xxxxxxx.webhook.office.com/webhookb2/yyyyyyyyyyyyyyyyyyyyyy/IncomingWebhook/zzzzzzzzzzzzzzzzzzzzzzz1"/>
     
     <add key="MyTeams.Type" value="Teams"/>
     <add key="MyTeams.TeamsWebhookUrl" value="https://xxxxxxx.webhook.office.com/webhookb2/yyyyyyyyyyyyyyyyyyyyyy/IncomingWebhook/zzzzzzzzzzzzzzzzzzzzzzz2"/>

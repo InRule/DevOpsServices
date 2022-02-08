@@ -15,18 +15,13 @@
     "slotSetting": false
   },
   {
-    "name": "InRuleCICDServiceUri",
-    "value": "https://[service_to_update].azurewebsites.net/Service.svc/api",
-    "slotSetting": false
-  },
-  {
-    "name": "FilterEventsByUser",
-    "value": "",
-    "slotSetting": false
-  },
-  {
     "name": "ApprovalFlow.FilterByLabels",
     "value": "LIVE",
+    "slotSetting": false
+  },
+  {
+    "name": "InRuleCICDServiceUri",
+    "value": "https://[service_to_update].azurewebsites.net/Service.svc/api",
     "slotSetting": false
   }
 ]

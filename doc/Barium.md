@@ -1,18 +1,14 @@
 ### Barium Live Integration with CI/CD
 
-InRule CI/CD now supports performing actions in Barium Live. 
+InRule CI/CD now supports performing actions in Barium Live. Any lifecycle event from InRule irCatalog can create a process instance within a Barium Live deployment.
 
-#### Create an instance from a process
-A process defined in Barium Live can have a instance created based on a CI/CD catalog check in event.
 
 ---
 #### Configuration
 
-All relevant aspects of this integration are set in the configuration, under the default Barium moniker.
+All relevant aspects of this integration are set in the configuration under the default Barium moniker (see example below).  Create instance is an extension of the Barium configuration to further define specific activities that can take place in Barium.
 
-Create instance is an extension of the Barium configuration to further define specific activities that can take place in Barium.
-
-This is a [sample of minimal configuration](../config/InRuleCICD_BariumCreateInstance.config) for creating an instance in Barium when a rule application has been checked in. This configuration example is **applicable for a local deployment**.  **For the Azure CI/CD app service**, the configuration follows the format in the [starter cloud config file](../config/InRule.CICD.Runtime.Service.config.json).
+Below is a [sample of minimal configuration](../config/InRuleCICD_BariumCreateInstance.config) for creating a process instance in Barium Live when a rule application has been checked in. This configuration example is **applicable for a local deployment**.  **For the Azure CI/CD app service**, the configuration follows the format in the [starter cloud config file](../config/InRule.CICD.Runtime.Service.config.json).
 
 ````
     <add key="CatalogEvents" value="CheckinRuleApp"/>

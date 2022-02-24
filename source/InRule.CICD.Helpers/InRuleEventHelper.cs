@@ -33,7 +33,8 @@ namespace InRule.CICD.Helpers
             RuleAppDiffReport,
             DevOps,
             EventLog,
-            ApprovalFlow
+            ApprovalFlow,
+            Barium
         }
 
         [Obsolete]
@@ -174,7 +175,7 @@ namespace InRule.CICD.Helpers
                         }
                         else if (handlerType == InRuleEventHelperType.DevOps)
                         {
-                            AzureDevOpsApiHelper.QueuePipelineBuild(handler, GetRuleAppName(eventData.RepositoryUri.ToString(), eventData.GUID.ToString()));
+                            AzureDevOpsApiHelper.QueuePipelineBuild(handler);
                         }
                         else if (handlerType == InRuleEventHelperType.EventLog)
                         {
@@ -192,6 +193,16 @@ namespace InRule.CICD.Helpers
                                 else
                                     ruleAppDef = GetRuleAppDef(eventData.RepositoryUri.ToString(), eventData.GUID.ToString(), eventData.RuleAppRevision, eventData.OperationName);
                                 await CheckInApprovalHelper.SendApproveRequestAsync(eventDataSource, ruleAppDef, handler);
+                            }
+                        }
+                        else if (handlerType == InRuleEventHelperType.Barium)
+                        {
+                            string CreateInstance = SettingsManager.Get($"Barium.CreateInstance").ToLower();
+                            if(CreateInstance == "true")
+                                await BariumHelper.BariumCreateInstance();
+                            else
+                            {
+                                await NotificationHelper.NotifyAsync($"Create instance is not enabled.", "Barium - ", "Debug");
                             }
                         }
                     }

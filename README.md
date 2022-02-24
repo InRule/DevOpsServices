@@ -19,13 +19,13 @@ What is this and how does it work?  irCatalog emits many lifecycle events (check
 
 * *InRule CI/CD service* that can be hosted in Azure, as an app service, or on-premise.  Depending on the chosen deployment configuration, the InRule CI/CD service can either handle all the events and actions or only be used for a number of on demand services, such as generating a rule application report or facilitating the approval of a label assignment.
 
-![CI/CD Architecture](images/CICDwSnowflake.png)
+![CI/CD Architecture](images/WithJscrambler.png)
 
 * *Event processors*.  The default CI/CD installation comes with a number of built-in integrations that can be enabled and configured on a per installation basis: Slack, Email (SendGrid), Windows/Azure EventLog, SQL Server database, Azure AppInsights, Azure Service Bus, Azure Event Grid, Azure DevOps pipeline, GitHub, Box.com.
 
 * *Catalog poller* for CI/CD architecture with SaaS. This is an Azure function that runs on a schedule and checks for new revisions checked into the catalog service at which it is pointed.  The poller is useful when the catalog service's binaries and configuration are not accessible to be enhanced with the CI/CD artifacts. It picks up check in event details from the catalog service and sends them to the InRule CI/CD service.
 
-![CI/CD Architecture with SaaS](images/CICDSaaSwSnowflake.png)
+![CI/CD Architecture with SaaS](images/SaaSwithJscrambler.png)
 
 
 * Other than the ability to post captured catalog events to the various subscribers/consumers listed above, **the InRule CI/CID solution includes a number of services and actions** relevant to a rule application life cycle in the enterprise:
@@ -39,7 +39,10 @@ What is this and how does it work?  irCatalog emits many lifecycle events (check
 
 
 ### Documentation and Samples
-* [CI/CD Deployment and configuration](doc/deployment.md)
+* [Deployment and configuration](doc/deployment.md)
+* irCatalog - [Local deployment](doc/ircatalog-local.md) or [in Azure](doc/ircatalog-azure.md)
+* [Enable WCF Listener](doc/InRuleCICD_WcfBehaviorExtension.md)
+* [InRule CI/CD app service](doc/InRuleCICDService.md)
 * [CI/CD Architecture with SaaS / InRule catalog poller](doc/CatalogPoller.md)
 * [Orchestration by configuration](doc/OrchestrationByConfiguration.md)
 * [Understanding and using notifications](doc/Notifications.md)
@@ -53,6 +56,4 @@ What is this and how does it work?  irCatalog emits many lifecycle events (check
 * [Generate Java rule application (JAR file) with irDistribution](doc/Java.md)
 * [Generate JavaScript rule application with irDistribution](doc/JavaScript.md)
 * [Jscrambler enhanced JavaScript protection](doc/jscrambler.md)
-* [Snowflake Javascript rule integration](doc/Snowflake.md)
 * [CI/CD approval flow](doc/ApprovalFlow.md)
-* [Configure where to upload files, like GitHub](doc/UploadTo.md)

@@ -5,8 +5,8 @@
     "slotSetting": false
   },
   {
-    "name": "ApiKeyAuthentication.ApiKey",
-    "value": "89864797-265F-4697-AC92-4E2A3F9771F0",
+    "name": "AppInsights.AppInsightsInstrumentationKey",
+    "value": "85562642-a7d4-45a7-a46a-77f288323fab",
     "slotSetting": false
   },
   {
@@ -57,6 +57,11 @@
   {
     "name": "CatalogEvents",
     "value": "CheckinRuleApp ApplyLabel OverwriteRuleApp CreateRuleApp CheckoutDefs UndoCheckout CreateLabel DeleteRuleApp RemoveLabel RenameLabel",
+    "slotSetting": false
+  },
+  {
+    "name": "CatalogManagerUri",
+    "value": "https://CatalogManagerURL.azurewebsites.net/",
     "slotSetting": false
   },
   {

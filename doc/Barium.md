@@ -12,7 +12,7 @@ All relevant aspects of this integration are set in the configuration, under the
 
 Create instance is an extension of the Barium configuration to further define specific activities that can take place in Barium.
 
-This is a [sample of minimal configuration](../config/InRuleCICD_BariumCreateInstance.config) for generating the Java JAR file for the rule application being checked in. This configuration example is **applicable for a local deployment**.  **For the Azure CI/CD app service**, the configuration follows the format in the [starter cloud config file](../config/InRule.CICD.Runtime.Service.config.json).
+This is a [sample of minimal configuration](../config/InRuleCICD_BariumCreateInstance.config) for creating an instance in Barium when a rule application has been checked in. This configuration example is **applicable for a local deployment**.  **For the Azure CI/CD app service**, the configuration follows the format in the [starter cloud config file](../config/InRule.CICD.Runtime.Service.config.json).
 
 ````
     <add key="CatalogEvents" value="CheckinRuleApp"/>

@@ -8,7 +8,7 @@ A process defined in Barium Live can have a instance created based on a CI/CD ca
 ---
 #### Configuration
 
-All relevant aspects of this integration are set in the configuration, under the default Barium moniker. Like for all other CI/CD event handlers, it is possible to create any number of configuration groups with 'type="Java"', which can then be used with any of the intercepted catalog events.
+All relevant aspects of this integration are set in the configuration, under the default Barium moniker.
 
 Create instance is an extension of the Barium configuration to further define specific activities that can take place in Barium.
 

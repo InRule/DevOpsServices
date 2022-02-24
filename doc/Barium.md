@@ -10,6 +10,7 @@ All relevant aspects of this integration are set in the configuration under the 
 
 Below is a [sample of minimal configuration](../config/InRuleCICD_BariumCreateInstance.config) for creating a process instance in Barium Live when a rule application has been checked in. This configuration example is **applicable for a local deployment**.  **For the Azure CI/CD app service**, the configuration follows the format in the [starter cloud config file](../config/InRule.CICD.Runtime.Service.config.json).
 
+
 ````
     <add key="CatalogEvents" value="CheckinRuleApp"/>
     <add key="OnCheckinRuleApp" value="Barium"/>
@@ -26,6 +27,7 @@ Below is a [sample of minimal configuration](../config/InRuleCICD_BariumCreateIn
 	<add key="Barium.CreateInstance.Message" value="START"/>
 	<add key="Barium.CreateInstance.ProcessName" value="IntegrationTesting"/>
 ````
+
 
 |Configuration Key | Comments
 --- | ---

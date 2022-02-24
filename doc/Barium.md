@@ -40,8 +40,8 @@ This is a [sample of minimal configuration](../config/InRuleCICD_BariumCreateIns
 |Barium.**Apikey**| The API key that has been created in Barium.
 |Barium.**Webticket**| Set to true to authenticate with Barium.
 |Barium.**CreateInstance**| Set to true to enable the create instance activity.
-|Barium.**CreateInstance.Template**| The template from the process to create a process from.
-|Barium.**CreateInstance.Message**| The start message configured in the process.
-|Barium.**CreateInstance.ProcessName**| The name of the process to create an instance from.
+|Barium.**CreateInstance.Template**| The template defined in the Barium process to create an instance from.
+|Barium.**CreateInstance.Message**| The start message configured in the Barium process.
+|Barium.**CreateInstance.ProcessName**| The name of the Barium process to create an instance from.
 
 

@@ -9,8 +9,7 @@ InRule CI/CD now supports performing actions in Barium Live.  Any lifecycle even
 All relevant aspects of this integration are set in the configuration under the default Barium moniker (see example below).  Create instance is an extension of the Barium configuration to further define specific activities that can take place in Barium. Prior to configuration, a valid process model must be deployed.
 
 Below is a [sample of minimal configuration](../config/InRuleCICD_BariumCreateInstance.config) for creating a process instance in Barium Live when a rule application has been checked in. This configuration example is **applicable for a local deployment**.  **For the Azure CI/CD app service**, the configuration follows the format in the [starter cloud config file](../config/InRule.CICD.Runtime.Service.config.json).
-<dl><br />
-</dl>
+<dl><br /></dl>
   
 ````
     <add key="CatalogEvents" value="CheckinRuleApp"/>
@@ -28,8 +27,7 @@ Below is a [sample of minimal configuration](../config/InRuleCICD_BariumCreateIn
 	<add key="Barium.CreateInstance.Message" value="START"/>
 	<add key="Barium.CreateInstance.ProcessName" value="IntegrationTesting"/>
 ````
-
-  
+<dl><br /></dl>
 
 |Configuration Key | Comments
 --- | ---

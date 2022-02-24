@@ -57,3 +57,4 @@ What is this and how does it work?  irCatalog emits many lifecycle events (check
 * [Generate JavaScript rule application with irDistribution](doc/JavaScript.md)
 * [Jscrambler enhanced JavaScript protection](doc/jscrambler.md)
 * [CI/CD approval flow](doc/ApprovalFlow.md)
+* [Barium Live](doc/Barium.md)

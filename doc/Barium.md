@@ -1,6 +1,6 @@
 ### Barium Live Integration with CI/CD
 
-InRule CI/CD now supports performing actions in Barium Live. Any lifecycle event from InRule irCatalog can create a process instance within a Barium Live deployment.
+InRule CI/CD now supports performing actions in Barium Live.  Any lifecycle event from InRule irCatalog can create a process instance within a Barium Live deployment.
 
 
 ---

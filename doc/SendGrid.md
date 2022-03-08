@@ -3,6 +3,7 @@
 #### Account Creation
 
 •	Azure Portal – create a resource for Twilio SendGrid using the plan of your choice.  Click the “Subscribe” button.  Follow the steps in the wizard until you are offered a button to complete your account setup with SendGrid.
+
 •	Create your account directly from the SendGrid portal.
 
 #### Create a Sender

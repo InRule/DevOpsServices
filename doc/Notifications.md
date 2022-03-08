@@ -94,6 +94,8 @@ The initial offering comes with a number of notification channels: **Slack, Team
     ##### Configuration
 
     [Sample configuration file for Email (SendGrid)](../config/InRuleCICD_Email.config)
+    
+    Also, see the steps to create a SendGrid account [here](SendGrid.md).
 
     |Configuration Key | Comments
     --- | ---

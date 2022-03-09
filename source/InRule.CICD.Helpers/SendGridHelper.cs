@@ -100,8 +100,14 @@ namespace InRule.CICD.Helpers
             var repositoryUri = ((dynamic)data).RepositoryUri;
             sb.Append($"<tr><td><b>Catalog:</b> <a href='{repositoryUri}'>{repositoryUri}</a></td></tr>");
 
+
             string repositoryManagerUri = repositoryUri.Replace(repositoryUri.Substring(repositoryUri.LastIndexOf('/')), "/InRuleCatalogManager");
-            sb.Append($"<tr><td><b>Catalog Manager (likely location):</b> <a href='{repositoryManagerUri}'>{repositoryManagerUri}</a></td></tr>");
+            if (SettingsManager.Get($"CatalogManagerUri") != null)
+            {
+                repositoryManagerUri = SettingsManager.Get($"CatalogManagerUri");
+            }
+
+            sb.Append($"<tr><td><b>Catalog Manager:</b> <a href='{repositoryManagerUri}'>{repositoryManagerUri}</a></td></tr>");
 
             if (map.ContainsKey("Name"))
                 sb.Append($"<tr><td><b>Rule application:</b> {((dynamic)data).Name}</td></tr>");

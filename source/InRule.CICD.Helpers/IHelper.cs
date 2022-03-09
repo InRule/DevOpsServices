@@ -20,7 +20,8 @@
             EventLog,
             ApprovalFlow,
             GitHub,
-            Box
+            Box,
+            BariumLiveApproval
         }
 
         InRuleEventHelperType EventType { get; set; }

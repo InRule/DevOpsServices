@@ -34,7 +34,8 @@ namespace InRule.CICD.Helpers
             DevOps,
             EventLog,
             ApprovalFlow,
-            Barium
+            BariumLiveCreateInstance
+
         }
 
         [Obsolete]
@@ -195,15 +196,9 @@ namespace InRule.CICD.Helpers
                                 await CheckInApprovalHelper.SendApproveRequestAsync(eventDataSource, ruleAppDef, handler);
                             }
                         }
-                        else if (handlerType == InRuleEventHelperType.Barium)
+                        else if (handlerType == InRuleEventHelperType.BariumLiveCreateInstance)
                         {
-                            string CreateInstance = SettingsManager.Get($"Barium.CreateInstance").ToLower();
-                            if(CreateInstance == "true")
-                                await BariumHelper.BariumCreateInstance();
-                            else
-                            {
-                                await NotificationHelper.NotifyAsync($"Create instance is not enabled.", "Barium - ", "Debug");
-                            }
+                            await BariumLiveHelper.BariumLiveCreateInstance();
                         }
                     }
                     catch (Exception ex)

@@ -208,17 +208,20 @@ namespace InRule.CICD.Helpers
             try
             {
                 var map = data as IDictionary<string, object>;
-
                 var textBody = string.Empty;
                 string repositoryUri = ((dynamic)data).RepositoryUri;
                 string repositoryManagerUri = repositoryUri.Replace(repositoryUri.Substring(repositoryUri.LastIndexOf('/')), "/InRuleCatalogManager"); //, repositoryUri.LastIndexOf('/') - 1)), "/InRuleCatalogManager");
+                if (SettingsManager.Get($"CatalogManagerUri") != null)
+                {
+                    repositoryManagerUri = SettingsManager.Get($"CatalogManagerUri");
+                }
 
                 if (map.ContainsKey("OperationName"))
                     textBody = $"*{((dynamic)data).OperationName} by user {((dynamic)data).RequestorUsername}*\n";
 
                 textBody += $">*Catalog:* {((dynamic)data).RepositoryUri}\n";
 
-                textBody += $">*Catalog Manager (likely location):* {repositoryManagerUri}\n";
+                textBody += $">*Catalog Manager:* {repositoryManagerUri}\n";
 
                 if (map.ContainsKey("Name"))
                     textBody += $">*Rule application:* {((dynamic)data).Name}\n";

@@ -58,6 +58,9 @@ namespace InRule.CICD.Helpers
                             case IHelper.InRuleEventHelperType.Email:
                                 await SendGridHelper.SendEmail($"Approval Requested - ApplyLabel by user {eventData.RequestorUsername}", "", $"{SendGridHelper.GetHtmlForEventData(eventData, "", $"To see what changed, please review Difference Report, sent separately.<br><br><a href = '{approvalUrl}'>Click here to approve changes.</a>")}", channel);
                                 break;
+                            case IHelper.InRuleEventHelperType.BariumLiveApproval:
+                                await BariumLiveHelper.BariumLiveApprovalProcess(approvalUrl);
+                                break;
                         }
                     }
 

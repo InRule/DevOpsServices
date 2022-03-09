@@ -36,6 +36,7 @@ This section applies to both deployment options: new irCatalog service with CI/C
 |**AesEncryptDecryptKey**| A string value used for symmetric encryption/decryption of the payload sent by the catalog listener component to the CI/CD service. It must be between 16 and 32 characters long, with a combination of letters and numbers. For on-premise deployments, this parameter is not used.   Used for both the client and server components. For a pair of catalog and CI/CD services that are set to work together, **this parameter must be set to the same value on both services**.
 |**ApprovalFlow.ApplyLabelApprover**| The user designated as label assignment approver. If this user attempts to assign a label, it will be accepted directly.  If a different user attempts the same, [the approval flow](ApprovalFlow.md) will kick in.
 |**InRuleCICDServiceUri**| Complete URL for the CI/CD service, where event data are sent and processed. For on-premise deployments, this parameter is not used. Used only for the client component.
+|**FilterEventsByUser**| List of space separated catalog user names.  This value is empty by default, meaning that events from all catalog users will be intercepted by CI/CD.  If usernames are listed here, the CI/CD solution will only react to events triggered by these users. Used for both the client and server components.
 * In Azure portal, navigate to the App Service Editor:
 
     ![Azure App Service Editor](../images/InRuleCICD_AzureAddOn1.png)

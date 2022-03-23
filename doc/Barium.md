@@ -73,6 +73,6 @@ Add your approval form with a single field in a form.  Once you have this workin
 ![ApprovalForm](../images/BariumLiveApprovalForm.png)
 
 Most of what you need should be preserved in the example provided above.  Note that the process instance contains a Script Service.  If you do not have access to the script service, reach out to support or services team.  The script service uses the approval link to complete the approval process.
-![ApprovalScript](../images/BariumLiveApprovalScript.png)
+![ApprovalScript](../images/BariumLiveApproveScript.png)
 
 

@@ -43,3 +43,23 @@ Below is a [sample of minimal configuration](../config/InRuleCICD_BariumCreateIn
 |Barium.**CreateInstance.ProcessName**| The name of the Barium process to create an instance from.
 
 
+<dl><br /></dl>
+
+#### Approval workflow with a Barium Process
+
+With the latest release, administrators can now pass the generated approval link (a static URL generated for approving a label change) into a Barium Live process instance.  From there, the administrator has all of the capabilities provided by the Barium Live product to route and track approvals.  Below are the configuration settings you need to pass the approval link.
+
+````
+<add key="BariumLive.Host" value="https://bariuminstancename.yourdomain.com"/>
+<add key="BariumLive.APIVersion" value="v1.0"/>
+<add key="BariumLive.Username" value="youruser@yourdomain.com"/>
+<add key="BariumLive.Password" value="******************"/>
+<add key="BariumLive.Apikey" value="*******************************"/>
+<add key="BariumLive.Webticket" value="true"/>
+<add key="BariumLive.Template" value="form"/>
+<add key="BariumLive.Message" value="Start"/>
+<add key="BariumLive.ProcessName" value="PromotionApproval"/> <!--Can be any process name-->
+<add key="BariumLive.ApprovalUrlField" value="CICDApprovalURL"/> <!--You can pass any field name so long as it's the same end-to-end-->
+````
+
+

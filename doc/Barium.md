@@ -47,7 +47,7 @@ Below is a [sample of minimal configuration](../config/InRuleCICD_BariumCreateIn
 
 #### Approval workflow with a Barium Process
 
-With the latest release, administrators can now pass the generated approval link (a static URL generated for approving a label change) into a Barium Live process instance.  From there, the administrator has all of the capabilities provided by the Barium Live product to route and track approvals.  Below are the configuration settings you need to pass the approval link.
+With the latest release, administrators can now delegate approvals for promotions (based on a label change) to Barium Live processes.  CI/CD uses an encrypted link for approvals across channels and Barium Live is no exception.  The link is sent over to a Barium Live process as data.  Once it's part of the process, the administrator has all of the capabilities provided by the Barium Live product to route and track approvals.  Below are the configuration settings you need to pass the approval link.
 
 ````
 <add key="BariumLive.Host" value="https://bariuminstancename.yourdomain.com"/>
@@ -62,19 +62,19 @@ With the latest release, administrators can now pass the generated approval link
 <add key="BariumLive.ApprovalUrlField" value="CICDApprovalURL"/> <!--You can pass any field name so long as it's the same end-to-end-->
 ````
 
-This is what a Barium Live approval process looks like.  If you are already a Barium Live user, [click here](PromotionApproval.bmap) to download the process example for your own environment.
+This is what a Barium Live approval process looks like below.  If you are already a Barium Live user, [click here](PromotionApproval.bmap) to download the process example for your own environment.
 
 ![Barium Live Approval Process Model](../images/BariumLiveApprovalProcessModel2.png)
 
-Configure your start event message to accept the static URL from the CI/CD service.  Not the names match the example above:
+Configure your start event message to accept the static URL from the CI/CD service.  Note the names match the example above:
 
 ![Event Message](../images/BariumLiveEventMessage.png)
 
-Add your approval form with a single field in a form.  Once you have this working, you can design your process the way you like:
+Add your approval form with a single field in a form.  Once you have this working, you can design your forms and process the way you like:
 
 ![ApprovalForm](../images/BariumLiveApprovalForm.png)
 
-Most of what you need should be preserved in the example provided above.  Note that the process instance contains a Script Service.  If you do not have access to the script service, reach out to support or services team.  The script service uses the approval link to complete the approval process.
+Most of what you need should be preserved in the example provided above.  Note that the process instance contains a Script Service.  If you do not have access to the script service, reach out to your support or services team.  The script service uses the approval link to complete the approval process.
 
 ![ApprovalScript](../images/BariumLiveApproveScript.png)
 

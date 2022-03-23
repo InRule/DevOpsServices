@@ -64,5 +64,5 @@ With the latest release, administrators can now pass the generated approval link
 
 This is what a Barium Live approval process looks like.  If you are already a Barium Live user, click here to download the process example for your own environment.
 
-![Barium Live Approval Process Model](../images/BariumLiveApprovalProcessModel.png)
+![Barium Live Approval Process Model](../images/BariumLiveApprovalProcessModel2.png)
 

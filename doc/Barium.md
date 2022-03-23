@@ -66,3 +66,5 @@ This is what a Barium Live approval process looks like.  If you are already a Ba
 
 ![Barium Live Approval Process Model](../images/BariumLiveApprovalProcessModel2.png)
 
+Configure your start event message to accept the static URL from the CI/CD service.  Not the names match the example above:
+![Event Message](../images/BariumLiveEventMessage.png)

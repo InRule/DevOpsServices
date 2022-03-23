@@ -56,6 +56,6 @@ What is this and how does it work?  irCatalog emits many lifecycle events (check
 * [Generate Java rule application (JAR file) with irDistribution](doc/Java.md)
 * [Generate JavaScript rule application with irDistribution](doc/JavaScript.md)
 * [Jscrambler enhanced JavaScript protection](doc/jscrambler.md)
-* [CI/CD approval flow](doc/ApprovalFlow.md)
-* [Barium Live](doc/Barium.md)
+* [General CI/CD approval flow](doc/ApprovalFlow.md)
+* [Barium Live and approval processes](doc/Barium.md)
 * [Configure where to upload files, like GitHub](doc/UploadTo.md)

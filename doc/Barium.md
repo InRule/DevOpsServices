@@ -62,7 +62,7 @@ With the latest release, administrators can now pass the generated approval link
 <add key="BariumLive.ApprovalUrlField" value="CICDApprovalURL"/> <!--You can pass any field name so long as it's the same end-to-end-->
 ````
 
-This is what a Barium Live approval process looks like.  If you are already a Barium Live user, click here to download the process example for your own environment.
+This is what a Barium Live approval process looks like.  If you are already a Barium Live user, [click here](PromotionApproval.bmap) to download the process example for your own environment.
 
 ![Barium Live Approval Process Model](../images/BariumLiveApprovalProcessModel2.png)
 

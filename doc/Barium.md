@@ -68,3 +68,11 @@ This is what a Barium Live approval process looks like.  If you are already a Ba
 
 Configure your start event message to accept the static URL from the CI/CD service.  Not the names match the example above:
 ![Event Message](../images/BariumLiveEventMessage.png)
+
+Add your approval form with a single field in a form.  Once you have this working, you can design your process the way you like:
+![ApprovalForm](../images/BariumLiveApprovalForm.png)
+
+Most of what you need should be preserved in the example provided above.  Note that the process instance contains a Script Service.  If you do not have access to the script service, reach out to support or services team.  The script service uses the approval link to complete the approval process.
+
+
+

@@ -12,17 +12,17 @@ Below is a [sample of minimal configuration](../config/InRuleCICD_BariumCreateIn
 <dl><br /></dl>
   
 ````
-    <add key="CatalogEvents" value="CheckinRuleApp"/>
-    <add key="OnCheckinRuleApp" value="BariumLiveCreateInstance"/>
-    <add key="BariumLive.Host" value="https://bariuminstancename.yourdomain.com"/>
-    <add key="BariumLive.APIVersion" value="v1.0"/>
-    <add key="BariumLive.Username" value="youruser@yourdomain.com"/>
-    <add key="BariumLive.Password" value="="******************"/>
-    <add key="BariumLive.Apikey" value="*******************************"/>
-    <add key="BariumLive.Webticket" value="true"/>
-    <add key="BariumLive.Template" value="form"/>
-    <add key="BariumLive.Message" value="Start"/>
-    <add key="BariumLive.ProcessName" value="IntegrationTesting"/>
+<add key="CatalogEvents" value="CheckinRuleApp"/>
+<add key="OnCheckinRuleApp" value="BariumLiveCreateInstance"/>
+<add key="BariumLive.Host" value="https://bariuminstancename.yourdomain.com"/>
+<add key="BariumLive.APIVersion" value="v1.0"/>
+<add key="BariumLive.Username" value="youruser@yourdomain.com"/>
+<add key="BariumLive.Password" value="="******************"/>
+<add key="BariumLive.Apikey" value="*******************************"/>
+<add key="BariumLive.Webticket" value="true"/>
+<add key="BariumLive.Template" value="form"/>
+<add key="BariumLive.Message" value="Start"/>
+<add key="BariumLive.ProcessName" value="IntegrationTesting"/>
 ````
 <dl><br /></dl>
 
@@ -37,7 +37,7 @@ Below is a [sample of minimal configuration](../config/InRuleCICD_BariumCreateIn
 |BariumLive.**Template**| The template defined in the Barium process to create an instance from.
 |BariumLive.**Message**| The start message configured in the Barium process.
 |BariumLive.**ProcessName**| The name of the Barium process to create an instance from.
-
+|BariumLive.**ApprovalUrlField**| The name of the field configured in the Start message and on the form for the approval link to be posted to.
 
 <dl><br /></dl>
 

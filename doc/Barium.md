@@ -13,34 +13,30 @@ Below is a [sample of minimal configuration](../config/InRuleCICD_BariumCreateIn
   
 ````
     <add key="CatalogEvents" value="CheckinRuleApp"/>
-    <add key="OnCheckinRuleApp" value="Barium"/>
-  
-    <add key="Barium.Host" value="************************************************"/>
-    <add key="Barium.APIVersion" value="v1.0"/>
-    <add key="Barium.Username" value="C:\Temp\"/>
-    <add key="Barium.Password" value="C:\Temp\"/>
-    <add key="Barium.Apikey" value="Slack"/>
-    <add key="Barium.Webticket" value="GitHub"/>
-
-    <add key="Barium.CreateInstance" value="true"/>
-	<add key="Barium.CreateInstance.Template" value="form"/>
-	<add key="Barium.CreateInstance.Message" value="START"/>
-	<add key="Barium.CreateInstance.ProcessName" value="IntegrationTesting"/>
+    <add key="OnCheckinRuleApp" value="BariumLiveCreateInstance"/>
+    <add key="BariumLive.Host" value="https://bariuminstancename.yourdomain.com"/>
+    <add key="BariumLive.APIVersion" value="v1.0"/>
+    <add key="BariumLive.Username" value="youruser@yourdomain.com"/>
+    <add key="BariumLive.Password" value="="******************"/>
+    <add key="BariumLive.Apikey" value="*******************************"/>
+    <add key="BariumLive.Webticket" value="true"/>
+    <add key="BariumLive.Template" value="form"/>
+    <add key="BariumLive.Message" value="Start"/>
+    <add key="BariumLive.ProcessName" value="IntegrationTesting"/>
 ````
 <dl><br /></dl>
 
 |Configuration Key | Comments
 --- | ---
-|Barium.**Host**| The host name of the Barium Live environment.
-|Barium.**APIVersion**| The version of the API. Default is v1.0.
-|Barium.**Username**| The username of the integration user with permissions to access the API and the process to create an instance from.
-|Barium.**Password**| The password of the integration user.
-|Barium.**Apikey**| The API key that has been created in Barium.
-|Barium.**Webticket**| Set to true to authenticate with Barium.
-|Barium.**CreateInstance**| Set to true to enable the create instance activity.
-|Barium.**CreateInstance.Template**| The template defined in the Barium process to create an instance from.
-|Barium.**CreateInstance.Message**| The start message configured in the Barium process.
-|Barium.**CreateInstance.ProcessName**| The name of the Barium process to create an instance from.
+|BariumLive.**Host**| The host name of the Barium Live environment.
+|BariumLive.**APIVersion**| The version of the API. Default is v1.0.
+|BariumLive.**Username**| The username of the integration user with permissions to access the API and the process to create an instance from.
+|BariumLive.**Password**| The password of the integration user.
+|BariumLive.**Apikey**| The API key that has been created in Barium.
+|BariumLive.**Webticket**| Set to true to authenticate with Barium.
+|BariumLive.**Template**| The template defined in the Barium process to create an instance from.
+|BariumLive.**Message**| The start message configured in the Barium process.
+|BariumLive.**ProcessName**| The name of the Barium process to create an instance from.
 
 
 <dl><br /></dl>

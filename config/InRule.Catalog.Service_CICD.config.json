@@ -23,5 +23,10 @@
     "name": "InRuleCICDServiceUri",
     "value": "https://[service_to_update].azurewebsites.net/Service.svc/api",
     "slotSetting": false
+  },
+   {
+    "name": "FilterEventsByUser",
+    "value": "",
+    "slotSetting": false
   }
 ]

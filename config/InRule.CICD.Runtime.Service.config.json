@@ -299,6 +299,11 @@
     "value": "",
     "slotSetting": false
   },
+    {
+    "name": "Teams.TeamsWebhookUrl",
+    "value": "TeamsWebhookUrl",
+    "slotSetting": false
+  },
   {
     "name": "TestSuite.NotificationChannel",
     "value": "",

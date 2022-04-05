@@ -34,8 +34,9 @@ namespace InRule.CICD.Helpers
             DevOps,
             EventLog,
             ApprovalFlow,
-            BariumLiveCreateInstance
-
+            BariumLiveCreateInstance,
+            Webhook,
+            SqlMapper
         }
 
         [Obsolete]
@@ -199,6 +200,26 @@ namespace InRule.CICD.Helpers
                         else if (handlerType == InRuleEventHelperType.BariumLiveCreateInstance)
                         {
                             await BariumLiveHelper.BariumLiveCreateInstance();
+                        }
+                        else if (handlerType == InRuleEventHelperType.Webhook)
+                        {
+                            RuleApplicationDef ruleAppDef;
+                            eventData = (dynamic)eventDataSource;
+                            if (!string.IsNullOrEmpty(ruleAppXml))
+                                ruleAppDef = RuleApplicationDef.LoadXml(ruleAppXml);
+                            else
+                                ruleAppDef = GetRuleAppDef(eventData.RepositoryUri.ToString(), eventData.GUID.ToString(), eventData.RuleAppRevision, eventData.OperationName);
+                            await WebhookHelper.PostToWebhook(eventData, ruleAppDef, ruleAppXml);
+                        }
+                        else if (handlerType == InRuleEventHelperType.SqlMapper)
+                        {
+                            RuleApplicationDef ruleAppDef;
+                            eventData = (dynamic)eventDataSource;
+                            if (!string.IsNullOrEmpty(ruleAppXml))
+                                ruleAppDef = RuleApplicationDef.LoadXml(ruleAppXml);
+                            else
+                                ruleAppDef = GetRuleAppDef(eventData.RepositoryUri.ToString(), eventData.GUID.ToString(), eventData.RuleAppRevision, eventData.OperationName);
+                            await SqlMapperHelper.MapToDatabase(eventData, ruleAppDef);
                         }
                     }
                     catch (Exception ex)

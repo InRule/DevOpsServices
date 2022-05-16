@@ -1,5 +1,5 @@
-## Demo Microsoft DevOps Pipeline
-Starting a Microsoft DevOps pipeline is one of the possible actions triggered on catalog events.  This is an example of a pipeline setup that can use the version of the rule application, involved in the catalog event, to run regression tests and, on success, promote the rule application to another catalog.  
+## Demo Azure DevOps Pipeline
+Starting a Azure DevOps pipeline is one of the possible actions triggered on catalog events.  This is an example of a pipeline setup that can use the version of the rule application, involved in the catalog event, to run regression tests and, on success, promote the rule application to another catalog.  
 
 This example is based on the repo available at https://github.com/InRule/DemoRuleCICDPipeline.
 
@@ -7,13 +7,13 @@ This example is based on the repo available at https://github.com/InRule/DemoRul
 
 The flow of actions proceeds in this order:
 
-1. A rule application being checked into the irCatalog triggers the start of the Microsoft DevOps build pipeline.
+1. A rule application being checked into the irCatalog triggers the start of the Azure DevOps build pipeline.
 2. The rule application is retrieved from the catalog and run against all Test Scenarios that exist in the folder set in the yaml template file.
 3. If all test scenarios pass, the rule application is promoted from the source irCatalog instance to the target irCatalog instance - i.e. from Development to UAT
 
 #### Requirements
-- The InRule DevOps Services solution must be running and the Microsoft DevOps action configured with the pipeline coordinates.
-- The binaries for the two helpers must be available in GitHub or in the Microsoft DevOps repo, one for executing regression tests and one for promoting a rule application.
+- The InRule DevOps Services solution must be running and the Azure DevOps action configured with the pipeline coordinates.
+- The binaries for the two helpers must be available in GitHub or in the Azure DevOps repo, one for executing regression tests and one for promoting a rule application.
 - [The template YAML file](yaml/catalogSourced-TestAndPromote.yml) must be present, so it can be referenced by the second YAML file with the parameters deciding: rule application name, source and destination environments, and the corresponding label to use in each environment, like in the example below and in the [sample YAML file](yaml/InRule_Build_DEV_UAT.yml).  Note that a dedicated YAML file would be required for a combination of source and destination environments.
     ``` 
     RuleAppName: InvoiceRules

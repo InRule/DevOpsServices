@@ -46,7 +46,7 @@ Each customer can decide the exact handling of Event Grid topic messages with th
 
 For the InRule DevOps configuration, we need the SB namespace connection string and the name of the topic just created.  
 
-Sending InRule catalog events to an Azure Service Bus topic is not an action that produces an immediate outcome, at least not one that can be configured in InRule DevOps.  By default, the effects of this integration can be seen in InRule CI/CD only as debug notifications, on the channels configured for this purpose, like in the Slack example below:
+Sending InRule catalog events to an Azure Service Bus topic is not an action that produces an immediate outcome, at least not one that can be configured in InRule DevOps.  By default, the effects of this integration can be seen in InRule DevOps Services only as debug notifications, on the channels configured for this purpose, like in the Slack example below:
 
 
 ![Example debug Event Grid notification in Slack](../images/Sample8-EventGridSlack.PNG)

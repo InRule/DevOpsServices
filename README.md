@@ -25,7 +25,7 @@ What is this and how does it work?  irCatalog emits many lifecycle events (check
 
 * *Catalog poller* for CI/CD architecture with SaaS. This is an Azure function that runs on a schedule and checks for new revisions checked into the catalog service at which it is pointed.  The poller is useful when the catalog service's binaries and configuration are not accessible to be enhanced with the CI/CD artifacts. It picks up check in event details from the catalog service and sends them to the InRule CI/CD service.
 
-![CI/CD Architecture with SaaS](images/DevOpsServices.png)
+![CI/CD Architecture with SaaS](images/DevOpsServicesSaaS.png)
 
 
 * Other than the ability to post captured catalog events to the various subscribers/consumers listed above, **the InRule CI/CID solution includes a number of services and actions** relevant to a rule application life cycle in the enterprise:

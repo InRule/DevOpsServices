@@ -1,5 +1,5 @@
 ## Introduction
-(This repository and references to it have been renamed to "DevOpsServices."  Note that some references to directories, files or URLs might still refer to CI/CD for a period of time.)
+(This repository and references to it have been renamed to "DevOpsServices."  Note that some directories, files or URLs might still refer to CI/CD for a period of time.)
 
 Many InRule Technology customers integrate rule applications (and the decisions they contain) into business-critical application lifecycles.  Over the years, we have gathered use cases and feedback from customers covering co-deployment, automation, team awareness, orchestration/configuration, and multi-channel support for the most common integrations we see.  This repository contains much of what you need to fully automate your lifecycle.  Moreover, if gaps are discovered in the capability, we believe the structure and examples provided will make short work of adding new integrations and custom behaviors.
 

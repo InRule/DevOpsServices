@@ -1,16 +1,16 @@
-### CI/CD Approval Flow
+### DevOps Services Approval Flow
 
 When integrating InRule with their applications, most InRule customers prefer to use labels for the method employed to retrieve the desired rule application version from the catalog.  There are obvious benefits over always using the latest revision or having to specify the exact revision number.  As a result, assigning a label to the just promoted rule application version from an environment to another, like from UAT to production, is the final step in enabling the promoted version.
 
-As a result, other than the rule application promotion itself, this action of applying the label is very important, because it can decide what rules are active in a production environment, hence affecting business crucial systems.  With the InRule CI/CD framework, we provide a way for intercepting the requests for label assignment to a rule application revision, making it subject to a human confirmation.
+As a result, other than the rule application promotion itself, this action of applying the label is very important, because it can decide what rules are active in a production environment, hence affecting business crucial systems.  With the InRule DevOps Services framework, we provide a way for intercepting the requests for label assignment to a rule application revision, making it subject to a human confirmation.
 
-Since only check in events are tracked at this time with the CI/CD catalog poller, the approval flow is not available without the CI/CD listener components deployed to the catalog instance.
+Since only check in events are tracked at this time with the DevOps catalog poller, the approval flow is not available without the DevOps listener components deployed to the catalog instance.
 
 Only some catalog users get to be designated as approvers, leaving all others in the group of users requiring an approval to assign the label to a revision.  These are the actors and corresponding events that make up the approval flow:
 
 * Given UserA and UserB being user accounts with rights in the InRule catalog, UserA is set as the approver and UserB remains a regular user requiring UserA's approval, through configuration.
 * UserB attempts to change the label assignment between two revisions of a rule application.  Note that all labels and rule applications are subject to these rules.
-* The InRule CI/CD listener component intercepts the attempt for label assignment, blocks it, and displays an error in irAuthor or any other tool used for calling the catalog service.
+* The InRule DevOps Services listener component intercepts the attempt for label assignment, blocks it, and displays an error in irAuthor or any other tool used for calling the catalog service.
 
     ![Slack with Label Approved Message](../images/InRuleCICD_label_request_error.png)
 
@@ -71,11 +71,11 @@ For IIS hosted irCatalog service, the configuration entry is below and in [catal
   <add key="ApprovalFlow.ApplyLabelApprover" value="admin"/>
 ```
 
-### InRule CI/CD Service Configuration
+### InRule DevOps Services Configuration
 
-Other than the initial error message thrown by the catalog service when an unapproved user applies a label, the rest of the actions related to the approval flow are processed by the InRule CI/CD service.
+Other than the initial error message thrown by the catalog service when an unapproved user applies a label, the rest of the actions related to the approval flow are processed by the InRule DevOps service.
 
-For Azure, the configuration follows the format in the [Azure CI/CD config file with approval flow entries](../config/InRuleCICD_ApprovalFlow.config.json).
+For Azure, the configuration follows the format in the [Azure DevOps config file with approval flow entries](../config/InRuleCICD_ApprovalFlow.config.json).
 
 ```
   {
@@ -95,7 +95,7 @@ For Azure, the configuration follows the format in the [Azure CI/CD config file 
   }
 ```
 
-For IIS hosted CI/CD service, the configuration entry is below and in [CI/CD file with approval flow entries](../config/InRuleCICD_ApprovalFlow.config): 
+For IIS hosted DevOps service, the configuration entry is below and in [DevOps file with approval flow entries](../config/InRuleCICD_ApprovalFlow.config): 
 
 ```
   <add key="ApprovalFlow.NotificationChannel" value="Slack Email"/>

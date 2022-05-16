@@ -11,24 +11,24 @@ This code may be downloaded and modified as needed per the attached [license agr
 #### Support
 This capability is supported by support@inrule.com.  Issues and requests will be routed to the internal team for triage and a response.
 
-## InRule CI/CD Architecture
+## InRule DevOps Services Architecture
 What is this and how does it work?  irCatalog emits many lifecycle events (check-in, check-out, etc.).  When irAuthor® or Author Studio™ interacts with irCatalog, events emit from the messages inbound through the service endpoint.  This capability is responsible for intercepting those events and passing them along to the appropriate component for processing and automation.  In some cases, an event can be blocked while waiting for an approval (setting a label for example).  
 
-#### The InRule CI/CD solution is comprised of four major components
-* *WCF listener binaries and configuration* for the instance of irCatalog service to which we want to apply the CI/CD runtime enhancements.
+#### The InRule DevOps solution is comprised of four major components
+* *WCF listener binaries and configuration* for the instance of irCatalog service to which we want to apply the DevOps Services runtime enhancements.
 
-* *InRule CI/CD service* that can be hosted in Azure, as an app service, or on-premise.  Depending on the chosen deployment configuration, the InRule CI/CD service can either handle all the events and actions or only be used for a number of on demand services, such as generating a rule application report or facilitating the approval of a label assignment.
+* *InRule DevOps service* that can be hosted in Azure, as an app service, or on-premise.  Depending on the chosen deployment configuration, the InRule CI/CD service can either handle all the events and actions or only be used for a number of on demand services, such as generating a rule application report or facilitating the approval of a label assignment.
 
 ![CI/CD Architecture](images/DevOpsServices.png)
 
-* *Event processors*.  The default CI/CD installation comes with a number of built-in integrations that can be enabled and configured on a per installation basis: Slack, Email (SendGrid), Windows/Azure EventLog, SQL Server database, Azure AppInsights, Azure Service Bus, Azure Event Grid, Azure DevOps pipeline, GitHub, Box.com.
+* *Event processors*.  The default DevOps installation comes with a number of built-in integrations that can be enabled and configured on a per installation basis: Slack, Email (SendGrid), Windows/Azure EventLog, SQL Server database, Azure AppInsights, Azure Service Bus, Azure Event Grid, Azure DevOps pipeline, GitHub, Box.com.
 
-* *Catalog poller* for CI/CD architecture with SaaS. This is an Azure function that runs on a schedule and checks for new revisions checked into the catalog service at which it is pointed.  The poller is useful when the catalog service's binaries and configuration are not accessible to be enhanced with the CI/CD artifacts. It picks up check in event details from the catalog service and sends them to the InRule CI/CD service.
+* *Catalog poller* for DevOps Services architecture with SaaS. This is an Azure function that runs on a schedule and checks for new revisions checked into the catalog service at which it is pointed.  The poller is useful when the catalog service's binaries and configuration are not accessible to be enhanced with the DevOps artifacts. It picks up check in event details from the catalog service and sends them to the InRule DevOps service.
 
 ![CI/CD Architecture with SaaS](images/DevOpsServicesSaaS.png)
 
 
-* Other than the ability to post captured catalog events to the various subscribers/consumers listed above, **the InRule CI/CID solution includes a number of services and actions** relevant to a rule application life cycle in the enterprise:
+* Other than the ability to post captured catalog events to the various subscribers/consumers listed above, **the InRule DevOps Services solution includes a number of services and actions** relevant to a rule application life cycle in the enterprise:
 
     * Generate a **rule application report** for the rule application and revision that triggered the event.
     * Generate a **rule application difference report**, showing the changes between the previous revision and the revision that triggered the event, when at least two revisions are available.

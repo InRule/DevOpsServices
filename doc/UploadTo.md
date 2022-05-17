@@ -14,7 +14,7 @@ As with all other configuration driven actions, the moniker for the default sect
 
   <add key="MyGitHub.Type" value="GitHub"/>
 
-This is a [sample configuration](../config/InRuleCICD_GitHub.config) with the coordinates of a GitHub location where files can be uploaded by other CI/CD actions. This configuration is **applicable for a local deployment**.  **For the DevOps app service**, the configuration follows the format in the [starter cloud config file](../config/InRule.CICD.Runtime.Service.config.json).
+This is a [sample configuration](../config/InRuleCICD_GitHub.config) with the coordinates of a GitHub location where files can be uploaded by other DevOps actions. This configuration is **applicable for a local deployment**.  **For the DevOps app service**, the configuration follows the format in the [starter cloud config file](../config/InRule.CICD.Runtime.Service.config.json).
 
 ````
   <add key="GitHub.GitHubRepo" value="InRule/CICD"/>

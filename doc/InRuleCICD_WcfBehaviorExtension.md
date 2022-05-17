@@ -4,7 +4,7 @@ In order to intercept irCatalog® service events, we created a component that mu
 
 The InRule® irCatalog service is a Windows Communication Foundation (WCF) service application. It is possible to expand and modify its built-in behavior with custom behavior extension running alongside the standard WCF behavior elements.
 
-There are a number of **required manual web.config modifications** necessary for activating the InRule CI/CD tools on an instance of irCatalog service.
+There are a number of **required manual web.config modifications** necessary for activating the InRule DevOps tools on an instance of irCatalog service.
 
 - The **behaviorExtensions** section defines the element that can then be used in configuration.
 - Then, add an entry under **endpointBehaviors** and associate it with the endpoints defined for the service, using its name and **behaviorConfiguration** attributes.
@@ -36,7 +36,7 @@ There are a number of **required manual web.config modifications** necessary for
   </system.serviceModel>
  ```
 
-**Only for the standalone InRule CI/CD deployment**, these binding redirect entries must be added to irCatalog service's web.config file, under runtime -> assemblyBinding", while keeping the existing redirects in place:
+**Only for the standalone InRule DevOps deployment**, these binding redirect entries must be added to irCatalog service's web.config file, under runtime -> assemblyBinding", while keeping the existing redirects in place:
 
 ```
  <runtime>

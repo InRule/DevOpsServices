@@ -2,7 +2,7 @@
 
 InRule® currently offers the ability to convert a compatible rule application into a JavaScript® (js) file. We now support integrating that same JavaScript file into Snowflake as a function or procedure providing the ability to run rules directly in Snowflake without leaving the UI.
 
-The Snowflake CICD helper integrates a rule application to Snowflake on catalog check-in. It first gets packaged into JavaScript so those settings are needed as well. The name of the rule application will be the name of the produced function or procedure in Snowflake. 
+The Snowflake DevOps helper integrates a rule application to Snowflake on catalog check-in. It first gets packaged into JavaScript so those settings are needed as well. The name of the rule application will be the name of the produced function or procedure in Snowflake. 
 
 The configuration preoperties are referenced below.
 

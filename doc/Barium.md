@@ -1,13 +1,13 @@
-### Barium Live Integration with CI/CD
+### Barium Live Integration with DevOps Services
 
-InRule CI/CD now supports performing actions in Barium Live.  Any lifecycle event from InRule irCatalog can create a process instance within a Barium Live deployment. 
+InRule DevOps Services now supports performing actions in Barium Live.  Any lifecycle event from InRule irCatalog can create a process instance within a Barium Live deployment. 
 
 ---
 #### Configuration
 
 All relevant aspects of this integration are set in the configuration under the default Barium key (see example below).  Create instance is an extension of the Barium configuration to further define specific activities that can take place in Barium. Prior to configuration, a valid process model must be deployed.
 
-Below is a [sample of minimal configuration](../config/InRuleCICD_BariumCreateInstance.config) for creating a process instance in Barium Live when a rule application has been checked in. This configuration example is **applicable for a local deployment**.  **For the Azure CI/CD app service**, the configuration follows the format in the [starter cloud config file](../config/InRule.CICD.Runtime.Service.config.json).
+Below is a [sample of minimal configuration](../config/InRuleCICD_BariumCreateInstance.config) for creating a process instance in Barium Live when a rule application has been checked in. This configuration example is **applicable for a local deployment**.  **For the DevOps app service**, the configuration follows the format in the [starter cloud config file](../config/InRule.CICD.Runtime.Service.config.json).
 <dl><br /></dl>
   
 ````
@@ -42,7 +42,7 @@ Below is a [sample of minimal configuration](../config/InRuleCICD_BariumCreateIn
 
 #### Approval workflow with a Barium Process
 
-With the latest release, administrators can now delegate approvals for promotions (based on a label change) to Barium Live processes.  CI/CD uses an encrypted link for approvals across channels and Barium Live is no exception.  The link is sent over to a Barium Live process as data.  Once it's part of the process, the administrator has all of the capabilities provided by the Barium Live product to route and track approvals.  Below are the configuration settings you need to pass the approval link.
+With the latest release, administrators can now delegate approvals for promotions (based on a label change) to Barium Live processes.  DevOps Services uses an encrypted link for approvals across channels and Barium Live is no exception.  The link is sent over to a Barium Live process as data.  Once it's part of the process, the administrator has all of the capabilities provided by the Barium Live product to route and track approvals.  Below are the configuration settings you need to pass the approval link.
 
 ````
 <add key="BariumLive.Host" value="https://bariuminstancename.yourdomain.com"/>
@@ -61,7 +61,7 @@ This is what a Barium Live approval process looks like below.  If you are alread
 
 ![Barium Live Approval Process Model](../images/BariumLiveApprovalProcessModel2.png)
 
-Configure your start event message to accept the static URL from the CI/CD service.  Note the names match the example above:
+Configure your start event message to accept the static URL from the DevOps service.  Note the names match the example above:
 
 ![Event Message](../images/BariumLiveEventMessage.png)
 

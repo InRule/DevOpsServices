@@ -1,4 +1,4 @@
-# irCatalog Service with CI/CD Features - Web App Deployment
+# irCatalog Service with DevOps Features - Web App Deployment
 
 If you have not done so already, please read the [prerequisites](deployment.md#prerequisites) before you get started.
 

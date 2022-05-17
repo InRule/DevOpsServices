@@ -6,7 +6,7 @@ The DevOps solution requires a number of binaries and configuration parameters t
 
 #### Deploying to an existing instance:
 
-* [Add and Configure CI/CD Artifacts](#add-and-configure-ci\/cd-artifacts)
+* [Add and Configure DevOps Artifacts](#add-and-configure-ci\/cd-artifacts)
 
 ---
 ## Add and Configure DevOps Artifacts
@@ -32,7 +32,7 @@ This section applies when deploying only the DevOps add-on components to an exis
     * [Generate Rule Application Difference Report](doc/RuleAppDiffReport.md)
     * [Generate Java Rule Application (JAR file) with irDistribution Service](doc/Java.md)
     * [Generate JavaScript Rule Application with irDistribution Service](doc/JavaScript.md)
-    * [CI/CD Approval Flow](doc/ApprovalFlow.md)
+    * [DevOps Approval Flow](doc/ApprovalFlow.md)
 
 * Edit InRuleCICD.config with all the pertinent configuration parameters to drive the runtime behavior, like which actions to run on events and necessary configuration for each action.
 * Edit the file web.config with these items:

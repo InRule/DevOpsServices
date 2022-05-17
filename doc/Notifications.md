@@ -1,12 +1,12 @@
 ## Notifications
 
-Notifications about catalog events can be considered the most basic use case covered by the InRule® CI/CD framework.  The notifications contain details of the events intercepted by the catalog service listener.  For instance, for a check-in event, a Slack message can be posted with these data:
+Notifications about catalog events can be considered the most basic use case covered by the InRule® DevOps framework.  The notifications contain details of the events intercepted by the catalog service listener.  For instance, for a check-in event, a Slack message can be posted with these data:
 
 ![Slack Notification](../images/Sample1-SlackNotification.PNG)
 
 #### Normal vs. Debug notifications
 
-At a minimum, the InRule CI/CD framework can be configured to post basic notifications of the events being captured by the listener.  Since more complex event handling is possible, the same notification channels will receive any relevant results posted for the additional actions.  For example, if a rule application report is created for the revision being checked in, the completion message and the link for retrieving the report are posted to the chosen notification channel.  This behavior applies to all event handlers that require an outcome.  This level of notification is called "**normal**".
+At a minimum, the InRule DevOps framework can be configured to post basic notifications of the events being captured by the listener.  Since more complex event handling is possible, the same notification channels will receive any relevant results posted for the additional actions.  For example, if a rule application report is created for the revision being checked in, the completion message and the link for retrieving the report are posted to the chosen notification channel.  This behavior applies to all event handlers that require an outcome.  This level of notification is called "**normal**".
 
 The other notification level is "**debug**" and it makes for more verbose messaging, like details of the steps during handler actions.  The decision, for which notification channels receive debug messages, is made using the configuration item:
 
@@ -30,16 +30,16 @@ Example debug notifications in Slack, under "InRule CI/CD (Debug)" entries:
 
 The initial offering comes with a number of notification channels: **Slack, Teams, and Email** (via SendGrid).  All configuration examples below are **applicable for a local deployment**.  **For the Azure CI/CD app service**, the configuration follows the format in the [starter cloud config file](../config/InRule.CICD.Runtime.Service.config.json).
 
-1. **Slack** - Before being able to use Slack channels as recipients of any data from the InRule CI/CD framework, a number of steps are required, as described under [Configure Slack for InRule CI/CD](InRuleCICD_Slack.md).  All Slack messages have minimal markdown formatting.
+1. **Slack** - Before being able to use Slack channels as recipients of any data from the InRule DevOps framework, a number of steps are required, as described under [Configure Slack for InRule CI/CD](InRuleCICD_Slack.md).  All Slack messages have minimal markdown formatting.
 
     ##### Configuration
 
      |Configuration Key | Comments
     --- | ---
-    |Slack.**SlackWebhookUrl**| The URL or list of URL's corresponding to the channels to which the messages are posted by InRule CI/CD.  Webhooks URL's for multiple channels can be provided and multiple combinations can be configured for different purposes, as explained next. 
+    |Slack.**SlackWebhookUrl**| The URL or list of URL's corresponding to the channels to which the messages are posted by InRule DevOps.  Webhooks URL's for multiple channels can be provided and multiple combinations can be configured for different purposes, as explained next. 
    
 
-    In order  to simply receive basic details of any check in event, the first step is to add the "CheckInRuleApp" moniker to the space separated list of entries under the CatalogEvents.  This ensures the CI/CD framework is subscribed to the check in event.
+    In order  to simply receive basic details of any check in event, the first step is to add the "CheckInRuleApp" moniker to the space separated list of entries under the CatalogEvents.  This ensures the DevOps framework is subscribed to the check in event.
 
     [Sample configuration file for Slack](../config/InRuleCICD_Slack.config)
 
@@ -73,13 +73,13 @@ The initial offering comes with a number of notification channels: **Slack, Team
     <add key="OnApplyLabel" value="MySlack MyApprovalFlow"/>
     ````
  
-    This is minimal InRule CI/CD configuration file content to start using the framework with only Slack messaging.
+    This is minimal InRule DevOps configuration file content to start using the framework with only Slack messaging.
 ---    
 2. **Email** - The same kind of messages sent to Slack can be sent to other channels, another one being Email.  The formatting is different, to accommodate the differences between markdown for Slack and a text or HTML email body, but the content is the same.  Also, emails can be sent for both normal or debug notification levels.
 
     ![Email Notification](../images/Sample2-EmailNotification.png)
 
-    Specific configuration details are required for sending emails using SendGrid.  TBD page with SendGrid configuration.  Once the SendGrid account is configured, the items below must be set before the InRule CI/CD framework can send emails:
+    Specific configuration details are required for sending emails using SendGrid.  TBD page with SendGrid configuration.  Once the SendGrid account is configured, the items below must be set before the InRule DevOps framework can send emails:
 
     ````
     <add key="Email.SendGridApiKey" value="SG.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"/>
@@ -126,4 +126,4 @@ The initial offering comes with a number of notification channels: **Slack, Team
 
      |Configuration Key | Comments
     --- | ---
-    |Teams.**TeamsWebhookUrl**| The URL or list of URL's corresponding to the channels to which the messages are posted by InRule CI/CD.  Webhooks URL's for multiple channels can be provided and multiple combinations can be configured for different purposes under new configuration section with type "Teams". 
+    |Teams.**TeamsWebhookUrl**| The URL or list of URL's corresponding to the channels to which the messages are posted by InRule DevOps.  Webhooks URL's for multiple channels can be provided and multiple combinations can be configured for different purposes under new configuration section with type "Teams". 

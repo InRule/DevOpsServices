@@ -37,7 +37,7 @@ az webapp create --name WEB_APP_NAME --plan APP_SERVICE_PLAN_NAME --resource-gro
 ```
 
 ### Deploy package
-First, [download](../releases/InRule.Catalog.Service_CICD.zip) the latest irCatalog CI/CD package (`InRule.Catalog.Service_CICD.zip`) from GitHub. Then [deploy the zip file](https://docs.microsoft.com/en-us/azure/app-service/app-service-deploy-zip) package to the Web App with the [az webapp deployment source](https://docs.microsoft.com/en-us/cli/azure/webapp/deployment/source#az-webapp-deployment-source-config-zip) command:
+First, [download](../releases/InRule.Catalog.Service_CICD.zip) the latest irCatalog DevOps package (`InRule.Catalog.Service_CICD.zip`) from GitHub. Then [deploy the zip file](https://docs.microsoft.com/en-us/azure/app-service/app-service-deploy-zip) package to the Web App with the [az webapp deployment source](https://docs.microsoft.com/en-us/cli/azure/webapp/deployment/source#az-webapp-deployment-source-config-zip) command:
 ```powershell
 # Example: az webapp deployment source config-zip --name contoso-catalog-prod-wa --resource-group inrule-prod-rg --src InRule.Catalog.Service.zip
 az webapp deployment source config-zip --name WEB_APP_NAME --resource-group RESOURCE_GROUP_NAME --src FILE_PATH

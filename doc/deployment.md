@@ -1,17 +1,17 @@
-## CICD Deployment
+## DevOps Deployment
 
 ### Azure
-InRule® provides cloud deployment options that allow you to run irCatalog®, irCatalog Manager website, and irServer® Rule Execution Service inside of the Microsoft® Azure® App Service environment with minimal configuration and setup. If you are already familiar with Microsoft Azure and App Service Web Apps, then you are just a few steps away from deploying InRule CI/CD.
+InRule® provides cloud deployment options that allow you to run irCatalog®, irCatalog Manager website, and irServer® Rule Execution Service inside of the Microsoft® Azure® App Service environment with minimal configuration and setup. If you are already familiar with Microsoft Azure and App Service Web Apps, then you are just a few steps away from deploying InRule DevOps Services.
 
-The InRule CI/CD solution only requires the Azure irCatalog app service configured with the new event behavior and the new dedicated CI/CD service configured to respond to events from the associated irCatalog service.  It is also possible to use the same instance of an InRule CI/CD app service for multiple irCatalog app service deployments.
+The InRule DevOps Services solution only requires the Azure irCatalog app service configured with the new event behavior and the new dedicated DevOps service configured to respond to events from the associated irCatalog service.  It is also possible to use the same instance of an DevOps app service for multiple irCatalog app service deployments.
 
 Before proceeding with this option, please read the [prerequisites](deployment.md#prerequisites) before you get started.
 
 ### On premises
-All the features of the InRule CI/CD solution can be made available when deploying both the irCatalog service and the CI/CD service on premises instead of Azure.  The [deployment steps and configuration](ircatalog-local.md) are very similar, with a small number of exceptions.  For this choice, both services are hosted in IIS.
+All the features of the InRule DevOps Services solution can be made available when deploying both the irCatalog service and the DevOps service on premises instead of Azure.  The [deployment steps and configuration](ircatalog-local.md) are very similar, with a small number of exceptions.  For this choice, both services are hosted in IIS.
 
-### Hybrid - On premises irCatalog service + Azure CI/CD service
-This configuration is for an on premises irCatalog service instance set up to use the Azure hosted CI/CD app service for processing most of the actions available, with a couple of exceptions.  While this configuration is possible, it is not necessarily recommended for most scenarios and it comes with a few drawbacks, like having to configure two-way access between on premises and Azure services.
+### Hybrid - On premises irCatalog service + DevOps service
+This configuration is for an on premises irCatalog service instance set up to use the Azure hosted DevOps app service for processing most of the actions available, with a couple of exceptions.  While this configuration is possible, it is not necessarily recommended for most scenarios and it comes with a few drawbacks, like having to configure two-way access between on premises and Azure services.
 
 ## Prerequisites
 
@@ -39,10 +39,10 @@ Setup irCatalog either with a new install or from an existing installation
 
 * [Enable WCF Listener](InRuleCICD_WcfBehaviorExtension.md)
 
-## Deploy the InRule CI/CD app service with ARM Templates or Powershell
+## Deploy the DevOps app service with ARM Templates or Powershell
 
   * [ARM Template Deployment](deploymentARMTemplates.md)
   * [Using PowerShell and Azure CLI](deploymentPowerShell.md)
   
-## Configure the CI/CD service
+## Configure the DevOps service
   * [App Service Configuration](deploymentConfigureInRuleCICDservice.md)

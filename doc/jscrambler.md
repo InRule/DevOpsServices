@@ -1,6 +1,6 @@
 ### Jscrambler JavaScript Integration
  
-InRule Technology® is pleased to include a Jscrambler helper in our CI/CD for irCatalog offering.
+InRule Technology® is pleased to include a Jscrambler helper in our DevOps for irCatalog offering.
  
 Jscrambler is a leader in enterprise grade JavaScript client side protection that prevents web data exfiltration atacks. They offer a toolset to transform JavaScript in a way that makes it extremely difficult to reverse engineer, as well as a monitoring framework for the files ran through their service.
 

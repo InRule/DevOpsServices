@@ -1,4 +1,4 @@
-# irCatalog Service with DevOps Features - On Premise Deployment
+# irCatalog Service with DevOps Features - On Premises Deployment
 
 irCatalog® is a business rule management tool that provides centralized management of rules to ensure the integrity of business rules, keep everyone working on the latest version of rules, and promote sharing of common rules across customers, processes or applications.
 

@@ -1,10 +1,10 @@
-### Integrating InRule CI/CD with Slack
+### Integrating InRule DevOps with Slack
 
 As per Slack documentation, incoming Webhooks are a simple way to post messages from apps into Slack. Creating an Incoming Webhook gives you a unique URL to which you send a JSON payload with the message text and some options. You can use all the usual formatting and layout blocks with incoming webhooks to make the messages stand out.
 
-It takes only a few configuration items to start using the CI/CD framework with Slack, like in [this configuration file example](../config/InRuleCICD_Slack.config).
+It takes only a few configuration items to start using the DevOps framework with Slack, like in [this configuration file example](../config/InRuleCICD_Slack.config).
 
-Before using Slack with the InRule® CI/CD framework, a Slack app has to be created and enabled for webhooks, following the steps at [Incoming Webhooks for Slack](https://slack.com/intl/en-ro/help/articles/115005265063-Incoming-webhooks-for-Slack).
+Before using Slack with the InRule® DevOps framework, a Slack app has to be created and enabled for webhooks, following the steps at [Incoming Webhooks for Slack](https://slack.com/intl/en-ro/help/articles/115005265063-Incoming-webhooks-for-Slack).
 
 #### Set up incoming webhooks
 
@@ -20,11 +20,11 @@ Each time your app is installed, a new Webhook URL will be generated.
 
 If you deactivate incoming webhooks, new webhook URLs will not be generated when your app is installed to your team. If you’d like to remove access to existing webhook URLs, you will need to Revoke All OAuth Tokens.
 
-#### InRule CI/CD configuration for Slack integration
+#### InRule DevOps configuration for Slack integration
 
-Once the Slack application is created, incoming webhooks enabled, and at least one webhook added to the application, we are ready to set up the configuration for where the CI/CD framework can send Slack messages.  The data sent to Slack by InRule CI/CD can be "normal" notifications regarding various CI/CD steps or detailed debug messages with the progress of an operation or any raised errors.
+Once the Slack application is created, incoming webhooks enabled, and at least one webhook added to the application, we are ready to set up the configuration for where the DevOps framework can send Slack messages.  The data sent to Slack by InRule DevOps can be "normal" notifications regarding various DevOps steps or detailed debug messages with the progress of an operation or any raised errors.
 
-The webhook URL's are the only information the CI/CD framework requires before it can start sending notifications to a Slack channel.  The URL's must be listed separated by a space, under the **Slack.SlackWebhookUrl configuration key**.  Here is an example, with masked values, which is **applicable for a local deployment**.  **For the Azure CI/CD app service**, the configuration follows the format in the [starter cloud config file](../config/InRule.CICD.Runtime.Service.config.json).
+The webhook URL's are the only information the DevOps framework requires before it can start sending notifications to a Slack channel.  The URL's must be listed separated by a space, under the **Slack.SlackWebhookUrl configuration key**.  Here is an example, with masked values, which is **applicable for a local deployment**.  **For the DevOps app service**, the configuration follows the format in the [starter cloud config file](../config/InRule.CICD.Runtime.Service.config.json).
 
 ```
 <add key="Slack.SlackWebhookUrl" value="https://hooks.slack.com/services/xxxxxxxxx/xxxxxxxx/xxxxxxxxxxxxxxxxxxx https://hooks.slack.com/services/yyyyyyyyy/yyyyyyyy/yyyyyyyyyyyyyyyyyyy"/>

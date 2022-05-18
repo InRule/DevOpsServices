@@ -36,7 +36,7 @@ namespace InRule.CICD.Helpers
             ApprovalFlow,
             BariumLiveCreateInstance,
             Webhook,
-            SqlMapper
+            SqlRuleSetMapper
         }
 
         [Obsolete]
@@ -211,7 +211,7 @@ namespace InRule.CICD.Helpers
                                 ruleAppDef = GetRuleAppDef(eventData.RepositoryUri.ToString(), eventData.GUID.ToString(), eventData.RuleAppRevision, eventData.OperationName);
                             await WebhookHelper.PostToWebhook(eventData, ruleAppDef, ruleAppXml);
                         }
-                        else if (handlerType == InRuleEventHelperType.SqlMapper)
+                        else if (handlerType == InRuleEventHelperType.SqlRuleSetMapper)
                         {
                             RuleApplicationDef ruleAppDef;
                             eventData = (dynamic)eventDataSource;

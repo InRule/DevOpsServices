@@ -29,10 +29,12 @@ namespace InRule.CICD.Helpers
                 var eventData = (dynamic)eventDataSource;
                 var InRuleCICDServiceUri = eventData.InRuleCICDServiceUri;
                 eventData.Name = ruleAppDef.Name;
-
+                
                 if (eventData.RequestorUsername.ToString().ToLower() != ApplyLabelApprover.ToLower())
                 {
-                    using (RuleCatalogConnection connection = new RuleCatalogConnection(new Uri(eventData.RepositoryUri.ToString()), new TimeSpan(0, 10, 0), SettingsManager.Get("CatalogUsername"), SettingsManager.Get("CatalogPassword")))
+                    using (var connection = new RuleCatalogConnection(new Uri(eventData.RepositoryUri.ToString()), 
+                    new TimeSpan(0, 10, 0), SettingsManager.Get("CatalogUsername"), 
+                            SettingsManager.Get("CatalogPassword")))
                     {
                         connection.ApplyLabel(ruleAppDef, $"PENDING {eventData.Label} ({eventData.RuleAppRevision.ToString()})");
                     }
@@ -46,7 +48,7 @@ namespace InRule.CICD.Helpers
                     var channels = NotificationChannel.Split(' ');
                     foreach (var channel in channels)
                     {
-
+                        var error = "";
                         switch (SettingsManager.GetHandlerType(channel))
                         {
                             case IHelper.InRuleEventHelperType.Teams:
@@ -59,7 +61,11 @@ namespace InRule.CICD.Helpers
                                 await SendGridHelper.SendEmail($"Approval Requested - ApplyLabel by user {eventData.RequestorUsername}", "", $"{SendGridHelper.GetHtmlForEventData(eventData, "", $"To see what changed, please review Difference Report, sent separately.<br><br><a href = '{approvalUrl}'>Click here to approve changes.</a>")}", channel);
                                 break;
                             case IHelper.InRuleEventHelperType.BariumLiveApproval:
-                                await BariumLiveHelper.BariumLiveApprovalProcess(approvalUrl);
+                                error = await BariumLiveHelper.BariumLiveApprovalProcess(approvalUrl, eventData, ruleAppDef);
+                                if (error == "Error")
+                                {
+                                    return;
+                                }
                                 break;
                         }
                     }

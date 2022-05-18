@@ -47,7 +47,7 @@ What is this and how does it work?  irCatalog emits many lifecycle events (check
 * [DevOps Architecture with SaaS / InRule catalog poller](doc/CatalogPoller.md)
 * [Orchestration by configuration](doc/OrchestrationByConfiguration.md)
 * [Understanding and using notifications](doc/Notifications.md)
-* [Slack integration](doc/InRuleCICD_Slack.md)
+* [Slack integration](doc/Slack.md)
 * [Azure DevOps integration](doc/DevOps.md)
 * [Trigger a DevOps pipeline running regression tests and promoting rule application](devops)
 * [Azure Event Grid integration](doc/AzureEventGrid.md)

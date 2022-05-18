@@ -18,15 +18,15 @@ What is this and how does it work?  irCatalog emits many lifecycle events (check
 #### The InRule DevOps solution is comprised of four major components
 * *WCF listener binaries and configuration* for the instance of irCatalog service to which we want to apply the DevOps Services runtime enhancements.
 
-* *InRule DevOps service* that can be hosted in Azure, as an app service, or on-premise.  Depending on the chosen deployment configuration, the InRule CI/CD service can either handle all the events and actions or only be used for a number of on demand services, such as generating a rule application report or facilitating the approval of a label assignment.
+* *InRule DevOps service* that can be hosted in Azure, as an app service, or on-premise.  Depending on the chosen deployment configuration, the DevOpps service can either handle all the events and actions or only be used for a number of on demand services, such as generating a rule application report or facilitating the approval of a label assignment.
 
-![CI/CD Architecture](images/DevOpsServices.png)
+![DevOps Architecture](images/DevOpsServices.png)
 
 * *Event processors*.  The default DevOps installation comes with a number of built-in integrations that can be enabled and configured on a per installation basis: Slack, Email (SendGrid), Windows/Azure EventLog, SQL Server database, Azure AppInsights, Azure Service Bus, Azure Event Grid, Azure DevOps pipeline, GitHub, Box.com.
 
 * *Catalog poller* for DevOps Services architecture with SaaS. This is an Azure function that runs on a schedule and checks for new revisions checked into the catalog service at which it is pointed.  The poller is useful when the catalog service's binaries and configuration are not accessible to be enhanced with the DevOps artifacts. It picks up check in event details from the catalog service and sends them to the InRule DevOps service.
 
-![CI/CD Architecture with SaaS](images/DevOpsServicesSaaS.png)
+![DevOps Architecture with SaaS](images/DevOpsServicesSaaS.png)
 
 
 * Other than the ability to post captured catalog events to the various subscribers/consumers listed above, **the InRule DevOps Services solution includes a number of services and actions** relevant to a rule application life cycle in the enterprise:
@@ -43,8 +43,8 @@ What is this and how does it work?  irCatalog emits many lifecycle events (check
 * [Deployment and configuration](doc/deployment.md)
 * irCatalog - [Local deployment](doc/ircatalog-local.md) or [in Azure](doc/ircatalog-azure.md)
 * [Enable WCF Listener](doc/InRuleCICD_WcfBehaviorExtension.md)
-* [InRule CI/CD app service](doc/InRuleCICDService.md)
-* [CI/CD Architecture with SaaS / InRule catalog poller](doc/CatalogPoller.md)
+* [InRule DevOps app service](doc/InRuleCICDService.md)
+* [DevOps Architecture with SaaS / InRule catalog poller](doc/CatalogPoller.md)
 * [Orchestration by configuration](doc/OrchestrationByConfiguration.md)
 * [Understanding and using notifications](doc/Notifications.md)
 * [Slack integration](doc/InRuleCICD_Slack.md)
@@ -57,6 +57,6 @@ What is this and how does it work?  irCatalog emits many lifecycle events (check
 * [Generate Java rule application (JAR file) with irDistribution](doc/Java.md)
 * [Generate JavaScript rule application with irDistribution](doc/JavaScript.md)
 * [Jscrambler enhanced JavaScript protection](doc/jscrambler.md)
-* [General CI/CD approval flow](doc/ApprovalFlow.md)
+* [General DevOps approval flow](doc/ApprovalFlow.md)
 * [Barium Live and approval processes](doc/Barium.md)
 * [Configure where to upload files, like GitHub](doc/UploadTo.md)

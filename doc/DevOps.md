@@ -1,4 +1,4 @@
-### Start Azure DevOps Build Pipeline on Catalog Event
+### Start Azure DevOps Build Pipeline with a Catalog Event
 
 As the [Microsoft® documentation](https://docs.microsoft.com/en-us/azure/devops/pipelines/?view=azure-devops) describes them, "*Azure® Pipelines automatically builds and tests code projects to make them available to others. It works with just about any language or project type. Azure Pipelines combines continuous integration (CI) and continuous delivery (CD) to constantly and consistently test and build your code and ship it to any target.*".
 

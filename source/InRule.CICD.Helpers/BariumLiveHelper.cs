@@ -39,8 +39,8 @@ public class BariumLiveHelper
         var processName = SettingsManager.Get($"{moniker}.ProcessName");
         var apiVersion = SettingsManager.Get($"{moniker}.ApiVersion");
 
-        BariumLive.Authenticate authenticate = await BariumAuthenticate(host, apiVersion);
-        BariumLive.AppsGetAppID appsObject = await BariumCallAppsForAppId(host, apiVersion, authenticate.ticket);
+        Barium.Authenticate authenticate = await BariumAuthenticate(host, apiVersion);
+        Barium.AppsGetAppID appsObject = await BariumCallAppsForAppId(host, apiVersion, authenticate.ticket);
 
         var appId = "";
         foreach (var appInfo in appsObject.Data)
@@ -67,8 +67,8 @@ public class BariumLiveHelper
         var template = SettingsManager.Get($"{moniker}.Template");
         var message = SettingsManager.Get($"{moniker}.Message");
 
-        BariumLive.Authenticate authenticate = await BariumAuthenticate(host, apiVersion);
-        BariumLive.AppsGetAppID appsObject = await BariumCallAppsForAppId(host, apiVersion, authenticate.ticket);
+        Barium.Authenticate authenticate = await BariumAuthenticate(host, apiVersion);
+        Barium.AppsGetAppID appsObject = await BariumCallAppsForAppId(host, apiVersion, authenticate.ticket);
         if (appsObject.Error != null)
         {
             NotificationHelper.NotifyAsync($"Error in getting application information", Prefix, "Debug");
@@ -100,24 +100,24 @@ public class BariumLiveHelper
         return "";
     }
 
-    public static async Task<BariumLive.AppsGetAppID> BariumCallAppsForAppId(string host, string apiVersion, string ticket)
+    public static async Task<Barium.AppsGetAppID> BariumCallAppsForAppId(string host, string apiVersion, string ticket)
     {
-        var appId = new BariumLive.AppsGetAppID();
+        var appId = new Barium.AppsGetAppID();
         using var client = new HttpClient();
         using var request = new HttpRequestMessage(HttpMethod.Post, $"{host}/API/{apiVersion}/apps/");
         request.Headers.Add("ticket", ticket);
         var res = await client.SendAsync(request);
         var postResponse = await res.Content.ReadAsStringAsync();
-        if (res.IsSuccessStatusCode) appId = JsonConvert.DeserializeObject<BariumLive.AppsGetAppID>(postResponse);
+        if (res.IsSuccessStatusCode) appId = JsonConvert.DeserializeObject<Barium.AppsGetAppID>(postResponse);
         else appId.Error = res.ToString();
         return appId;
     }
 
-    public static async Task<BariumLive.AppGetProcessID> BariumCallAppsToCreateInstance(string host, string apiVersion, string ticket, string instanceId)
+    public static async Task<Barium.AppGetProcessID> BariumCallAppsToCreateInstance(string host, string apiVersion, string ticket, string instanceId)
     {
         var template = SettingsManager.Get($"{moniker}.Template");
         var message = SettingsManager.Get($"{moniker}.Message");
-        var appInstance = new BariumLive.AppGetProcessID();
+        var appInstance = new Barium.AppGetProcessID();
 
         var dict = new Dictionary<string, string>
         {
@@ -129,12 +129,12 @@ public class BariumLiveHelper
         var req = new HttpRequestMessage(HttpMethod.Post, new Uri($"{host}/API/{apiVersion}/apps/{instanceId}")) {Content = new FormUrlEncodedContent(dict)};
         var res = await client.SendAsync(req);
         var postResponse = await res.Content.ReadAsStringAsync();
-        if (res.IsSuccessStatusCode) appInstance = JsonConvert.DeserializeObject<BariumLive.AppGetProcessID>(postResponse);
+        if (res.IsSuccessStatusCode) appInstance = JsonConvert.DeserializeObject<Barium.AppGetProcessID>(postResponse);
         else appInstance.errorMessage = res.ToString();
         return appInstance;
     }
 
-    public static async Task<BariumLive.AppGetProcessID> BariumLiveAppsPassInApprovalUrl(string host, string apiVersion, string ticket,
+    public static async Task<Barium.AppGetProcessID> BariumLiveAppsPassInApprovalUrl(string host, string apiVersion, string ticket,
         string instanceId, string approvalUrl, dynamic eventData, RuleApplicationDef ruleAppDef, string template, string message)
     {
         var approvalUrlField = SettingsManager.Get($"{moniker}.DevOpsApprovalURLField");
@@ -181,7 +181,7 @@ public class BariumLiveHelper
 
         // var comment = eventData.Comment;
         // eventData.Comment
-        var appInstance = new BariumLive.AppGetProcessID();
+        var appInstance = new Barium.AppGetProcessID();
         var dict = new Dictionary<string, string>
         {
             {"template", template},
@@ -203,7 +203,7 @@ public class BariumLiveHelper
         NotificationHelper.NotifyAsync($"Response Code {res.ToString()}", Prefix, "Debug");
         if (res.IsSuccessStatusCode)
         {
-            appInstance = JsonConvert.DeserializeObject<BariumLive.AppGetProcessID>(postResponse);
+            appInstance = JsonConvert.DeserializeObject<Barium.AppGetProcessID>(postResponse);
             NotificationHelper.NotifyAsync($"Successfully sent an approval request to Barium Live", Prefix, "Debug");
         }
         else
@@ -214,9 +214,9 @@ public class BariumLiveHelper
         return appInstance;
     }
 
-    public static async Task<BariumLive.Authenticate> BariumAuthenticate(string host, string apiVersion)
+    public static async Task<Barium.Authenticate> BariumAuthenticate(string host, string apiVersion)
     {
-        var authenticate = new BariumLive.Authenticate();
+        var authenticate = new Barium.Authenticate();
         try
         {
             var username = SettingsManager.Get($"{moniker}.Username");
@@ -246,7 +246,7 @@ public class BariumLiveHelper
             var postResponse = await res.Content.ReadAsStringAsync();
             if (res.IsSuccessStatusCode)
             {
-                authenticate = JsonConvert.DeserializeObject<BariumLive.Authenticate>(postResponse);
+                authenticate = JsonConvert.DeserializeObject<Barium.Authenticate>(postResponse);
                 await NotificationHelper.NotifyAsync($"BariumLive API Authentication Success", Prefix, "Debug");
             }
             else

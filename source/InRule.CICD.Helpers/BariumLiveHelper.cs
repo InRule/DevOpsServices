@@ -18,7 +18,6 @@ using InRule.Authoring.BusinessLanguage;
 using InRule.CICD.Helpers.Models;
 using InRule.Repository.Client;
 using InRule.Runtime;
-using TheArtOfDev.HtmlRenderer.PdfSharp;
 
 namespace InRule.CICD.Helpers;
 
@@ -326,29 +325,29 @@ public class BariumLiveHelper
         return null;
     }
 
-    public static Byte[] PdfSharpConvert(String html)
-    {
-        Byte[] res = null;
-        using (MemoryStream ms = new MemoryStream())
-        {
-            var pdf = PdfGenerator.GeneratePdf(html, PdfSharp.PageSize.A4);
-            pdf.Save(ms);
-                        using (FileStream fs = new FileStream("output.txt", FileMode.OpenOrCreate))
-            {
-                ms.CopyTo(fs);
-                fs.Flush();
-            }
-            res = ms.ToArray();
+    //public static Byte[] PdfSharpConvert(String html)
+    //{
+    //    Byte[] res = null;
+    //    using (MemoryStream ms = new MemoryStream())
+    //    {
+    //        var pdf = PdfGenerator.GeneratePdf(html, PdfSharp.PageSize.A4);
+    //        pdf.Save(ms);
+    //                    using (FileStream fs = new FileStream("output.txt", FileMode.OpenOrCreate))
+    //        {
+    //            ms.CopyTo(fs);
+    //            fs.Flush();
+    //        }
+    //        res = ms.ToArray();
 
-            using (FileStream fs = new FileStream(@"c:\code\report.pdf", FileMode.OpenOrCreate))
-            {
-                ms.CopyTo(fs);
-                fs.Flush();
-            }
+    //        using (FileStream fs = new FileStream(@"c:\code\report.pdf", FileMode.OpenOrCreate))
+    //        {
+    //            ms.CopyTo(fs);
+    //            fs.Flush();
+    //        }
 
-        }
-        return res;
-    }
+    //    }
+    //    return res;
+    //}
 
 
     //private static RuleApplicationDef GetPreviousRuleAppDef(string catalogUri, string ruleAppGuid, int revision)

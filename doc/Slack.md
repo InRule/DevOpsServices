@@ -2,7 +2,7 @@
 
 As per Slack documentation, incoming Webhooks are a simple way to post messages from apps into Slack. Creating an Incoming Webhook gives you a unique URL to which you send a JSON payload with the message text and some options. You can use all the usual formatting and layout blocks with incoming webhooks to make the messages stand out.
 
-It takes only a few configuration items to start using the DevOps framework with Slack, like in [this configuration file example](../config/InRuleCICD_Slack.config).
+It takes only a few configuration items to start using the DevOps framework with Slack, like in [this configuration file example](../config/InRuleDevOps_Slack.config).
 
 Before using Slack with the InRule® DevOps framework, a Slack app has to be created and enabled for webhooks, following the steps at [Incoming Webhooks for Slack](https://slack.com/intl/en-ro/help/articles/115005265063-Incoming-webhooks-for-Slack).
 
@@ -24,7 +24,7 @@ If you deactivate incoming webhooks, new webhook URLs will not be generated when
 
 Once the Slack application is created, incoming webhooks enabled, and at least one webhook added to the application, we are ready to set up the configuration for where the DevOps framework can send Slack messages.  The data sent to Slack by InRule DevOps can be "normal" notifications regarding various DevOps steps or detailed debug messages with the progress of an operation or any raised errors.
 
-The webhook URL's are the only information the DevOps framework requires before it can start sending notifications to a Slack channel.  The URL's must be listed separated by a space, under the **Slack.SlackWebhookUrl configuration key**.  Here is an example, with masked values, which is **applicable for a local deployment**.  **For the DevOps app service**, the configuration follows the format in the [starter cloud config file](../config/InRule.CICD.Runtime.Service.config.json).
+The webhook URL's are the only information the DevOps framework requires before it can start sending notifications to a Slack channel.  The URL's must be listed separated by a space, under the **Slack.SlackWebhookUrl configuration key**.  Here is an example, with masked values, which is **applicable for a local deployment**.  **For the DevOps app service**, the configuration follows the format in the [starter cloud config file](../config/InRule.DevOps.Runtime.Service.config.json).
 
 ```
 <add key="Slack.SlackWebhookUrl" value="https://hooks.slack.com/services/xxxxxxxxx/xxxxxxxx/xxxxxxxxxxxxxxxxxxx https://hooks.slack.com/services/yyyyyyyyy/yyyyyyyy/yyyyyyyyyyyyyyyyyyy"/>

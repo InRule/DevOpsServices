@@ -7,7 +7,7 @@ InRule DevOps Services now supports performing actions in Barium Live.  Any life
 
 All relevant aspects of this integration are set in the configuration under the default Barium key (see example below).  Create instance is an extension of the Barium configuration to further define specific activities that can take place in Barium. Prior to configuration, a valid process model must be deployed.
 
-Below is a [sample of minimal configuration](../config/InRuleCICD_BariumCreateInstance.config) for creating a process instance in Barium Live when a rule application has been checked in. This configuration example is **applicable for a local deployment**.  **For the DevOps app service**, the configuration follows the format in the [starter cloud config file](../config/InRule.CICD.Runtime.Service.config.json).
+Below is a [sample of minimal configuration](../config/InRuleDevOps_BariumCreateInstance.config) for creating a process instance in Barium Live when a rule application has been checked in. This configuration example is **applicable for a local deployment**.  **For the DevOps app service**, the configuration follows the format in the [starter cloud config file](../config/InRule.DevOps.Runtime.Service.config.json).
 <dl><br /></dl>
   
 ````
@@ -54,7 +54,7 @@ With the latest release, administrators can now delegate approvals for promotion
 <add key="BariumLive.Template" value="form"/>
 <add key="BariumLive.Message" value="Start"/>
 <add key="BariumLive.ProcessName" value="PromotionApproval"/> <!--Can be any process name-->
-<add key="BariumLive.ApprovalUrlField" value="CICDApprovalURL"/> <!--You can pass any field name so long as it's the same end-to-end-->
+<add key="BariumLive.ApprovalUrlField" value="DevOpsApprovalURL"/> <!--You can pass any field name so long as it's the same end-to-end-->
 ````
 
 This is what a Barium Live approval process looks like below.  If you are already a Barium Live user, [click here](PromotionApproval.bmap) to download the process example for your own environment.

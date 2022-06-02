@@ -13,7 +13,7 @@ The Azure DevOps action is configurable in the InRule DevOps config file, specif
 
 Using the FilterByRuleApps configuration parameter, The sample yaml files [we make available](../devops/yaml) receive the name of the rule application that triggers the event, as an input parameter, which makes it possible to run the corresponding regression tests and promote the correct rule application without permutations of multiple yaml scripts and pipelines.
 
-This is a [sample of minimal configuration](../config/InRuleCICD_DevOps.config) for generating the Java JAR file for the rule application being checked in, which is **applicable for a local deployment**.  **For the DevOps app service**, the configuration follows the format in the [starter cloud config file](../config/InRule.CICD.Runtime.Service.config.json).
+This is a [sample of minimal configuration](../config/InRuleDevOps_DevOps.config) for generating the Java JAR file for the rule application being checked in, which is **applicable for a local deployment**.  **For the DevOps app service**, the configuration follows the format in the [starter cloud config file](../config/InRule.DevOps.Runtime.Service.config.json).
 
 ````
   <add key="CatalogEvents" value="CheckinRuleApp"/>

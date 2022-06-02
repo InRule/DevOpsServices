@@ -20,7 +20,7 @@ namespace CheckinRequestListener
     {
         string FilterByUser = SettingsManager.Get("FilterEventsByUser");
         string ApplyLabelApprover = SettingsManager.Get("ApprovalFlow.ApplyLabelApprover");
-        string InRuleCICDServiceUri = SettingsManager.Get("InRuleCICDServiceUri");
+        string InRuleDevOpsServiceUri = SettingsManager.Get("InRuleDevOpsServiceUri");
         string ApplyLabelFilterByLabels = SettingsManager.Get("ApprovalFlow.FilterByLabels");
 
         public object BeforeCall(string operationName, object[] inputs)
@@ -55,7 +55,7 @@ namespace CheckinRequestListener
                     {
                         appDef = applyLabelRequest.AppDef;
                         thisEvent.Label = applyLabelRequest.Label;
-                        thisEvent.InRuleCICDServiceUri = InRuleCICDServiceUri;
+                        thisEvent.InRuleDevOpsServiceUri = InRuleDevOpsServiceUri;
 
                         if (!string.IsNullOrEmpty(ApplyLabelFilterByLabels))
                         {
@@ -67,7 +67,7 @@ namespace CheckinRequestListener
                                     thisEvent.RequiresApproval = true;
                                     thisEvent.GUID = appDef.Guid;
                                     thisEvent.RuleAppRevision = appDef.Revision;
-                                    SendToCICDService(thisEvent);
+                                    SendToDevOpsService(thisEvent);
                                     throw (new Exception($"\r\n\r\nUSER {thisEvent.RequestorUsername.ToString()} CANNOT APPLY LABEL WITHOUT AUTHORIZATION!  A REQUEST HAS BEEN SUBMITTED."));
                                 }
                         }
@@ -293,7 +293,7 @@ namespace CheckinRequestListener
                     #endregion
 
                     // Output final event to desired listener(s)
-                    SendToCICDService(eventDataSource);
+                    SendToDevOpsService(eventDataSource);
                 }
                 catch (Exception ex)
                 {
@@ -336,14 +336,14 @@ namespace CheckinRequestListener
             }
         }
 
-        private void SendToCICDService(ExpandoObject data)
+        private void SendToDevOpsService(ExpandoObject data)
         {
             try
             {
                 JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
                 string eventData = javaScriptSerializer.Serialize((dynamic)data);
                 string encryptedMessage = CryptoHelper.EncryptString(string.Empty, eventData);
-                var request = (HttpWebRequest)WebRequest.Create($"{InRuleCICDServiceUri}/ProcessInRuleEventI?data={encryptedMessage}");
+                var request = (HttpWebRequest)WebRequest.Create($"{InRuleDevOpsServiceUri}/ProcessInRuleEventI?data={encryptedMessage}");
                 var configApiKey = SettingsManager.Get("ApiKeyAuthentication.ApiKey");
                 request.Headers["Authorization"] = $"APIKEY {configApiKey}";
                 request.Method = "GET";
@@ -354,7 +354,7 @@ namespace CheckinRequestListener
             }
             catch (Exception ex)
             {
-                WriteError($"Error sending event to InRule CI/CD service: " + ex.Message, string.Empty);
+                WriteError($"Error sending event to InRule DevOps service: " + ex.Message, string.Empty);
             }
         }
     }

@@ -164,9 +164,12 @@
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\InRule.CICD.Helpers\InRule.CICD.Helpers.csproj">
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\InRule.DevOps.Helpers\InRule.DevOps.Helpers.csproj">
       <Project>{801d39f5-0aa3-46ef-8886-f121d7a41b7e}</Project>
-      <Name>InRule.CICD.Helpers</Name>
+      <Name>InRule.DevOps.Helpers</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

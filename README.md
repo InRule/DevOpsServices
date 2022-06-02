@@ -42,8 +42,8 @@ What is this and how does it work?  irCatalog emits many lifecycle events (check
 ### Documentation and Samples
 * [Deployment and configuration](doc/deployment.md)
 * irCatalog - [Local deployment](doc/ircatalog-local.md) or [in Azure](doc/ircatalog-azure.md)
-* [Enable WCF Listener](doc/InRuleCICD_WcfBehaviorExtension.md)
-* [InRule DevOps app service](doc/InRuleCICDService.md)
+* [Enable WCF Listener](doc/InRuleDevOps_WcfBehaviorExtension.md)
+* [InRule DevOps app service](doc/InRuleDevOpsService.md)
 * [DevOps Architecture with SaaS / InRule catalog poller](doc/CatalogPoller.md)
 * [Orchestration by configuration](doc/OrchestrationByConfiguration.md)
 * [Understanding and using notifications](doc/Notifications.md)

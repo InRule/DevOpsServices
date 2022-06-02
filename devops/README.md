@@ -1,7 +1,7 @@
 ## Demo Azure DevOps Pipeline
 Starting a Azure DevOps pipeline is one of the possible actions triggered on catalog events.  This is an example of a pipeline setup that can use the version of the rule application, involved in the catalog event, to run regression tests and, on success, promote the rule application to another catalog.  
 
-This example is based on the repo available at https://github.com/InRule/DemoRuleCICDPipeline.
+This example is based on the repo available at https://github.com/InRule/DemoRuleDevOpsPipeline.
 
 ### Catalog-Based : Test and Promote upon irCatalog Check In
 
@@ -28,7 +28,7 @@ The flow of actions proceeds in this order:
 	- CatalogUsernameDEV
 	- CatalogPasswordDEV (secret)
 
-    ![Catalog credentials library](../images/InRuleCICD_devops1.PNG)
+    ![Catalog credentials library](../images/InRuleDevOps_devops1.PNG)
 - The appropriate destination credential variables have been set in a CatalogCredentialsUAT Library Variable Group store
 	- CatalogUriUAT
 	- CatalogUsernameUAT
@@ -39,12 +39,12 @@ The flow of actions proceeds in this order:
 
 Once all the other elements are in place, it is easy to simply create a new build pipeline and choose the repository where the two or more YAML files.  So far, we have tested with GitHub and DevOps repo and expect no issues with any of the other sources available:
 
-![Catalog credentials library](../images/InRuleCICD_devops2.PNG)
+![Catalog credentials library](../images/InRuleDevOps_devops2.PNG)
 
 For the GitHub choice, once the repository is selected and for the way our example works, the correct selection is "Existing Azure Pipelines YAML file":
 
-![Catalog credentials library](../images/InRuleCICD_devops3.PNG)
+![Catalog credentials library](../images/InRuleDevOps_devops3.PNG)
 
 Where the YAML file for the desired pair of source/destination environments can be chosen:
 
-![Catalog credentials library](../images/InRuleCICD_devops4.PNG)
+![Catalog credentials library](../images/InRuleDevOps_devops4.PNG)

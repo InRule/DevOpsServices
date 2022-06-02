@@ -14,21 +14,21 @@ As with all other configuration driven actions, the moniker for the default sect
 
   <add key="MyGitHub.Type" value="GitHub"/>
 
-This is a [sample configuration](../config/InRuleCICD_GitHub.config) with the coordinates of a GitHub location where files can be uploaded by other DevOps actions. This configuration is **applicable for a local deployment**.  **For the DevOps app service**, the configuration follows the format in the [starter cloud config file](../config/InRule.CICD.Runtime.Service.config.json).
+This is a [sample configuration](../config/InRuleDevOps_GitHub.config) with the coordinates of a GitHub location where files can be uploaded by other DevOps actions. This configuration is **applicable for a local deployment**.  **For the DevOps app service**, the configuration follows the format in the [starter cloud config file](../config/InRule.DevOps.Runtime.Service.config.json).
 
 ````
-  <add key="GitHub.GitHubRepo" value="InRule/CICD"/>
+  <add key="GitHub.GitHubRepo" value="InRule/DevOps"/>
   <add key="GitHub.GitHubFolder" value="JARs"/>
   <add key="GitHub.GitHubProductName" value="MyApplication"/>
   <add key="GitHub.GitHubProductVersion" value="1"/>
   <add key="GitHub.GitHubToken" value="ghp_xxxxxxxxxxxxxxxxxxxxxxxxx"/>
 ````
 
-We will use this GitHub location as example for extracting the values below:  https://github.com/InRule/ProjectCICD/tree/main/Tests
+We will use this GitHub location as example for extracting the values below:  https://github.com/InRule/ProjectDevOps/tree/main/Tests
 
 |Configuration Key | Comments
 --- | ---
-|GitHub.**GitHubRepo**| This would be "InRule/ProjectCICD" in the example URI above, for owner/repository.
+|GitHub.**GitHubRepo**| This would be "InRule/ProjectDevOps" in the example URI above, for owner/repository.
 |GitHub.**GitHubFolder**| This is the folder where the files will be uploaded. It would be "Tests" in the example URI.
 |GitHub.**GitHubProductName**| The local folder used as the temporary location for the rule application file before being sent to the irDistribution service. For the Azure deployment with DevOps service, this location is overridden with the default TEMP location for the app service.
 |GitHub.**GitHubProductVersion**| The local folder used as the temporary location for saving the generated Java JAR file before upload to either GitHub or Box.com. For the Azure deployment with DevOps service, this location is overridden with the default TEMP location for the app service.

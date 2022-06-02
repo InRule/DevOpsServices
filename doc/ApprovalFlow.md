@@ -12,34 +12,34 @@ Only some catalog users get to be designated as approvers, leaving all others in
 * UserB attempts to change the label assignment between two revisions of a rule application.  Note that all labels and rule applications are subject to these rules.
 * The InRule DevOps Services listener component intercepts the attempt for label assignment, blocks it, and displays an error in irAuthor or any other tool used for calling the catalog service.
 
-    ![Slack with Label Approved Message](../images/InRuleCICD_label_request_error.png)
+    ![Slack with Label Approved Message](../images/InRuleDevOps_label_request_error.png)
 
 * Also, a message is sent to the notification channel set for UserB, the requester of the label assignment.
 
-    ![Teams Requester Message](../images/InRuleCICD_label_requester_1.png)
+    ![Teams Requester Message](../images/InRuleDevOps_label_requester_1.png)
 
 * At the same time, a message is sent to UserA ("admin" in the example), with the details of the action and a link that, once clicked, completes the action attempted by UserB and assigns the label to the intended revision.
 * The intended unapproved label does not get applied and, instead, a "PENDING xx" label is assigned to the rule application revision, where xx stands for the actual revision number.
 
-    ![Slack Event 1](../images/InRuleCICD_label_request_1.png)
+    ![Slack Event 1](../images/InRuleDevOps_label_request_1.png)
 
 * On approval, the "PENDING xx" label is replaced with the intended label in its assignment to the correct revision.  A confirmation message is sent to both UserA and UserB, action triggered along with any other actions set for OnApplyLabel event.
 
     **Slack**
     
-    ![Slack Event 2](../images/InRuleCICD_label_request_2.png)
+    ![Slack Event 2](../images/InRuleDevOps_label_request_2.png)
 
-    ![Slack with Label Approved Message](../images/InRuleCICD_label_approved_slack.png)
+    ![Slack with Label Approved Message](../images/InRuleDevOps_label_approved_slack.png)
 
     ---
     **Teams**
 
-    ![Teams with Label Approved Message](../images/InRuleCICD_label_approved_teams.png)
+    ![Teams with Label Approved Message](../images/InRuleDevOps_label_approved_teams.png)
 
     ---
     **Email**
 
-    ![Email with Label Approved Message](../images/InRuleCICD_label_approved_email.png)
+    ![Email with Label Approved Message](../images/InRuleDevOps_label_approved_email.png)
 
 ---
 ## Configuration
@@ -75,7 +75,7 @@ For IIS hosted irCatalog service, the configuration entry is below and in [catal
 
 Other than the initial error message thrown by the catalog service when an unapproved user applies a label, the rest of the actions related to the approval flow are processed by the InRule DevOps service.
 
-For Azure, the configuration follows the format in the [Azure DevOps config file with approval flow entries](../config/InRuleCICD_ApprovalFlow.config.json).
+For Azure, the configuration follows the format in the [Azure DevOps config file with approval flow entries](../config/InRuleDevOps_ApprovalFlow.config.json).
 
 ```
   {
@@ -95,7 +95,7 @@ For Azure, the configuration follows the format in the [Azure DevOps config file
   }
 ```
 
-For IIS hosted DevOps service, the configuration entry is below and in [DevOps file with approval flow entries](../config/InRuleCICD_ApprovalFlow.config): 
+For IIS hosted DevOps service, the configuration entry is below and in [DevOps file with approval flow entries](../config/InRuleDevOps_ApprovalFlow.config): 
 
 ```
   <add key="ApprovalFlow.NotificationChannel" value="Slack Email"/>

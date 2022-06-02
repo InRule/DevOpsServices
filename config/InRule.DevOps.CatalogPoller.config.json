@@ -25,8 +25,8 @@
     "slotSetting": false
   },
   {
-    "name": "InRuleCICDServiceUri",
-    "value": "https://[CICD_service].azurewebsites.net/Service.svc/api",
+    "name": "InRuleDevOpsServiceUri",
+    "value": "https://[DevOps_service].azurewebsites.net/Service.svc/api",
     "slotSetting": false
   },
   {

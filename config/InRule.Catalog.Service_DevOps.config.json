@@ -20,7 +20,7 @@
     "slotSetting": false
   },
   {
-    "name": "InRuleCICDServiceUri",
+    "name": "InRuleDevOpsServiceUri",
     "value": "https://[service_to_update].azurewebsites.net/Service.svc/api",
     "slotSetting": false
   },

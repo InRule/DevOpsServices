@@ -21,16 +21,16 @@ The other notification level is "**debug**" and it makes for more verbose messag
 --- | ---
 |**DebugNotifications**| Space separated list of monikers for the channels where debug messages are posted.  The available channel types are: Slack, Teams, EventLog, and Email (SendGrid).    
 
-Example debug notifications in Slack, under "InRule CI/CD (Debug)" entries:
+Example debug notifications in Slack, under "InRule DevOps (Debug)" entries:
 
 ![Slack Debug Notification](../images/Sample1-SlackNotification_debug.PNG)
 
 ---
 ### Notification Configuration Samples
 
-The initial offering comes with a number of notification channels: **Slack, Teams, and Email** (via SendGrid).  All configuration examples below are **applicable for a local deployment**.  **For the Azure CI/CD app service**, the configuration follows the format in the [starter cloud config file](../config/InRule.DevOps.Runtime.Service.config.json).
+The initial offering comes with a number of notification channels: **Slack, Teams, and Email** (via SendGrid).  All configuration examples below are **applicable for a local deployment**.  **For the Azure DevOps app service**, the configuration follows the format in the [starter cloud config file](../config/InRule.DevOps.Runtime.Service.config.json).
 
-1. **Slack** - Before being able to use Slack channels as recipients of any data from the InRule DevOps framework, a number of steps are required, as described under [Configure Slack for InRule CI/CD](InRuleDevOps_Slack.md).  All Slack messages have minimal markdown formatting.
+1. **Slack** - Before being able to use Slack channels as recipients of any data from the InRule DevOps framework, a number of steps are required, as described under [Configure Slack for InRule DevOps](InRuleDevOps_Slack.md).  All Slack messages have minimal markdown formatting.
 
     ##### Configuration
 
@@ -84,7 +84,7 @@ The initial offering comes with a number of notification channels: **Slack, Team
     ````
     <add key="Email.SendGridApiKey" value="SG.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"/>
     <add key="Email.EmailSendFrom" value="notifyPerson1@noaddress.com"/>
-    <add key="Email.EmailSendFromName" value="Project CI/CD"/>
+    <add key="Email.EmailSendFromName" value="Project DevOps"/>
     <add key="Email.EmailSendTo" value="notifyPerson1@noaddress.com, notifyPerson2@noaddress.com"/>
     <add key="Email.EmailSendToName" value="Anna Kim (Corporate)"/>
     ````

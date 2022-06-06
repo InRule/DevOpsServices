@@ -9,10 +9,11 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using InRule.Authoring.BusinessLanguage;
-using InRule.CICD.Helpers.Models;
+using InRule.DevOps.Helpers;
+using InRule.DevOps.Helpers.Models;
 using InRule.Repository.Client;
 
-namespace InRule.CICD.Helpers;
+namespace InRule.DevOps.Helpers;
 
 public class BariumLiveHelper
 {

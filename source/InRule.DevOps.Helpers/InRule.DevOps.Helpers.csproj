@@ -65,18 +65,18 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\InRule.Authoring.dll</HintPath>
     </Reference>
-	<Reference Include="InRule.Common, Version=5.7.3.244, Culture=neutral, PublicKeyToken=1feb8dd25b1ceb6b, processorArchitecture=MSIL">
-	  <HintPath>..\packages\InRule.Common.5.7.3\lib\net472\InRule.Common.dll</HintPath>
-	</Reference>
-	<Reference Include="InRule.Repository, Version=5.7.3.244, Culture=neutral, PublicKeyToken=1feb8dd25b1ceb6b, processorArchitecture=MSIL">
-	  <HintPath>..\packages\InRule.Repository.5.7.3\lib\net472\InRule.Repository.dll</HintPath>
-	</Reference>
-	<Reference Include="InRule.Repository.XmlSerializers, Version=5.7.3.244, Culture=neutral, PublicKeyToken=1feb8dd25b1ceb6b, processorArchitecture=MSIL">
-	  <HintPath>..\packages\InRule.Repository.5.7.3\lib\net472\InRule.Repository.XmlSerializers.dll</HintPath>
-	</Reference>
-	<Reference Include="InRule.Runtime, Version=5.7.3.244, Culture=neutral, PublicKeyToken=1feb8dd25b1ceb6b, processorArchitecture=MSIL">
-	  <HintPath>..\packages\InRule.Runtime.5.7.3\lib\net472\InRule.Runtime.dll</HintPath>
-	</Reference>
+    <Reference Include="InRule.Common, Version=5.7.3.244, Culture=neutral, PublicKeyToken=1feb8dd25b1ceb6b, processorArchitecture=MSIL">
+      <HintPath>..\packages\InRule.Common.5.7.3\lib\net472\InRule.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="InRule.Repository, Version=5.7.3.244, Culture=neutral, PublicKeyToken=1feb8dd25b1ceb6b, processorArchitecture=MSIL">
+      <HintPath>..\packages\InRule.Repository.5.7.3\lib\net472\InRule.Repository.dll</HintPath>
+    </Reference>
+    <Reference Include="InRule.Repository.XmlSerializers, Version=5.7.3.244, Culture=neutral, PublicKeyToken=1feb8dd25b1ceb6b, processorArchitecture=MSIL">
+      <HintPath>..\packages\InRule.Repository.5.7.3\lib\net472\InRule.Repository.XmlSerializers.dll</HintPath>
+    </Reference>
+    <Reference Include="InRule.Runtime, Version=5.7.3.244, Culture=neutral, PublicKeyToken=1feb8dd25b1ceb6b, processorArchitecture=MSIL">
+      <HintPath>..\packages\InRule.Runtime.5.7.3\lib\net472\InRule.Runtime.dll</HintPath>
+    </Reference>
     <Reference Include="InRule.Runtime.Testing, Version=5.7.2.240, Culture=neutral, PublicKeyToken=1feb8dd25b1ceb6b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\InRule.Runtime.Testing.dll</HintPath>
@@ -277,7 +277,7 @@
     <Compile Include="GitHubHelper.cs" />
     <Compile Include="IHelper.cs" />
     <Compile Include="JscramblerHelper.cs" />
-    <Compile Include="Models\Barium.cs" />
+    <Compile Include="Models\BariumLive.cs" />
     <Compile Include="NotificationHelper.cs" />
     <Compile Include="InRuleEventHelper.cs" />
     <Compile Include="InRuleReportingHelper.cs" />

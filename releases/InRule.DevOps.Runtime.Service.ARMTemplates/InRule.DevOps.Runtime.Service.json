@@ -53,7 +53,7 @@
       },
     "packageUri": {
       "type": "string",
-      "defaultValue": "https://github.com/InRule/DevOpsServices/tree/Rename-cicd/releases/InRule.DevOps.Runtime.Service.zip",
+      "defaultValue": "https://github.com/InRule/DevOpsServices/raw/Rename-cicd/releases/InRule.DevOps.Runtime.Service.zip",
       "metadata": {
         "description": "Download URI for the DevOps service package."
       }

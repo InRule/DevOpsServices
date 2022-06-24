@@ -1,4 +1,4 @@
-﻿using InRule.CICD.Helpers;
+﻿using InRule.DevOps.Helpers;
 using InRule.Repository.Service.Data;
 using InRule.Repository.Service.Data.Requests;
 using InRule.Repository.Service.Data.Responses;
@@ -21,7 +21,7 @@ namespace CheckinRequestListener
         string ApplyLabelApprover = SettingsManager.Get("ApprovalFlow.ApplyLabelApprover");
         string ApplyLabelApprovalUri = SettingsManager.Get("ApprovalFlow.ApplyLabelApprovalUri");
         string ApplyLabelFilterByLabels = SettingsManager.Get("ApprovalFlow.FilterByLabels");
-        string InRuleCICDServiceUri = SettingsManager.Get("InRuleCICDServiceUri");
+        string InRuleDevOpsServiceUri = SettingsManager.Get("InRuleDevOpsServiceUri");
 
         List<string> catalogEvents = new List<string>();
 
@@ -66,7 +66,7 @@ namespace CheckinRequestListener
                             if (labels.Contains(applyLabelRequest.Label.ToLower()))
                                 if (thisEvent.RequestorUsername.ToString().ToLower() != ApplyLabelApprover.ToLower())
                                 {
-                                    thisEvent.InRuleCICDServiceUri = InRuleCICDServiceUri;
+                                    thisEvent.InRuleDevOpsServiceUri = InRuleDevOpsServiceUri;
                                     thisEvent.RequiresApproval = true;
                                     thisEvent.GUID = appDef.Guid;
                                     thisEvent.RuleAppRevision = appDef.Revision;

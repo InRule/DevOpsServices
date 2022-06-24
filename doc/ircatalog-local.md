@@ -16,14 +16,14 @@ This section applies when deploying only the DevOps add-on components to an exis
 * Create a backup of the folder where irCatalog service was originally installed.  The default location is C:\Program Files (x86)\InRule\irServer\RepositoryService\IisService.
 * Download [InRule.Catalog.Service_Local.zip](..\releases\InRule.Catalog.Service_Local.zip) and unzip in a folder on the file system.
 * Copy the content of the bin folder to the existing ...\RepositoryService\IisService\bin\ folder.
-* Add the InRuleCICD.config file to the original root folder of the irCatalog service file system deployment.
+* Add the InRuleDevOps.config file to the original root folder of the irCatalog service file system deployment.
 
-   ![irCatalog folder](../images/InRuleCICD_irCatalogLocal.PNG)
+   ![irCatalog folder](../images/InRuleDevOps_irCatalogLocal.PNG)
 
 * For all the available DevOps actions, follow the corresponding details available at the links below, which include how.  More details are also available on page [Orchestration by Configuration](doc/OrchestrationByConfiguration.md).
 
     * [Understanding and using notifications](doc/Notifications.md)
-    * [Slack integration](doc/InRuleCICD_Slack.md)
+    * [Slack integration](doc/InRuleDevOps_Slack.md)
     * [Azure DevOps integration](doc/DevOps.md)
     * [Trigger a DevOps pipeline running regression tests and promoting rule application](devops)
     * [Azure Event Grid integration](doc/AzureEventGrid.md)
@@ -34,13 +34,13 @@ This section applies when deploying only the DevOps add-on components to an exis
     * [Generate JavaScript Rule Application with irDistribution Service](doc/JavaScript.md)
     * [DevOps Approval Flow](doc/ApprovalFlow.md)
 
-* Edit InRuleCICD.config with all the pertinent configuration parameters to drive the runtime behavior, like which actions to run on events and necessary configuration for each action.
+* Edit InRuleDevOps.config with all the pertinent configuration parameters to drive the runtime behavior, like which actions to run on events and necessary configuration for each action.
 * Edit the file web.config with these items:
-    * The reference to the InRuleCICD.config file
+    * The reference to the InRuleDevOps.config file
     ```
-        <appSettings file="InRuleCICD.config" />
+        <appSettings file="InRuleDevOps.config" />
     ```
-    * Changes for enabling the event listener behavior, as detailed [here](InRuleCICD_WcfBehaviorExtension.md).
+    * Changes for enabling the event listener behavior, as detailed [here](InRuleDevOps_WcfBehaviorExtension.md).
 * Restart IIS service and confirm that the irCatalog service works properly: browse to the URL in browser, open a rule application in irAuthor®.
 * Verify using irAuthor.  Using irAuthor you should now be able to normally connect to your catalog using the URL.
 

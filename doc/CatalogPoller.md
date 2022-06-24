@@ -12,7 +12,7 @@ The catalog poller is a proxy between the catalog service generating the events 
 
 * [InRule DevOps Services Deployment and Configuration](deployment.md)
 * [Azure irCatalog service](ircatalog-azure.md)
-* [InRule DevOps app service](InRuleCICDService.md)
+* [InRule DevOps app service](InRuleDevOpsService.md)
 
 It is important to note that each poller query will impact the catalog service, directly depending on the set configuration.  For instance, only checking a single rule application will make for a "lighter" call. Leaving the RuleApps configuration parameter empty, for a catalog with many rule applications, will cause a larger number of calls to the catalog service.
 
@@ -47,7 +47,7 @@ az group create --name RESOURCE_GROUP_NAME --location LOCATION
 
 Azure Functions requires an Azure Storage account when you create a function app instance. Function app and storage account names must be unique. [Azure Files](https://docs.microsoft.com/en-us/azure/storage/files/storage-files-introduction) must be used to store and run your function app code in a [Consumption Plan](https://docs.microsoft.com/en-us/azure/azure-functions/consumption-plan) and [Premium Plan](https://docs.microsoft.com/en-us/azure/azure-functions/functions-premium-plan).
 ```powershell
-# Example: az storage account create --name storageaccount-cicd --location eastus --resource-group inrule-prod-rg --sku Standard_LRS
+# Example: az storage account create --name storageaccount-DevOps --location eastus --resource-group inrule-prod-rg --sku Standard_LRS
 az storage account create --name STORAGE_ACCOUNT_NAME --location LOCATION --resource-group RESOURCE_GROUP_NAME --sku Standard_LRS
 ```
 
@@ -55,27 +55,27 @@ az storage account create --name STORAGE_ACCOUNT_NAME --location LOCATION --reso
 
 Command for creating the poller serverless function app in the resource group.  **Note that the functions version value used here is 2, but it must be changed to 1, in function's Azure configuration, once the function is deployed.** 
 ```powershell
-# Example: az functionapp create --name inrule-cicd-catalog-poller --storage-account storageaccount-cicd --consumption-plan-location eastus --resource-group inrule-prod-rg --functions-version 2
+# Example: az functionapp create --name inrule-DevOps-catalog-poller --storage-account storageaccount-DevOps --consumption-plan-location eastus --resource-group inrule-prod-rg --functions-version 2
 az functionapp create --name POLLER_FUNCTION_NAME --storage-account STORAGE_ACCOUNT_NAME --consumption-plan-location LOCATION --resource-group RESOURCE_GROUP_NAME --functions-version 2
 ```
 
 ### Deploy package
-First, [download](https://github.com/InRule/CI-CD/tree/main/releases) the latest irServer® Rule Execution Service package (`InRule.CICD.CatalogPoller.zip`) from GitHub. Then [deploy the zip file](InRule.CICD.CatalogPoller) package to the Azure function created with the previous step, from the folder where the zip file was downloaded:
+First, [download](https://github.com/InRule/CI-CD/tree/main/releases) the latest irServer® Rule Execution Service package (`InRule.DevOps.CatalogPoller.zip`) from GitHub. Then [deploy the zip file](InRule.DevOps.CatalogPoller) package to the Azure function created with the previous step, from the folder where the zip file was downloaded:
 ```powershell
-# Example: az functionapp deployment source config-zip -g inrule-prod-rg -n inrule-cicd-catalog-poller --src InRule.CICD.CatalogPoller.zip
-az functionapp deployment source config-zip -g RESOURCE_GROUP_NAME -n POLLER_FUNCTION_NAME --src InRule.CICD.CatalogPoller.zip
+# Example: az functionapp deployment source config-zip -g inrule-prod-rg -n inrule-DevOps-catalog-poller --src InRule.DevOps.CatalogPoller.zip
+az functionapp deployment source config-zip -g RESOURCE_GROUP_NAME -n POLLER_FUNCTION_NAME --src InRule.DevOps.CatalogPoller.zip
 ```
 
 
 ---
 ## Configuration
 
-The configuration follows the format in the [starter cloud config file](../config/InRule.CICD.CatalogPoller.config.json).
+The configuration follows the format in the [starter cloud config file](../config/InRule.DevOps.CatalogPoller.config.json).
 
 |Configuration Key | Comments
 --- | ---
 |**IsCloudBased**| Accepts values "true" or "false".  Must be set to "true" for the currently available Azure deployment option.
-|**InRuleCICDServiceUri**| Complete URL for the DevOps service, where event data are sent and processed.
+|**InRuleDevOpsServiceUri**| Complete URL for the DevOps service, where event data are sent and processed.
 |**ApiKeyAuthentication.ApiKey**| A string added to the authorization header on the request made by the poller component to the DevOps service. The value can be any string and we recommend using randomly generated GUID values. For on-premise deployments, this parameter is not used.   Used for both the client and server components.  For a pair of Azure function poller and DevOps services that are set to work together, **this parameter must be set to the same value on both services**.
 |**AesEncryptDecryptKey**| A string value used for symmetric encryption/decryption of the payload sent by the catalog poller component to the DevOps service. It must be between 16 and 32 characters long, with a combination of letters and numbers. For on-premise deployments, this parameter is not used.   Used for both the client and server components.  For a pair of Azure function poller and DevOps services that are set to work together, **this parameter must be set to the same value on both services**.
 |**CatalogUri**| Complete URL, including "/service.svc", of the catalog service instance paired with the catalog poller.

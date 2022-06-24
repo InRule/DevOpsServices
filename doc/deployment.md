@@ -37,7 +37,7 @@ Setup irCatalog either with a new install or from an existing installation
 
 ## Enable the WCF listener on the irCatalog® Service
 
-* [Enable WCF Listener](InRuleCICD_WcfBehaviorExtension.md)
+* [Enable WCF Listener](InRuleDevOps_WcfBehaviorExtension.md)
 
 ## Deploy the DevOps app service with ARM Templates or Powershell
 
@@ -45,4 +45,4 @@ Setup irCatalog either with a new install or from an existing installation
   * [Using PowerShell and Azure CLI](deploymentPowerShell.md)
   
 ## Configure the DevOps service
-  * [App Service Configuration](deploymentConfigureInRuleCICDservice.md)
+  * [App Service Configuration](deploymentConfigureInRuleDevOpsservice.md)

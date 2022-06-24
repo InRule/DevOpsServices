@@ -11,7 +11,7 @@ Example of a rule application difference report sent via email:
 ---
 #### Configuration
 
-In order to enable the report generation and distribution with the InRule® DevOps Services solution, a number of configuration entries are required.  Here is [a sample configuration file](../config/InRuleCICD_RuleAppDiffReport.config) with the necessary items for deciding that the difference report will be created on check-in and where it will be distributed.  This configuration example is **applicable for a local deployment**.  **For the DevOps app service**, the configuration follows the format in the [starter cloud config file](../config/InRule.CICD.Runtime.Service.config.json).
+In order to enable the report generation and distribution with the InRule® DevOps Services solution, a number of configuration entries are required.  Here is [a sample configuration file](../config/InRuleDevOps_RuleAppDiffReport.config) with the necessary items for deciding that the difference report will be created on check-in and where it will be distributed.  This configuration example is **applicable for a local deployment**.  **For the DevOps app service**, the configuration follows the format in the [starter cloud config file](../config/InRule.DevOps.Runtime.Service.config.json).
 
 For this reporting action, the normal notifications are used for posting either the report content or the link to where the file is uploaded.  Therefore, it is mandatory to provide at least one such channel, which can be of type Slack (link), Teams (link), or Email (HTML report). 
 

@@ -21,16 +21,16 @@ The other notification level is "**debug**" and it makes for more verbose messag
 --- | ---
 |**DebugNotifications**| Space separated list of monikers for the channels where debug messages are posted.  The available channel types are: Slack, Teams, EventLog, and Email (SendGrid).    
 
-Example debug notifications in Slack, under "InRule CI/CD (Debug)" entries:
+Example debug notifications in Slack, under "InRule DevOps (Debug)" entries:
 
 ![Slack Debug Notification](../images/Sample1-SlackNotification_debug.PNG)
 
 ---
 ### Notification Configuration Samples
 
-The initial offering comes with a number of notification channels: **Slack, Teams, and Email** (via SendGrid).  All configuration examples below are **applicable for a local deployment**.  **For the Azure CI/CD app service**, the configuration follows the format in the [starter cloud config file](../config/InRule.CICD.Runtime.Service.config.json).
+The initial offering comes with a number of notification channels: **Slack, Teams, and Email** (via SendGrid).  All configuration examples below are **applicable for a local deployment**.  **For the Azure DevOps app service**, the configuration follows the format in the [starter cloud config file](../config/InRule.DevOps.Runtime.Service.config.json).
 
-1. **Slack** - Before being able to use Slack channels as recipients of any data from the InRule DevOps framework, a number of steps are required, as described under [Configure Slack for InRule CI/CD](InRuleCICD_Slack.md).  All Slack messages have minimal markdown formatting.
+1. **Slack** - Before being able to use Slack channels as recipients of any data from the InRule DevOps framework, a number of steps are required, as described under [Configure Slack for InRule DevOps](InRuleDevOps_Slack.md).  All Slack messages have minimal markdown formatting.
 
     ##### Configuration
 
@@ -41,7 +41,7 @@ The initial offering comes with a number of notification channels: **Slack, Team
 
     In order  to simply receive basic details of any check in event, the first step is to add the "CheckInRuleApp" moniker to the space separated list of entries under the CatalogEvents.  This ensures the DevOps framework is subscribed to the check in event.
 
-    [Sample configuration file for Slack](../config/InRuleCICD_Slack.config)
+    [Sample configuration file for Slack](../config/InRuleDevOps_Slack.config)
 
     ````
     <add key="CatalogEvents" value="CheckinRuleApp ApplyLabel OverwriteRuleApp />
@@ -84,7 +84,7 @@ The initial offering comes with a number of notification channels: **Slack, Team
     ````
     <add key="Email.SendGridApiKey" value="SG.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"/>
     <add key="Email.EmailSendFrom" value="notifyPerson1@noaddress.com"/>
-    <add key="Email.EmailSendFromName" value="Project CI/CD"/>
+    <add key="Email.EmailSendFromName" value="Project DevOps"/>
     <add key="Email.EmailSendTo" value="notifyPerson1@noaddress.com, notifyPerson2@noaddress.com"/>
     <add key="Email.EmailSendToName" value="Anna Kim (Corporate)"/>
     ````
@@ -93,7 +93,7 @@ The initial offering comes with a number of notification channels: **Slack, Team
 
     ##### Configuration
 
-    [Sample configuration file for Email (SendGrid)](../config/InRuleCICD_Email.config)
+    [Sample configuration file for Email (SendGrid)](../config/InRuleDevOps_Email.config)
     
     Also, see the steps to create a SendGrid account [here](SendGrid.md).
 
@@ -122,7 +122,7 @@ The initial offering comes with a number of notification channels: **Slack, Team
 
     ##### Configuration
 
-   [Sample configuration file for Teams](../config/InRuleCICD_Teams.config)
+   [Sample configuration file for Teams](../config/InRuleDevOps_Teams.config)
 
      |Configuration Key | Comments
     --- | ---

@@ -1,6 +1,6 @@
 ## Orchestration by Configuration
 
-The runtime behavior of the InRule DevOps solution is driven through a configuration file (on-premise) or InRule DevOps app service configuration (Azure).  For both deployment types, the configuration structure and principles are the same.  There is a "client" and a "server" side, splitting the configuration items between the irCatalog and DevOps services.  When deployed on-premise without the DevOps service, all configuration choices are covered in the only InRuleCICD.config file. 
+The runtime behavior of the InRule DevOps solution is driven through a configuration file (on-premise) or InRule DevOps app service configuration (Azure).  For both deployment types, the configuration structure and principles are the same.  There is a "client" and a "server" side, splitting the configuration items between the irCatalog and DevOps services.  When deployed on-premise without the DevOps service, all configuration choices are covered in the only InRuleDevOps.config file. 
 
 The main areas covered in configuration are:
 
@@ -17,7 +17,7 @@ The main areas covered in configuration are:
 --- | ---
 |**IsCloudBased**| Accepts values "true" or "false".  Must be set to "true" for Azure deployments and "false" for on-premise. Used for both the client and server components.
 |**FilterEventsByUser**| List of space separated catalog user names.  This value is empty by default, meaning that events from all catalog users will be intercepted by DevOps.  If usernames are listed here, the DevOps solution will only react to events triggered by these users. Used for both the client and server components.
-|**InRuleCICDServiceUri**| Complete URL for the DevOps service, where event data are sent and processed.  For on-premise deployments, this parameter is not used.  Used only for the client component.
+|**InRuleDevOpsServiceUri**| Complete URL for the DevOps service, where event data are sent and processed.  For on-premise deployments, this parameter is not used.  Used only for the client component.
 |**ApiKeyAuthentication.ApiKey**| A string added to the authorization header on the request made by the listener component to the DevOps service. The value can be any string and we recommend using randomly generated GUID values. For on-premise deployments, this parameter is not used.   Used for both the client and server components.  For a pair of catalog and DevOps services that are set to work together, **this parameter must be set to the same value on both services**.
 |**AesEncryptDecryptKey**| A string value used for symmetric encryption/decryption of the payload sent by the catalog listener component to the DevOps service. It must be between 16 and 32 characters long, with a combination of letters and numbers. For on-premise deployments, this parameter is not used.   Used for both the client and server components.  For a pair of catalog and DevOps services that are set to work together, **this parameter must be set to the same value on both services**.
 |**CatalogUsername**| Username value for irCatalog credentials that can be used by the DevOps service. Required for various actions that need to query or update the catalog.  Used only for the server component.
@@ -28,7 +28,7 @@ The main areas covered in configuration are:
   <add key="AesEncryptDecryptKey" value="b14ca5898a4e4133bbce2ea2315a1916"/>
   <add key="FilterEventsByUser" value="admin marian"/>
   <add key="DebugNotifications" value="MySlack EventLog Teams"/>
-  <add key="InRuleCICDServiceUri" value="http://localhost/InRule.CICD/Service.svc/api"/>
+  <add key="InRuleDevOpsServiceUri" value="http://localhost/InRule.DevOps/Service.svc/api"/>
   
   <add key="CatalogUsername" value="admin"/>
   <add key="CatalogPassword" value="******"/>

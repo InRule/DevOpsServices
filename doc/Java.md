@@ -13,7 +13,7 @@ The conversion of the rule application to Java JAR takes longer than most other 
 
 All relevant aspects of this integration are set in the configuration, under the default "Java" moniker.  Like for all other DevOps event handlers, it is possible to create any number of configuration groups with 'type="Java"', which can then be used with any of the intercepted catalog events.
 
-This is a [sample of minimal configuration](../config/InRuleCICD_Java.config) for generating the Java JAR file for the rule application being checked in. This configuration example is **applicable for a local deployment**.  **For the DevOps app service**, the configuration follows the format in the [starter cloud config file](../config/InRule.CICD.Runtime.Service.config.json).
+This is a [sample of minimal configuration](../config/InRuleDevOps_Java.config) for generating the Java JAR file for the rule application being checked in. This configuration example is **applicable for a local deployment**.  **For the DevOps app service**, the configuration follows the format in the [starter cloud config file](../config/InRule.DevOps.Runtime.Service.config.json).
 
 ````
   <add key="CatalogEvents" value="CheckinRuleApp"/>

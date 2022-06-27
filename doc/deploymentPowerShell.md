@@ -31,14 +31,14 @@ az appservice plan create --name APP_SERVICE_PLAN_NAME --resource-group RESOURCE
 ### Create Web App
 Create the [Microsoft Azure App Service Web App](https://docs.microsoft.com/en-us/azure/app-service/app-service-web-overview) for DevOps Service with the [az webapp create](https://docs.microsoft.com/en-us/cli/azure/webapp#az-webapp-create) command:
 ```powershell
-# Example: az webapp create --name contoso-inrule-cicd-prod-wa --plan inrule-prod-sp --resource-group inrule-prod-rg
+# Example: az webapp create --name contoso-inrule-DevOps-prod-wa --plan inrule-prod-sp --resource-group inrule-prod-rg
 az webapp create --name WEB_APP_NAME --plan APP_SERVICE_PLAN_NAME --resource-group RESOURCE_GROUP_NAME
 ```
 
 ### Deploy package
-First, [download](../releases) the latest InRule DevOps Service package (`InRule.CICD.Runtime.Service.zip`) from GitHub. Then [deploy the zip file](https://docs.microsoft.com/en-us/azure/app-service/app-service-deploy-zip) package to the Web App with the [az webapp deployment source](https://docs.microsoft.com/en-us/cli/azure/webapp/deployment/source#az-webapp-deployment-source-config-zip) command:
+First, [download](../releases) the latest InRule DevOps Service package (`InRule.DevOps.Runtime.Service.zip`) from GitHub. Then [deploy the zip file](https://docs.microsoft.com/en-us/azure/app-service/app-service-deploy-zip) package to the Web App with the [az webapp deployment source](https://docs.microsoft.com/en-us/cli/azure/webapp/deployment/source#az-webapp-deployment-source-config-zip) command:
 ```powershell
-# Example: az webapp deployment source config-zip --name contoso-inrule-cicd-prod-wa --resource-group inrule-prod-rg --src InRule.CICD.Runtime.Service.zip
+# Example: az webapp deployment source config-zip --name contoso-inrule-DevOps-prod-wa --resource-group inrule-prod-rg --src InRule.DevOps.Runtime.Service.zip
 az webapp deployment source config-zip --name WEB_APP_NAME --resource-group RESOURCE_GROUP_NAME --src FILE_PATH
 ```
 
@@ -47,7 +47,7 @@ In order for InRule DevOps Service to properly function, a valid license file mu
 
 First, retrieve the FTP deployment profile (url and credentials) with the [az webapp deployment list-publishing-profiles](https://docs.microsoft.com/en-us/cli/azure/webapp/deployment#az-webapp-deployment-list-publishing-profiles) command and put the values into a variable:
 ```powershell
-# Example: az webapp deployment list-publishing-profiles --name contoso-inrule-cicd-prod-wa --resource-group inrule-prod-rg --query "[?contains(publishMethod, 'FTP')].{publishUrl:publishUrl,userName:userName,userPWD:userPWD}[0]" | ConvertFrom-Json -OutVariable creds | Out-Null
+# Example: az webapp deployment list-publishing-profiles --name contoso-inrule-DevOps-prod-wa --resource-group inrule-prod-rg --query "[?contains(publishMethod, 'FTP')].{publishUrl:publishUrl,userName:userName,userPWD:userPWD}[0]" | ConvertFrom-Json -OutVariable creds | Out-Null
 az webapp deployment list-publishing-profiles --name WEB_APP_NAME --resource-group RESOURCE_GROUP_NAME --query "[?contains(publishMethod, 'FTP')].{publishUrl:publishUrl,userName:userName,userPWD:userPWD}[0]" | ConvertFrom-Json -OutVariable creds | Out-Null
 ```
 

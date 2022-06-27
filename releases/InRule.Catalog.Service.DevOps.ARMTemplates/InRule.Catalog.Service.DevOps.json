@@ -105,7 +105,7 @@
     },
     "packageUri": {
       "type": "string",
-      "defaultValue": "https://github.com/InRule/DevOpsServices/raw/Rename-cicd/releases/InRule.Catalog.Service_DevOps.zip",
+      "defaultValue": "https://github.com/InRule/DevOpsServices/raw/main-merge/releases/InRule.Catalog.Service_DevOps.zip",
       "metadata": {
         "description": "Download URI for the DevOps catalog service package."
       }

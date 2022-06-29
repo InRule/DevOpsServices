@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckinRequestListenerProxy
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InRuleDevOpsCatalogPoller", "InRuleDevOpsCatalogPoller\InRuleDevOpsCatalogPoller.csproj", "{5B9C87FF-7D8A-4BE8-BE26-2AABFF7787D9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InRule.DevOps.Promote.Service", "InRule.DevOps.Promote.Service\InRule.DevOps.Promote.Service.csproj", "{D8316BA0-B52A-48AE-86B6-E0E38626119C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{5B9C87FF-7D8A-4BE8-BE26-2AABFF7787D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5B9C87FF-7D8A-4BE8-BE26-2AABFF7787D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5B9C87FF-7D8A-4BE8-BE26-2AABFF7787D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8316BA0-B52A-48AE-86B6-E0E38626119C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8316BA0-B52A-48AE-86B6-E0E38626119C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8316BA0-B52A-48AE-86B6-E0E38626119C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8316BA0-B52A-48AE-86B6-E0E38626119C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

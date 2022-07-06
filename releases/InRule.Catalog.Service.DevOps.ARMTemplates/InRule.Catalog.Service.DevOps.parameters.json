@@ -1,0 +1,42 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "catalogServicePlanName": {
+      "value": "{catalogServicePlanName}"
+      },
+    "catalogServiceName": {
+      "value": "{catalogAppService}"
+    },
+    "catalogManagerServiceName": {
+      "value": "{catalogManagerAppService}"
+    },
+    "catalogServicePlanSkuName": {
+      "value": "B1"
+    },
+    "catalogSqlServerName": {
+      "value": "{catalogsqldbservername}"
+    },
+    "catalogSqlServerUsername": {
+      "value": "{sqlDbServerUser}"
+    },
+    "catalogSqlServerPassword": {
+      "value": "{sqlDbServerPassword}"
+    },
+    "catalogSqlDbName": {
+      "value": "{catalogSqlDbName}"
+    },
+    "catalogSqlDbEdition": {
+      "value": "Basic"
+    },
+    "catalogSqlDbPerformanceLevel": {
+      "value": "Basic"
+    },
+    "inRuleVersion": {
+      "value": "5.7.3"
+    },
+    "deployInitialDb": {
+      "value": "true"
+    }
+  }
+}

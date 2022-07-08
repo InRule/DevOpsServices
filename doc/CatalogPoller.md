@@ -60,7 +60,7 @@ az functionapp create --name POLLER_FUNCTION_NAME --storage-account STORAGE_ACCO
 ```
 
 ### Deploy package
-First, [download](https://github.com/InRule/CI-CD/tree/main/releases) the latest irServer® Rule Execution Service package (`InRule.DevOps.CatalogPoller.zip`) from GitHub. Then [deploy the zip file](InRule.DevOps.CatalogPoller) package to the Azure function created with the previous step, from the folder where the zip file was downloaded:
+First, [download](https://github.com/InRule/CI-CD/tree/main/releases) the latest InRule DevOps Catalog Poller (`InRule.DevOps.CatalogPoller.zip`) from GitHub. Then [deploy the zip file](InRule.DevOps.CatalogPoller) package to the Azure function created with the previous step, from the folder where the zip file was downloaded:
 ```powershell
 # Example: az functionapp deployment source config-zip -g inrule-prod-rg -n inrule-DevOps-catalog-poller --src InRule.DevOps.CatalogPoller.zip
 az functionapp deployment source config-zip -g RESOURCE_GROUP_NAME -n POLLER_FUNCTION_NAME --src InRule.DevOps.CatalogPoller.zip

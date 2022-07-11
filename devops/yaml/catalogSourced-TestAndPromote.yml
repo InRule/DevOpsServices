@@ -52,6 +52,6 @@ jobs:
       TargetFolder: '$(Agent.TempDirectory)'
       OverWrite: true
   - script: |
-      .\PromoteRuleApp.exe -RuleAppName:"$(RuleAppName)" -Comment:"Publish from CI/CD pipeline" -SrcCatUri:"$(CatalogUri${{ parameters.SourceCatalogName }})" -SrcCatUser:"$(CatalogUsername${{ parameters.SourceCatalogName }})" -SrcCatPass:"$(CatalogPassword${{ parameters.SourceCatalogName }})" -SourceLabel:"${{ parameters.SourceLabel }}" -DestCatUri:"$(CatalogUri${{ parameters.DestinationCatalogName }})" -DestCatUser:"$(CatalogUsername${{ parameters.DestinationCatalogName }})" -DestCatPass:"$(CatalogPassword${{ parameters.DestinationCatalogName }})" -DestLabel:"${{ parameters.DestinationLabel }}"
+      .\PromoteRuleApp.exe -RuleAppName:"$(RuleAppName)" -Comment:"Published from DevOps pipeline" -SrcCatUri:"$(CatalogUri${{ parameters.SourceCatalogName }})" -SrcCatUser:"$(CatalogUsername${{ parameters.SourceCatalogName }})" -SrcCatPass:"$(CatalogPassword${{ parameters.SourceCatalogName }})" -SourceLabel:"${{ parameters.SourceLabel }}" -DestCatUri:"$(CatalogUri${{ parameters.DestinationCatalogName }})" -DestCatUser:"$(CatalogUsername${{ parameters.DestinationCatalogName }})" -DestCatPass:"$(CatalogPassword${{ parameters.DestinationCatalogName }})" -DestLabel:"${{ parameters.DestinationLabel }}"
     displayName: 'Promote $(RuleAppName)'
     workingDirectory: $(Agent.TempDirectory)

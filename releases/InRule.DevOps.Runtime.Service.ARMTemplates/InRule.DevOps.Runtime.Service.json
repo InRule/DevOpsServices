@@ -160,6 +160,7 @@
             "DevOps.DevOpsPipelineID": "",
             "DevOps.DevOpsProject": "",
             "DevOps.DevOpsToken": "",
+            "DevOps.FilterByLabels": "",
             "Email.EmailSendFrom": "",
             "Email.EmailSendFromName": "",
             "Email.EmailSendTo": "",

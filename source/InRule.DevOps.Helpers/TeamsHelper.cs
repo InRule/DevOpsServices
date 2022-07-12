@@ -41,17 +41,15 @@ namespace InRule.DevOps.Helpers
             try
             {
                 var map = data as IDictionary<string, object>;
-
                 var textBody = string.Empty;
-                string repositoryUri = ((dynamic)data).RepositoryUri;
 
-                string repositoryManagerUri = repositoryUri.Replace(repositoryUri.Substring(repositoryUri.LastIndexOf('/')), "/InRuleCatalogManager"); //, repositoryUri.LastIndexOf('/') - 1)), "/InRuleCatalogManager");
-                var catalogManagerUri = SettingsManager.Get($"CatalogManagerUri");
-
-                if (catalogManagerUri != null)
-                {
-                    repositoryManagerUri = SettingsManager.Get($"CatalogManagerUri");
-                }
+                var repositoryUri = ((dynamic)data).RepositoryUri;
+                var repositoryManagerUri = SettingsManager.Get($"IsCloudBased").ToLower() == "true"
+                    ? SettingsManager.Get($"CatalogManagerUri")
+                    : (string)(repositoryUri.Substring(0, repositoryUri.LastIndexOf("/", StringComparison.Ordinal))
+                        .Substring(0,
+                            repositoryUri.Substring(0, repositoryUri.LastIndexOf("/", StringComparison.Ordinal))
+                                .LastIndexOf("/", StringComparison.Ordinal)) + "/InRuleCatalogManager");
 
                 if (map.ContainsKey("OperationName"))
                     textBody = $"<b>{((dynamic)data).OperationName} by user {((dynamic)data).RequestorUsername}</b><br>";

@@ -58,13 +58,13 @@ namespace InRule.DevOps.Helpers
                         case NotificationChannel.Slack:
                             //var slackHelper = new SlackHelper(channel);
                             //slackHelper.PostMarkdownMessage(message, $"{prefix} Inrule DevOps {type} - ");
-                            SlackHelper.PostMarkdownMessage(">" + message, $"{prefix} Inrule DevOps ({type})\n", channel);
+                            SlackHelper.PostMarkdownMessage(">" + message, $"{prefix} InRule DevOps ({type})\n", channel);
                             break;
                         case NotificationChannel.Teams:
-                            TeamsHelper.PostSimpleMessage(message, $"<b>{prefix} Inrule DevOps ({type})</b><br>", channel);
+                            TeamsHelper.PostSimpleMessage(message, $"<b>{prefix} InRule DevOps ({type})</b><br>", channel);
                             break;
                         case NotificationChannel.Email:
-                            await SendGridHelper.SendEmail($"Inrule DevOps {type}", message, string.Empty, channel);
+                            await SendGridHelper.SendEmail($"InRule DevOps {type}", message, string.Empty, channel);
                             break;
                         case NotificationChannel.EventLog:
                             EventLog.WriteEntry("Application", message, EventLogEntryType.Information);

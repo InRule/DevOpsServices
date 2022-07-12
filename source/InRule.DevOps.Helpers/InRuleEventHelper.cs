@@ -36,7 +36,8 @@ namespace InRule.DevOps.Helpers
             ApprovalFlow,
             BariumLiveCreateInstance,
             Webhook,
-            SqlRuleSetMapper
+            SqlRuleSetMapper,
+            RuleSetDbMapper
         }
 
         [Obsolete]
@@ -47,10 +48,10 @@ namespace InRule.DevOps.Helpers
             try
             {
                 if (eventData.OperationName == "CheckinRuleApp" || eventData.OperationName == "OverwriteRuleApp" || eventData.OperationName == "CreateRuleApp")
-                    if (((IDictionary<String, object>)eventData).ContainsKey("RuleAppRevision"))
+                    if (((IDictionary<string, object>)eventData).ContainsKey("RuleAppRevision"))
                         eventData.RuleAppRevision++;
                     else
-                        ((IDictionary<String, object>)eventData).Add("RuleAppRevision", 1);
+                        ((IDictionary<string, object>)eventData).Add("RuleAppRevision", 1);
 
                 string EventHandlers = SettingsManager.Get("On" + eventData.OperationName);
                 if (string.IsNullOrEmpty(EventHandlers))
@@ -61,7 +62,7 @@ namespace InRule.DevOps.Helpers
                 }
 
                 List<string> handlers = EventHandlers.Split(' ').ToList();
-
+                var ruleAppDef = !string.IsNullOrEmpty(ruleAppXml) ? RuleApplicationDef.LoadXml(ruleAppXml) : (RuleApplicationDef)GetRuleAppDef(eventData.RepositoryUri.ToString(), eventData.GUID.ToString(), eventData.RuleAppRevision, eventData.OperationName);
                 foreach (var handler in handlers)
                 {
                     try
@@ -90,12 +91,6 @@ namespace InRule.DevOps.Helpers
                         }
                         else if (handlerType == InRuleEventHelperType.TestSuite)
                         {
-                            RuleApplicationDef ruleAppDef = null;
-                            if (!string.IsNullOrEmpty(ruleAppXml))
-                                ruleAppDef = RuleApplicationDef.LoadXml(ruleAppXml);
-                            else
-                                ruleAppDef = GetRuleAppDef(eventData.RepositoryUri.ToString(), eventData.GUID.ToString(), eventData.RuleAppRevision, eventData.OperationName);
-
                             if (ruleAppDef != null)
                             {
                                 TestSuiteRunnerHelper.RunRegressionTestsAsync(eventData.OperationName, eventData, ruleAppDef, handler);
@@ -112,12 +107,6 @@ namespace InRule.DevOps.Helpers
                         }
                         else if (handlerType == InRuleEventHelperType.Java)
                         {
-                            RuleApplicationDef ruleAppDef;
-                            if (!string.IsNullOrEmpty(ruleAppXml))
-                                ruleAppDef = RuleApplicationDef.LoadXml(ruleAppXml);
-                            else
-                                ruleAppDef = GetRuleAppDef(eventData.RepositoryUri.ToString(), eventData.GUID.ToString(), eventData.RuleAppRevision, eventData.OperationName);
-
                             if (ruleAppDef != null)
                             {
                                 await JavaDistributionHelper.GenerateJavaJar(ruleAppDef, true, handler);
@@ -125,12 +114,6 @@ namespace InRule.DevOps.Helpers
                         }
                         else if (handlerType == InRuleEventHelperType.JavaScript)
                         {
-                            RuleApplicationDef ruleAppDef;
-                            if (!string.IsNullOrEmpty(ruleAppXml))
-                                ruleAppDef = RuleApplicationDef.LoadXml(ruleAppXml);
-                            else
-                                ruleAppDef = GetRuleAppDef(eventData.RepositoryUri.ToString(), eventData.GUID.ToString(), eventData.RuleAppRevision, eventData.OperationName);
-
                             if (ruleAppDef != null)
                             {
                                 await JavaScriptDistributionHelper.CallDistributionServiceAsync(ruleAppDef, true, false, true, handler);
@@ -146,12 +129,6 @@ namespace InRule.DevOps.Helpers
                         }
                         else if (handlerType == InRuleEventHelperType.RuleAppReport)
                         {
-                            RuleApplicationDef ruleAppDef;
-                            if (!string.IsNullOrEmpty(ruleAppXml))
-                                ruleAppDef = RuleApplicationDef.LoadXml(ruleAppXml);
-                            else
-                                ruleAppDef = GetRuleAppDef(eventData.RepositoryUri.ToString(), eventData.GUID.ToString(), eventData.RuleAppRevision, eventData.OperationName);
-
                             if (ruleAppDef != null)
                             {
                                 await InRuleReportingHelper.GetRuleAppReportAsync(eventData.OperationName, eventData, ruleAppDef);
@@ -159,25 +136,17 @@ namespace InRule.DevOps.Helpers
                         }
                         else if (handlerType == InRuleEventHelperType.RuleAppDiffReport)
                         {
-                            RuleApplicationDef ruleAppDef;
-                            if (!string.IsNullOrEmpty(ruleAppXml))
-                                ruleAppDef = RuleApplicationDef.LoadXml(ruleAppXml);
-                            else
-                                ruleAppDef = GetRuleAppDef(eventData.RepositoryUri.ToString(), eventData.GUID.ToString(), eventData.RuleAppRevision, eventData.OperationName);
-
-                            if (ruleAppDef != null)
+                            if (ruleAppDef == null) continue;
+                            if (ruleAppDef.Revision > 1)
                             {
-                                if (ruleAppDef.Revision > 1)
-                                {
-                                    var fromRuleAppDef = GetRuleAppDef(eventData.RepositoryUri.ToString(), ruleAppDef.Guid.ToString(), ruleAppDef.Revision - 1, string.Empty);
-                                    if (fromRuleAppDef != null)
-                                        await InRuleReportingHelper.GetRuleAppDiffReportAsync(eventData.OperationName, eventData, fromRuleAppDef, ruleAppDef);
-                                }
+                                var fromRuleAppDef = GetRuleAppDef(eventData.RepositoryUri.ToString(), ruleAppDef.Guid.ToString(), ruleAppDef.Revision - 1, string.Empty);
+                                if (fromRuleAppDef != null)
+                                    await InRuleReportingHelper.GetRuleAppDiffReportAsync(eventData.OperationName, eventData, fromRuleAppDef, ruleAppDef);
                             }
                         }
                         else if (handlerType == InRuleEventHelperType.DevOps)
                         {
-                            AzureDevOpsApiHelper.QueuePipelineBuild(handler);
+                            AzureDevOpsApiHelper.QueuePipelineBuild(handler, ruleAppDef, eventData);
                         }
                         else if (handlerType == InRuleEventHelperType.EventLog)
                         {
@@ -189,37 +158,25 @@ namespace InRule.DevOps.Helpers
                             {
                                 eventData.ApprovalFlowMoniker = handler;
                                 eventData = (dynamic)eventDataSource;
-                                RuleApplicationDef ruleAppDef;
-                                if (!string.IsNullOrEmpty(ruleAppXml))
-                                    ruleAppDef = RuleApplicationDef.LoadXml(ruleAppXml);
-                                else
-                                    ruleAppDef = GetRuleAppDef(eventData.RepositoryUri.ToString(), eventData.GUID.ToString(), eventData.RuleAppRevision, eventData.OperationName);
+                                ruleAppDef = !string.IsNullOrEmpty(ruleAppXml) ? RuleApplicationDef.LoadXml(ruleAppXml) : (RuleApplicationDef) GetRuleAppDef(eventData.RepositoryUri.ToString(), eventData.GUID.ToString(), eventData.RuleAppRevision, eventData.OperationName);
                                 await CheckInApprovalHelper.SendApproveRequestAsync(eventDataSource, ruleAppDef, handler);
                             }
                         }
                         else if (handlerType == InRuleEventHelperType.BariumLiveCreateInstance)
                         {
-                            await BariumLiveHelper.BariumLiveCreateInstance();
+                             BariumLiveHelper.BariumLiveCreateInstance();
                         }
                         else if (handlerType == InRuleEventHelperType.Webhook)
                         {
-                            RuleApplicationDef ruleAppDef;
-                            eventData = (dynamic)eventDataSource;
-                            if (!string.IsNullOrEmpty(ruleAppXml))
-                                ruleAppDef = RuleApplicationDef.LoadXml(ruleAppXml);
-                            else
-                                ruleAppDef = GetRuleAppDef(eventData.RepositoryUri.ToString(), eventData.GUID.ToString(), eventData.RuleAppRevision, eventData.OperationName);
-                            await WebhookHelper.PostToWebhook(eventData, ruleAppDef, ruleAppXml);
+                             WebhookHelper.PostToWebhook(eventData, ruleAppDef, ruleAppXml);
                         }
                         else if (handlerType == InRuleEventHelperType.SqlRuleSetMapper)
                         {
-                            RuleApplicationDef ruleAppDef;
-                            eventData = (dynamic)eventDataSource;
-                            if (!string.IsNullOrEmpty(ruleAppXml))
-                                ruleAppDef = RuleApplicationDef.LoadXml(ruleAppXml);
-                            else
-                                ruleAppDef = GetRuleAppDef(eventData.RepositoryUri.ToString(), eventData.GUID.ToString(), eventData.RuleAppRevision, eventData.OperationName);
-                            await SqlMapperHelper.MapToDatabase(eventData, ruleAppDef);
+                             SqlMapperHelper.MapToDatabase(eventData, ruleAppDef);
+                        }
+                        else if (handlerType == InRuleEventHelperType.RuleSetDbMapper)
+                        {
+                             RuleSetDbMapper.RunRuleSetDbMapper(ruleAppDef, eventData);
                         }
                     }
                     catch (Exception ex)

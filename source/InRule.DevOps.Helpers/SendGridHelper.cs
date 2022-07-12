@@ -97,16 +97,17 @@ namespace InRule.DevOps.Helpers
             if (map.ContainsKey("OperationName"))
                 sb.Append($"<tr><td><b>{((dynamic)data).OperationName} by user</b> {((dynamic)data).RequestorUsername}</td></tr>");
 
+
             var repositoryUri = ((dynamic)data).RepositoryUri;
+            var repositoryManagerUri = SettingsManager.Get($"IsCloudBased").ToLower() == "true"
+                ? SettingsManager.Get($"CatalogManagerUri")
+                : (string) (repositoryUri.Substring(0, repositoryUri.LastIndexOf("/", StringComparison.Ordinal))
+                    .Substring(0,
+                        repositoryUri.Substring(0, repositoryUri.LastIndexOf("/", StringComparison.Ordinal))
+                            .LastIndexOf("/", StringComparison.Ordinal)) + "/InRuleCatalogManager");
+
             sb.Append($"<tr><td><b>Catalog:</b> <a href='{repositoryUri}'>{repositoryUri}</a></td></tr>");
-
-
-            string repositoryManagerUri = repositoryUri.Replace(repositoryUri.Substring(repositoryUri.LastIndexOf('/')), "/InRuleCatalogManager");
-            if (SettingsManager.Get($"CatalogManagerUri") != null)
-            {
-                repositoryManagerUri = SettingsManager.Get($"CatalogManagerUri");
-            }
-
+            
             sb.Append($"<tr><td><b>Catalog Manager:</b> <a href='{repositoryManagerUri}'>{repositoryManagerUri}</a></td></tr>");
 
             if (map.ContainsKey("Name"))

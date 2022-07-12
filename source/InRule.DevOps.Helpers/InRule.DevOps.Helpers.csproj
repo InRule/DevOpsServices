@@ -55,12 +55,6 @@
     <Reference Include="Box.V2">
       <HintPath>..\lib\Box.V2.dll</HintPath>
     </Reference>
-    <Reference Include="HtmlRenderer, Version=1.5.0.5, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\HtmlRenderer.Core.1.5.0.5\lib\net45\HtmlRenderer.dll</HintPath>
-    </Reference>
-    <Reference Include="HtmlRenderer.PdfSharp, Version=1.5.0.6, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\HtmlRenderer.PdfSharp.1.5.0.6\lib\net45\HtmlRenderer.PdfSharp.dll</HintPath>
-    </Reference>
     <Reference Include="InRule.Authoring, Version=5.7.2.240, Culture=neutral, PublicKeyToken=1feb8dd25b1ceb6b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\InRule.Authoring.dll</HintPath>
@@ -116,12 +110,6 @@
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="PdfSharp, Version=1.50.5147.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
-      <HintPath>..\packages\PDFsharp.1.50.5147\lib\net20\PdfSharp.dll</HintPath>
-    </Reference>
-    <Reference Include="PdfSharp.Charting, Version=1.50.5147.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
-      <HintPath>..\packages\PDFsharp.1.50.5147\lib\net20\PdfSharp.Charting.dll</HintPath>
     </Reference>
     <Reference Include="RestSharp, Version=106.11.7.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
       <HintPath>..\packages\RestSharp.106.11.7\lib\net452\RestSharp.dll</HintPath>
@@ -278,12 +266,14 @@
     <Compile Include="IHelper.cs" />
     <Compile Include="JscramblerHelper.cs" />
     <Compile Include="Models\BariumLive.cs" />
+    <Compile Include="Models\RuleSetMapper.cs" />
     <Compile Include="NotificationHelper.cs" />
     <Compile Include="InRuleEventHelper.cs" />
     <Compile Include="InRuleReportingHelper.cs" />
     <Compile Include="JavaDistributionHelper.cs" />
     <Compile Include="JavaScriptDistributionHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RuleSetDbMapper.cs" />
     <Compile Include="SendGridHelper.cs" />
     <Compile Include="SettingsManager.cs" />
     <Compile Include="SnowflakeHelper.cs" />

@@ -53,10 +53,10 @@ az storage account create --name STORAGE_ACCOUNT_NAME --location LOCATION --reso
 
 ### Create Azure function
 
-Command for creating the poller serverless function app in the resource group.  **Note that the functions version value used here is 2, but it must be changed to 1, in function's Azure configuration, once the function is deployed.** 
+Command for creating the poller serverless function app in the resource group.  **Note that the functions version value used here is 3, but it must be changed to 1, in function's Azure configuration, once the function is deployed.** 
 ```powershell
-# Example: az functionapp create --name inrule-DevOps-catalog-poller --storage-account storageaccount-DevOps --consumption-plan-location eastus --resource-group inrule-prod-rg --functions-version 2
-az functionapp create --name POLLER_FUNCTION_NAME --storage-account STORAGE_ACCOUNT_NAME --consumption-plan-location LOCATION --resource-group RESOURCE_GROUP_NAME --functions-version 2
+# Example: az functionapp create --name inrule-DevOps-catalog-poller --storage-account storageaccount-DevOps --consumption-plan-location eastus --resource-group inrule-prod-rg --functions-version 3
+az functionapp create --name POLLER_FUNCTION_NAME --storage-account STORAGE_ACCOUNT_NAME --consumption-plan-location LOCATION --resource-group RESOURCE_GROUP_NAME --functions-version 3
 ```
 
 ### Deploy package

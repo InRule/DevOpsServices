@@ -2,6 +2,7 @@
 using System.Web.Http.Controllers;
 using Autofac;
 using Autofac.Integration.WebApi;
+using InRule.DevOps.Promote.Service.CatalogConnection;
 using InRule.DevOps.Promote.Service.Services;
 
 namespace InRule.DevOps.Promote.Service
@@ -17,7 +18,8 @@ namespace InRule.DevOps.Promote.Service
             builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
                 .Where(t => typeof(IHttpController).IsAssignableFrom(t) && t.Name.EndsWith("Controller"));
 
-            builder.RegisterType<ConnectorService>().As<IConnectorService>().InstancePerRequest();
+            builder.RegisterType<CatalogConnection.CatalogConnection>().As<ICatalogConnection>().InstancePerRequest();
+            builder.RegisterType<PromoteService>().As<IPromoteService>().InstancePerRequest();
 
             var container = builder.Build();
 

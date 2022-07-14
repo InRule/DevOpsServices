@@ -17,7 +17,7 @@ namespace InRule.DevOps.Promote.Service
             GlobalConfiguration.Configuration
                 .EnableSwagger(c =>
                     {
-                        c.SingleApiVersion("v1", "InRule.DevOps.Promote.Service");
+                        c.SingleApiVersion("v1", "InRule.DevOps.Connector.Promote");
                         c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
                     })
                 .EnableSwaggerUi();

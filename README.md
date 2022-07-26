@@ -60,3 +60,4 @@ What is this and how does it work?  irCatalog emits many lifecycle events (check
 * [General DevOps approval flow](doc/ApprovalFlow.md)
 * [Barium Live and approval processes](doc/Barium.md)
 * [Configure where to upload files, like GitHub](doc/UploadTo.md)
+* [Promote service, Apply label](doc/PromoteService.md)

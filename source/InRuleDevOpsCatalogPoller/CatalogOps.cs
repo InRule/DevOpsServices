@@ -94,6 +94,7 @@ namespace InRuleDevOpsCatalogPoller
                             eventData.RuleAppRevision = checkinInfo.Key;
                             eventData.Name = ruleApp;
                             eventData.RuleAppXml = ruleAppXml;
+                            eventData.Label = ruleAppRef.Labels[0];
                             SendToDevOpsServicePOST(eventData, log);
                         }
                     }

@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using InRule.DevOps.Helpers.Models;
 using InRule.Repository;
 using InRule.Repository.Infos;
-using InRule.Repository.RuleElements;
+using SdkRunner573.Models;
 
 namespace InRule.DevOps.Helpers;
 
@@ -20,7 +19,7 @@ public class RuleSetDbMapper
 {
     #region ConfigParams
 
-    private static readonly string moniker = "RuleSetDbMapper";
+    private const string moniker = "RuleSetDbMapper";
     public static string Prefix = "RuleSetDbMapper - ";
 
     #endregion
@@ -28,115 +27,103 @@ public class RuleSetDbMapper
     {
         var connectionString = SettingsManager.Get($"{moniker}.ConnectionString");
         var destinationTableName = SettingsManager.Get($"{moniker}.DestinationTableName");
-        var inLineTableName = SettingsManager.Get($"{moniker}.InLineTableName");
         var filterByLabels = SettingsManager.Get($"{moniker}.FilterByLabels");
-        if (connectionString.Length == 0 || destinationTableName.Length == 0 || inLineTableName.Length == 0)
+        if (connectionString.Length == 0 || destinationTableName.Length == 0)
             return;
         
         try
         {
-            var label = eventData.Label;
             if (filterByLabels is not null && filterByLabels.Length > 0)
-            {
-                if (!filterByLabels.Contains(label)) return;
-            }
-            var inRuleDevOpsHelper = (DataElementDef)ruleAppDef.DataElements[inLineTableName];
-            if (inRuleDevOpsHelper is not TableDef tableDef)
-            {
-                return;
-            }
+                if (!filterByLabels.Contains(eventData.Label)) return;
+
             var network = DefUsageNetwork.Create(ruleAppDef);
-            RuleSetList ruleSetList = new()
-            {
-                RuleSets = new List<RuleSetMap>()
-            };
+            List<RuleSetMap> ruleSets = new(); List<EntityRuleSet> entityRuleSets = new();
             foreach (EntityDef entity in ruleAppDef.Entities)
             {
+                EntityRuleSet entityRuleSet = new()
+                {
+                    FieldBackendNames = new List<string>(),
+                    EntityName = entity.AuthoringContextName
+                };
                 var fields = entity.GetAllFields();
-                List<string> fieldBackendNames = new();
-                fieldBackendNames.AddRange(fields.Select(field => field.AuthoringContextName));
-                foreach (var ruleSet in entity.GetRuleSets().Where(rs => rs.FireMode == RuleSetFireMode.Explicit))
+                entityRuleSet.FieldBackendNames.AddRange(fields.Select(field => field.AuthoringContextName));
+                entityRuleSets.Add(entityRuleSet);
+            }
+            foreach (EntityDef entity in ruleAppDef.Entities)
+            {
+                foreach (var ruleSet in entity.GetAllRuleSets())
                 {
                     RuleSetMap ruleSetMap = new()
                     {
                         RuleSetName = ruleSet.AuthoringContextName,
-                        Fields = new List<string>()
+                        EntityContext = entity.AuthoringContextName,
+                        Fields = new List<Fields>()
                     };
                     var usages = network.GetDefUsages(ruleSet.Guid, true);
                     foreach (var usage in usages)
                     {
                         if (usage.UsageType != DefUsageType.Consumes) continue;
-                        var consumedField = usage.TraceStack.Substring(usage.TraceStack.IndexOf("[Consumes]", StringComparison.Ordinal) + 11);
-                        if (!fieldBackendNames.Any(s => consumedField.Contains(s))) continue;
+                        var consumedField =
+                            usage.TraceStack.Substring(usage.TraceStack.IndexOf("[Consumes]", StringComparison.Ordinal) + 11);
                         if (consumedField.Contains(" "))
+                            consumedField = consumedField.Substring(0,
+                                consumedField.IndexOf(" ", StringComparison.Ordinal));
+                        foreach (var fields in from entityRuleSet in entityRuleSets
+                                 where entityRuleSet.FieldBackendNames.Contains(consumedField)
+                                 select new Fields()
+                                 {
+                                     FieldName = consumedField,
+                                     EntityName = entityRuleSet.EntityName
+                                 })
                         {
-                            consumedField = consumedField.Substring(0, consumedField.IndexOf(" ", StringComparison.Ordinal));
+                            ruleSetMap.Fields.Add(fields);
                         }
-                        ruleSetMap.Fields.Add(consumedField);
                     }
                     if (ruleSetMap.Fields.Count <= 0) continue;
-                    ruleSetList.RuleSets.Add(ruleSetMap);
+                    ruleSets.Add(ruleSetMap);
                 }
             }
 
-            var clientId = ""; var tableName = "";
-            var columnNames = (from object? col in tableDef.TableSettings.InlineDataTable.Columns select col.ToString()).ToList()!;
-            foreach (DataRow dr in tableDef.TableSettings.InlineDataTable.Rows)
-            {
-                foreach (var colName in columnNames)
+            var ruleSetMapOutputFields = (from item in ruleSets from field in item.Fields
+                select new RuleSetMapOutputFields()
                 {
-                    switch (colName)
-                    {
-                        case "ClientId":
-                            clientId = dr[colName].ToString();
-                            break;
-                        case "TableName":
-                            tableName = dr[colName].ToString();
-                            break;
-                    }
-                }
-            }
+                    Id = null,
+                    RuleAppName = ruleAppDef.Name,
+                    RuleAppLabel = "Live",
+                    RuleSetName = item.RuleSetName,
+                    FieldName = field.FieldName,
+                    EntityContext = item.EntityContext,
+                    EntityFieldIsFrom = field.EntityName,
+                    DateTimeUpdated = DateTime.Now.ToString(CultureInfo.InvariantCulture)
+                }).ToList();
 
-            var ruleSetMapOutput = new RuleSetMapOutput()
+            for (var j = 1; j < ruleSetMapOutputFields.Count(); j++)
             {
-                RuleSetMapOutputFields = new List<RuleSetMapOutputFields>()
-            };
-            var i = 1;
-            foreach (var outputFields in from item in ruleSetList.RuleSets
-                                       from field in item.Fields
-                                       select new RuleSetMapOutputFields()
-                                       {
-                                           Id = i++.ToString(),
-                                           ClientId = clientId,
-                                           RuleSetName = item.RuleSetName,
-                                           FieldName = field,
-                                           TableName = tableName
-                                       })
-            {
-                ruleSetMapOutput.RuleSetMapOutputFields.Add(outputFields);
+                if (ruleSetMapOutputFields[j].FieldName == ruleSetMapOutputFields[j - 1].FieldName)
+                    ruleSetMapOutputFields.RemoveAt(j - 1);
             }
-
-            var deleteValues = $"DELETE FROM RuleSetMapper WHERE TableName = '{tableName}'";
-            using (var connectionT = new SqlConnection(connectionString))
+            for (var j = 0; j < ruleSetMapOutputFields.Count(); j++)
             {
-                connectionT.Open();
-                using (var command = new SqlCommand(deleteValues, connectionT))
-                using (var reader = command.ExecuteReader())
-                {
-                }
+                ruleSetMapOutputFields[j].Id = j;
+            }
+            using (var connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                using var command = new SqlCommand($"DELETE FROM {destinationTableName} WHERE RuleAppName ='{ruleAppDef.Name}' AND RuleAppLabel = 'Live';", connection);
+                using var reader = command.ExecuteReader();
             }
 
             if (string.IsNullOrEmpty(connectionString)) return;
-            var ruleSetMapOutputFields = ConvertToDataTable(ruleSetMapOutput.RuleSetMapOutputFields);
-            using var connection = new SqlConnection(connectionString);
-            connection.Open();
-            using var bulkCopy = new SqlBulkCopy(connection);
+            var ruleSetMapOutputFieldsDt = ConvertToDataTable(ruleSetMapOutputFields);
+            using var conn = new SqlConnection(connectionString);
+            conn.Open();
+            using var bulkCopy = new SqlBulkCopy(conn);
             bulkCopy.DestinationTableName = destinationTableName;
-            bulkCopy.BatchSize = ruleSetMapOutputFields.Rows.Count;
-            bulkCopy.WriteToServer(ruleSetMapOutputFields);
+            bulkCopy.BatchSize = ruleSetMapOutputFieldsDt.Rows.Count;
+            bulkCopy.WriteToServer(ruleSetMapOutputFieldsDt);
             bulkCopy.Close();
-            
-            NotificationHelper.NotifyAsync($"Successfully updated database with new rulesets.", Prefix, "Debug");
+
+            await NotificationHelper.NotifyAsync($"Successfully updated database with new rulesets from {ruleAppDef.Name} rule application", Prefix, "Debug");
         }
 
         catch (Exception ex)

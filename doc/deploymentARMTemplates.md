@@ -3,12 +3,12 @@ Deploying DevOps with an ARM template is highly recommended. A push button is be
 
 DevOps App Service Deployment
 
-[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https://devopsservice.blob.core.windows.net/deploypackages/InRule.Catalog.Service.DevOps.json)
+[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fdevopsservice.blob.core.windows.net%2Fdeploypackages%2FInRule.Catalog.Service.DevOps.json)
 
 
 DevOps Enabled Catalog App Service Deployment
 
-[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https://devopsservice.blob.core.windows.net/deploypackages/InRule.DevOps.Runtime.Service.json)
+[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fdevopsservice.blob.core.windows.net%2Fdeploypackages%2FInRule.DevOps.Runtime.Service.json)
 
 * First download the [CI/CD ARM template zip file](https://github.com/InRule/CI-CD/raw/main/releases/InRule.DevOps.ARMTemplates.zip).
 * From the Azure Portal search for **Deploy a custom template**.

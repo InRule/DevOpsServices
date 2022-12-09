@@ -4,12 +4,14 @@
   "parameters": {
     "catalogServiceName": {
       "type": "string",
+      "defaultValue": "{catalogServiceName}",
       "metadata": {
         "description": "Name of the App Service resource the catalog will be installed on"
       }
     },
     "catalogManagerServiceName": {
       "type": "string",
+      "defaultValue": "{catalogManagerServiceName}",
       "metadata": {
         "description": "Name of the App Service resource the catalog manager will be installed on"
       }
@@ -30,6 +32,7 @@
     },
     "catalogServicePlanSkuName": {
       "type": "string",
+      "defaultValue": "B1",
       "allowedValues": [
         "F1",
         "D1",
@@ -57,6 +60,7 @@
     },
     "catalogSqlServerName": {
       "type": "string",
+      "defaultValue": "{catalogSqlServerName}",
       "metadata": {
         "description": "The server name for the Azure SQL server used to host the irCatalog database(s)."
       }
@@ -70,6 +74,7 @@
     },
     "catalogSqlDbName": {
       "type": "string",
+      "defaultValue": "{catalogSqlDbName}",
       "metadata": {
         "description": "The name for the irCatalog database."
       }
@@ -92,13 +97,14 @@
     },
     "catalogSqlServerPassword": {
       "type": "string",
+      "defaultValue": "{catalogSqlServerPassword}",
       "metadata": {
         "description": "The server admin password for the Azure SQL server used to host the irCatalog database(s)."
       }
     },
     "inRuleVersion": {
       "type": "string",
-      "defaultValue": "5.7.3",
+      "defaultValue": "5.8",
       "metadata": {
         "description": "Version of the catalog to deploy"
       } 

@@ -15,6 +15,7 @@ using InRule.Repository.Client;
 using Newtonsoft.Json.Converters;
 using InRule.DevOps.Helpers;
 using System.Web.Script.Serialization;
+using System.Globalization;
 
 namespace InRule.DevOps
 {
@@ -227,7 +228,11 @@ namespace InRule.DevOps
                 var eventDataString = encryptedData.ToString().Replace(" ", "+");
                 eventDataString = CryptoHelper.DecryptString("", eventDataString).Replace("InRule DevOps - ", "");
 
-                var jsonDeserialized = new JavaScriptSerializer().Deserialize<IEnumerable<IDictionary<string, object>>>(eventDataString);
+                JavaScriptSerializer serializer = new JavaScriptSerializer
+                {
+                    MaxJsonLength = eventDataString.Length
+                };
+                var jsonDeserialized = serializer.Deserialize<IEnumerable<IDictionary<string, object>>>(eventDataString);
                 var eventData = go(jsonDeserialized);
 
                 try
@@ -267,7 +272,7 @@ namespace InRule.DevOps
 
             return lst.Aggregate(new ExpandoObject(),
                                       (aTotal, n) => {
-                                          (aTotal as IDictionary<string, object>).Add(n["Key"].ToString(), n["Value"] is object[]? go(((object[])n["Value"]).Cast<IDictionary<string, Object>>()) : n["Value"]);
+                                          (aTotal as IDictionary<string, object>).Add(n["Key"].ToString(), n["Value"] is object[]? go(((object[])n["Value"]).Cast<IDictionary<string, object>>()) : n["Value"]);
                                           return aTotal;
                                       });
 
@@ -287,9 +292,25 @@ namespace InRule.DevOps
                     if (!filterByUsers.Contains(eventData.RequestorUsername.ToString().ToLower()))
                         return;
 
-                eventData.ProcessingTimeInMs = (DateTime.UtcNow - ((DateTime)eventData.UtcTimestamp)).TotalMilliseconds;
+                DateTime utcTimestamp = new DateTime();
+                try
+                {
+                    utcTimestamp = DateTime.Parse(eventData.UtcTimestamp);
+                    eventData.ProcessingTimeInMs = (DateTime.UtcNow - utcTimestamp).TotalMilliseconds;
+                }
+                catch
+                {
+                    utcTimestamp = eventData.UtcTimestamp;
+                    eventData.ProcessingTimeInMs = DateTime.UtcNow.Millisecond - utcTimestamp.Millisecond;
+                }
 
-                if (((IDictionary<String, object>)eventDataSource).ContainsKey("RuleAppXml"))
+                //DateTime.Parse(eventData.UtcTimestamp);
+                //DateTime utcTimestamp = eventData.UtcTimestamp; 
+                //DateTime utcTimestamp = DateTime.ParseExact(eventData.UtcTimestamp, "yyyyMMddHHmmssfff", CultureInfo.InvariantCulture);
+                //DateTime utcTimestamp = DateTime.Parse(eventData.UtcTimestamp);
+                //eventData.ProcessingTimeInMs = DateTime.UtcNow.Millisecond - utcTimestamp.Millisecond;
+                //eventData.ProcessingTimeInMs = (DateTime.UtcNow - utcTimestamp).TotalMilliseconds;
+                if (((IDictionary<string, object>)eventDataSource).ContainsKey("RuleAppXml"))
                     ruleAppXml = eventData.RuleAppXml;
 
                 InRuleEventHelper.ProcessEventAsync(eventData, ruleAppXml).Wait();

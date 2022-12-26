@@ -7,6 +7,8 @@ using System.Diagnostics;
 using System.Dynamic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web.UI.WebControls;
+using System.Web;
 
 namespace InRule.DevOps.Helpers
 {
@@ -44,7 +46,8 @@ namespace InRule.DevOps.Helpers
         public static async Task ProcessEventAsync(ExpandoObject eventDataSource, string ruleAppXml)
         {
             var eventData = (dynamic)eventDataSource;
-
+            //int.TryParse(eventData.RuleAppRevision, out int ruleAppRevision);
+            //eventData.RuleAppRevision = ruleAppRevision;
             try
             {
                 if (eventData.OperationName == "CheckinRuleApp" || eventData.OperationName == "OverwriteRuleApp" || eventData.OperationName == "CreateRuleApp")
@@ -62,6 +65,8 @@ namespace InRule.DevOps.Helpers
                 }
 
                 List<string> handlers = EventHandlers.Split(' ').ToList();
+                ruleAppXml = HttpUtility.HtmlDecode(ruleAppXml);
+
                 var ruleAppDef = !string.IsNullOrEmpty(ruleAppXml) ? RuleApplicationDef.LoadXml(ruleAppXml) : (RuleApplicationDef)GetRuleAppDef(eventData.RepositoryUri.ToString(), eventData.GUID.ToString(), eventData.RuleAppRevision, eventData.OperationName);
                 foreach (var handler in handlers)
                 {

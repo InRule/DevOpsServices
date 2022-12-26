@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InRule.DevOps.Helpers", "In
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckinRequestListenerProxy", "CheckinRequestListenerProxy\CheckinRequestListenerProxy.csproj", "{F4B357E1-962D-451E-81D3-ADD7E9F9C473}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InRuleDevOpsCatalogPoller", "InRuleDevOpsCatalogPoller\InRuleDevOpsCatalogPoller.csproj", "{5B9C87FF-7D8A-4BE8-BE26-2AABFF7787D9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InRuleDevOpsCatalogPoller", "..\..\..\Code\InRuleDevOpsCatalogPoller\InRuleDevOpsCatalogPoller\InRuleDevOpsCatalogPoller.csproj", "{BBC9A51C-4532-4650-B939-3F228C85F45F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +35,10 @@ Global
 		{F4B357E1-962D-451E-81D3-ADD7E9F9C473}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F4B357E1-962D-451E-81D3-ADD7E9F9C473}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F4B357E1-962D-451E-81D3-ADD7E9F9C473}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5B9C87FF-7D8A-4BE8-BE26-2AABFF7787D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5B9C87FF-7D8A-4BE8-BE26-2AABFF7787D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5B9C87FF-7D8A-4BE8-BE26-2AABFF7787D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5B9C87FF-7D8A-4BE8-BE26-2AABFF7787D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBC9A51C-4532-4650-B939-3F228C85F45F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBC9A51C-4532-4650-B939-3F228C85F45F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBC9A51C-4532-4650-B939-3F228C85F45F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBC9A51C-4532-4650-B939-3F228C85F45F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

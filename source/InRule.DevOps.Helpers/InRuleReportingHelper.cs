@@ -1,9 +1,9 @@
-﻿using InRule.Authoring.BusinessLanguage;
-using InRule.Repository;
+﻿using InRule.Repository;
 using System;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
+using InRule.Authoring.BusinessLanguage;
 
 namespace InRule.DevOps.Helpers
 {

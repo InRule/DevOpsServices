@@ -35,17 +35,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="InRule.Common, Version=5.7.2.240, Culture=neutral, PublicKeyToken=1feb8dd25b1ceb6b, processorArchitecture=MSIL">
-      <HintPath>..\packages\InRule.Common.5.7.2\lib\net472\InRule.Common.dll</HintPath>
+    <Reference Include="InRule.Repository, Version=5.8.0.246, Culture=neutral, PublicKeyToken=1feb8dd25b1ceb6b, processorArchitecture=MSIL">
+      <HintPath>..\packages\InRule.Repository.5.8.0\lib\net472\InRule.Repository.dll</HintPath>
     </Reference>
-    <Reference Include="InRule.Repository, Version=5.7.3.244, Culture=neutral, PublicKeyToken=1feb8dd25b1ceb6b, processorArchitecture=MSIL">
-      <HintPath>..\packages\InRule.Repository.5.7.3\lib\net472\InRule.Repository.dll</HintPath>
+    <Reference Include="InRule.Repository.XmlSerializers, Version=5.8.0.246, Culture=neutral, PublicKeyToken=1feb8dd25b1ceb6b, processorArchitecture=MSIL">
+      <HintPath>..\packages\InRule.Repository.5.8.0\lib\net472\InRule.Repository.XmlSerializers.dll</HintPath>
     </Reference>
-    <Reference Include="InRule.Repository.XmlSerializers, Version=5.7.3.244, Culture=neutral, PublicKeyToken=1feb8dd25b1ceb6b, processorArchitecture=MSIL">
-      <HintPath>..\packages\InRule.Repository.5.7.3\lib\net472\InRule.Repository.XmlSerializers.dll</HintPath>
-    </Reference>
-    <Reference Include="InRule.Runtime, Version=5.7.3.244, Culture=neutral, PublicKeyToken=1feb8dd25b1ceb6b, processorArchitecture=MSIL">
-      <HintPath>..\packages\InRule.Runtime.5.7.3\lib\net472\InRule.Runtime.dll</HintPath>
+    <Reference Include="InRule.Runtime, Version=5.8.0.246, Culture=neutral, PublicKeyToken=1feb8dd25b1ceb6b, processorArchitecture=MSIL">
+      <HintPath>..\packages\InRule.Runtime.5.8.0\lib\net472\InRule.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.WindowsAzure.Configuration, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

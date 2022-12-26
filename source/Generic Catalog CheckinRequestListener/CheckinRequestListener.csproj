@@ -39,15 +39,17 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\InRule.Authoring.dll</HintPath>
     </Reference>
-    <Reference Include="InRule.Repository, Version=5.7.3.244, Culture=neutral, PublicKeyToken=1feb8dd25b1ceb6b, processorArchitecture=MSIL">
-      <HintPath>..\packages\InRule.Repository.5.7.3\lib\net472\InRule.Repository.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="InRule.Common, Version=5.8.0.246, Culture=neutral, PublicKeyToken=1feb8dd25b1ceb6b, processorArchitecture=MSIL">
+      <HintPath>..\packages\InRule.Common.5.8.0\lib\net472\InRule.Common.dll</HintPath>
     </Reference>
-    <Reference Include="InRule.Repository.XmlSerializers, Version=5.7.3.244, Culture=neutral, PublicKeyToken=1feb8dd25b1ceb6b, processorArchitecture=MSIL">
-      <HintPath>..\packages\InRule.Repository.5.7.3\lib\net472\InRule.Repository.XmlSerializers.dll</HintPath>
+    <Reference Include="InRule.Repository, Version=5.8.0.246, Culture=neutral, PublicKeyToken=1feb8dd25b1ceb6b, processorArchitecture=MSIL">
+      <HintPath>..\packages\InRule.Repository.5.8.0\lib\net472\InRule.Repository.dll</HintPath>
     </Reference>
-    <Reference Include="InRule.Runtime, Version=5.7.3.244, Culture=neutral, PublicKeyToken=1feb8dd25b1ceb6b, processorArchitecture=MSIL">
-      <HintPath>..\packages\InRule.Runtime.5.7.3\lib\net472\InRule.Runtime.dll</HintPath>
+    <Reference Include="InRule.Repository.XmlSerializers, Version=5.8.0.246, Culture=neutral, PublicKeyToken=1feb8dd25b1ceb6b, processorArchitecture=MSIL">
+      <HintPath>..\packages\InRule.Repository.5.8.0\lib\net472\InRule.Repository.XmlSerializers.dll</HintPath>
+    </Reference>
+    <Reference Include="InRule.Runtime, Version=5.8.0.246, Culture=neutral, PublicKeyToken=1feb8dd25b1ceb6b, processorArchitecture=MSIL">
+      <HintPath>..\packages\InRule.Runtime.5.8.0\lib\net472\InRule.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Bcl.AsyncInterfaces.5.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>

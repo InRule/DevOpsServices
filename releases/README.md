@@ -2,7 +2,7 @@ ARM Template Deployments
 
 DevOps enabled Catalog App Service
 
-[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FInRule%2FDevOpsServices%2Fmain%2Freleases%2FARMTemplates%2FInRule.Catalog.Poller.json)
+[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FInRule%2FDevOpsServices%2Fmain%2Freleases%2FARMTemplates%2FInRule.Catalog.Service.json)
 
 DevOps App Service
 

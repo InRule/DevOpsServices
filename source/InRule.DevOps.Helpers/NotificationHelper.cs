@@ -79,8 +79,3 @@ namespace InRule.DevOps.Helpers
         }
     }
 }
-
-namespace InRule.DevOps.Helpers
-{
-
-}

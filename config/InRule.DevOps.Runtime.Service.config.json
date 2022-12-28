@@ -21,12 +21,12 @@
   },
   {
     "name": "ApprovalFlow.RequesterNotificationChannel",
-    "value": "Slack Email",
+    "value": "",
     "slotSetting": false
   },
   {
     "name": "ApprovalFlow.NotificationChannel",
-    "value": "Slack",
+    "value": "",
     "slotSetting": false
   },
   {
@@ -76,7 +76,7 @@
   },
   {
     "name": "DebugNotifications",
-    "value": "Slack",
+    "value": "",
     "slotSetting": false
   },
   {
@@ -226,17 +226,17 @@
   },
   {
     "name": "OnApplyLabel",
-    "value": "Slack ApprovalFlow",
+    "value": "ApprovalFlow",
     "slotSetting": false
   },
   {
     "name": "OnCheckinRuleApp",
-    "value": "Slack",
+    "value": "",
     "slotSetting": false
   },
   {
     "name": "OnCheckoutDefs",
-    "value": "Slack",
+    "value": "",
     "slotSetting": false
   },
   {
@@ -246,12 +246,12 @@
   },
   {
     "name": "OnAny",
-    "value": "Slack",
+    "value": "",
     "slotSetting": false
   },
   {
     "name": "RuleAppDiffReport.NotificationChannel",
-    "value": "Slack",
+    "value": "",
     "slotSetting": false
   },
   {
@@ -261,7 +261,7 @@
   },
   {
     "name": "RuleAppReport.NotificationChannel",
-    "value": "Slack",
+    "value": "",
     "slotSetting": false
   },
   {
@@ -301,7 +301,7 @@
   },
     {
     "name": "Teams.TeamsWebhookUrl",
-    "value": "TeamsWebhookUrl",
+    "value": "",
     "slotSetting": false
   },
   {

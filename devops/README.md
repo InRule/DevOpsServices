@@ -1,8 +1,6 @@
 ## Demo Azure DevOps Pipeline
 Starting a Azure DevOps pipeline is one of the possible actions triggered on catalog events.  This is an example of a pipeline setup that can use the version of the rule application, involved in the catalog event, to run regression tests and, on success, promote the rule application to another catalog.  
 
-This example is based on the repo available at https://github.com/InRule/DemoRuleDevOpsPipeline.
-
 ### Catalog-Based : Test and Promote upon irCatalog Check In
 
 The flow of actions proceeds in this order:

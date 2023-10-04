@@ -55,7 +55,7 @@
       },
     "packageUri": {
       "type": "string",
-      "defaultValue": "https://github.com/InRule/DevOpsServices/raw/main/releases/InRule.DevOps.Runtime.Service.zip",
+      "defaultValue": "https://raw.githubusercontent.com/InRule/DevOpsServices/main/releases/InRule.Catalog.Service_DevOps.zip",
       "metadata": {
         "description": "Download URI for the DevOps service package."
       }

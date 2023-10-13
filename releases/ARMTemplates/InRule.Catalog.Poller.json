@@ -38,7 +38,7 @@
         },
         "repoURL": {
             "type": "string",
-            "defaultValue": "https://github.com/InRule/DevOpsServices/raw/main/releases/InRule.DevOps.CatalogPoller.zip",
+            "defaultValue": "https://raw.githubusercontent.com/InRule/DevOpsServices/main/releases/InRule.DevOps.CatalogPoller.zip",
             "metadata": {
                 "description": "The URL for the GitHub repository that contains the project to deploy."
             }

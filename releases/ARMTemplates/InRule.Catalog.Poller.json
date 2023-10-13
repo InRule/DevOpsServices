@@ -13,38 +13,24 @@
             "type": "string",
             "defaultValue": "[concat(parameters('appName'),'Plan')]",
             "metadata": {
-              "description": "Name for the App Service Plan, defaulting to the value of the App Service's name with 'Plan' appended to the end"
+                "description": "Name for the App Service Plan, defaulting to the value of the App Service's name with 'Plan' appended to the end"
             }
-          },
+        },
         "hostingPlanSkuName": {
             "type": "string",
             "defaultValue": "B1",
             "allowedValues": [
-              "F1",
-              "D1",
-              "B1",
-              "B2",
-              "B3",
-              "S1",
-              "S2",
-              "S3",
-              "P1",
-              "P2",
-              "P3",
-              "P4"
+                "F1", "D1", "B1", "B2", "B3", "S1", "S2", "S3", "P1", "P2", "P3", "P4"
             ],
             "metadata": {
-              "description": "Describes plan's pricing tier and capacity. Check details at https://azure.microsoft.com/en-us/pricing/details/app-service/"
+                "description": "Describes plan's pricing tier and capacity. Check details at https://azure.microsoft.com/en-us/pricing/details/app-service/"
             }
         },
         "storageAccountType": {
             "type": "string",
             "defaultValue": "Standard_LRS",
             "allowedValues": [
-                "Standard_LRS",
-                "Standard_GRS",
-                "Standard_ZRS",
-                "Premium_LRS"
+                "Standard_LRS", "Standard_GRS", "Standard_ZRS", "Premium_LRS"
             ],
             "metadata": {
                 "description": "Storage Account type"
@@ -140,7 +126,7 @@
                             "name": "CatalogUri",
                             "value": "https://inrule-catalog.staging.inrulecloud.com/service.svc"
                         },
-                            {
+                        {
                             "name": "CatalogManagerUri",
                             "value": "https://inrule-catalogmgr.staging.inrulecloud.com/"
                         },
@@ -177,6 +163,23 @@
                             "value": "1"
                         }
                     ]
+                }
+            }
+        },
+        {
+            "apiVersion": "2015-08-01",
+            "name": "[concat(variables('functionAppName'), '/MSDeploy')]",
+            "type": "Microsoft.Web/sites/extensions",
+            "location": "[parameters('location')]",
+            "dependsOn": [
+                "[concat('Microsoft.Web/sites/', variables('functionAppName'))]"
+            ],
+            "properties": {
+                "packageUri": "[parameters('repoURL')]",
+                "dbType": "None",
+                "connectionString": "",
+                "setParameters": {
+                    "IIS Web Application Name": "[variables('functionAppName')]"
                 }
             }
         }

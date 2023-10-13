@@ -13,34 +13,7 @@
             "type": "string",
             "defaultValue": "[concat(parameters('appName'),'Plan')]",
             "metadata": {
-                "description": "Name for the App Service Plan, defaulting to the value of the App Service's name with 'Plan' appended to the end"
-            }
-        },
-        "hostingPlanSkuName": {
-            "type": "string",
-            "defaultValue": "B1",
-            "allowedValues": [
-                "F1", "D1", "B1", "B2", "B3", "S1", "S2", "S3", "P1", "P2", "P3", "P4"
-            ],
-            "metadata": {
-                "description": "Describes plan's pricing tier and capacity. Check details at https://azure.microsoft.com/en-us/pricing/details/app-service/"
-            }
-        },
-        "storageAccountType": {
-            "type": "string",
-            "defaultValue": "Standard_LRS",
-            "allowedValues": [
-                "Standard_LRS", "Standard_GRS", "Standard_ZRS", "Premium_LRS"
-            ],
-            "metadata": {
-                "description": "Storage Account type"
-            }
-        },
-        "repoURL": {
-            "type": "string",
-            "defaultValue": "https://raw.githubusercontent.com/InRule/DevOpsServices/main/releases/InRule.DevOps.CatalogPoller.zip",
-            "metadata": {
-                "description": "The URL for the GitHub repository that contains the project to deploy."
+                "description": "Name for the App Service Plan."
             }
         },
         "location": {
@@ -48,6 +21,13 @@
             "defaultValue": "[resourceGroup().location]",
             "metadata": {
                 "description": "Location for all resources."
+            }
+        },
+        "repoURL": {
+            "type": "string",
+            "defaultValue": "https://raw.githubusercontent.com/InRule/DevOpsServices/main/releases/InRule.DevOps.CatalogPoller.zip",
+            "metadata": {
+                "description": "The URL for the GitHub repository that contains the project to deploy."
             }
         }
     },
@@ -62,10 +42,10 @@
             "apiVersion": "2021-02-01",
             "name": "[variables('storageAccountName')]",
             "location": "[parameters('location')]",
-            "kind": "Storage",
             "sku": {
-                "name": "[parameters('storageAccountType')]"
-            }
+                "name": "Standard_LRS"
+            },
+            "kind": "Storage"
         },
         {
             "type": "Microsoft.Web/serverfarms",
@@ -73,11 +53,7 @@
             "name": "[variables('hostingPlanName')]",
             "location": "[parameters('location')]",
             "sku": {
-                "name": "[parameters('hostingPlanSkuName')]"
-            },
-            "properties": {
-                "workerSize": "1",
-                "numberOfWorkers": 1
+                "name": "B1"
             }
         },
         {
@@ -91,17 +67,13 @@
                 "[resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName'))]"
             ],
             "properties": {
-                "name": "[variables('functionAppName')]",
                 "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]",
-                "clientAffinityEnabled": false,
                 "siteConfig": {
-                    "alwaysOn": true,
-                    "cors": {
-                        "allowedOrigins": [
-                            "*"
-                        ]
-                    },
                     "appSettings": [
+                        {
+                            "name": "WEBSITE_RUN_FROM_PACKAGE",
+                            "value": "0"
+                        },
                         {
                             "name": "AesEncryptDecryptKey",
                             "value": "b14ca5898a4e4133bbce2ea2315a1916"
@@ -159,8 +131,8 @@
                             "value": "[toLower(variables('functionAppName'))]"
                         },
                         {
-                            "name": "WEBSITE_RUN_FROM_PACKAGE",
-                            "value": "1"
+                            "name": "AzureWebJobsStorage",
+                            "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('storageAccountName'), ';EndpointSuffix=', environment().suffixes.storage, ';AccountKey=', listKeys(resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName')), '2021-08-01').keys[0].value)]"
                         }
                     ]
                 }
@@ -172,15 +144,10 @@
             "type": "Microsoft.Web/sites/extensions",
             "location": "[parameters('location')]",
             "dependsOn": [
-                "[concat('Microsoft.Web/sites/', variables('functionAppName'))]"
+                "[resourceId('Microsoft.Web/sites', variables('functionAppName'))]"
             ],
             "properties": {
-                "packageUri": "[parameters('repoURL')]",
-                "dbType": "None",
-                "connectionString": "",
-                "setParameters": {
-                    "IIS Web Application Name": "[variables('functionAppName')]"
-                }
+                "packageUri": "[parameters('repoURL')]"
             }
         }
     ]

@@ -20,12 +20,16 @@ namespace InRule.DevOps.Helpers
 
             foreach (var teamsWebHook in _teamsWebHooks)
             {
-                var client = new RestClient(teamsWebHook);
-                client.Timeout = -1;
-                var request = new RestRequest(Method.POST);
+                var clientOptions = new RestClientOptions(teamsWebHook)
+                {
+                    Timeout = TimeSpan.FromSeconds(30)
+                };
+                var client = new RestClient(clientOptions);
+               
+                var request = new RestRequest() { Method = Method.Post };
                 request.AddHeader("Content-Type", "text/plain");
                 request.AddParameter("text/plain", "{\"text\":\"<b>" + messagePrefix + "</b><br>" + message + "\"}", ParameterType.RequestBody);
-                IRestResponse response = client.Execute(request);
+                var response = client.Execute(request);
                 Console.WriteLine(response.Content);
             }
         }

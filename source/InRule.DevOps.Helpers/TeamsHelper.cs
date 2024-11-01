@@ -1,7 +1,5 @@
-﻿using RestSharp;
-using Slack.Webhooks;
-using Slack.Webhooks.Blocks;
-using Slack.Webhooks.Elements;
+﻿using Newtonsoft.Json;
+using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -27,8 +25,17 @@ namespace InRule.DevOps.Helpers
                 var client = new RestClient(clientOptions);
                
                 var request = new RestRequest() { Method = Method.Post };
-                request.AddHeader("Content-Type", "text/plain");
-                request.AddParameter("text/plain", "{\"text\":\"<b>" + messagePrefix + "</b><br>" + message + "\"}", ParameterType.RequestBody);
+                request.AddHeader("Content-Type", "application/json");
+
+                var payload = new
+                {
+                    text = $"<b>{messagePrefix}</b><br>{message}"
+                };
+
+                var jsonPayload = JsonConvert.SerializeObject(payload);
+
+                request.AddParameter("application/json", jsonPayload, ParameterType.RequestBody);
+
                 var response = client.Execute(request);
                 Console.WriteLine(response.Content);
             }

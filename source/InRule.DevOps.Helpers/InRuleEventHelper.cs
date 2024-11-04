@@ -67,7 +67,19 @@ namespace InRule.DevOps.Helpers
                 List<string> handlers = EventHandlers.Split(' ').ToList();
                 ruleAppXml = HttpUtility.HtmlDecode(ruleAppXml);
 
-                var ruleAppDef = !string.IsNullOrEmpty(ruleAppXml) ? RuleApplicationDef.LoadXml(ruleAppXml) : (RuleApplicationDef)GetRuleAppDef(eventData.RepositoryUri.ToString(), eventData.GUID.ToString(), eventData.RuleAppRevision, eventData.OperationName);
+                RuleApplicationDef ruleAppDef = null;
+
+                if (!string.IsNullOrEmpty(ruleAppXml))
+                {
+                    ruleAppDef = RuleApplicationDef.LoadXml(ruleAppXml);
+                }
+                else
+                {
+                    ruleAppDef = GetRuleAppDef(eventData.RepositoryUri.ToString(), eventData.GUID.ToString(), eventData.RuleAppRevision, eventData.OperationName);
+                    ruleAppXml = ruleAppDef.GetXml();
+                }
+
+
                 foreach (var handler in handlers)
                 {
                     try
@@ -169,11 +181,11 @@ namespace InRule.DevOps.Helpers
                         }
                         else if (handlerType == InRuleEventHelperType.BariumLiveCreateInstance)
                         {
-                             BariumLiveHelper.BariumLiveCreateInstance();
+                             await BariumLiveHelper.BariumLiveCreateInstance();
                         }
                         else if (handlerType == InRuleEventHelperType.Webhook)
                         {
-                             WebhookHelper.PostToWebhook(eventData, ruleAppDef, ruleAppXml);
+                             await WebhookHelper.PostToWebhook(ruleAppXml);
                         }
                         else if (handlerType == InRuleEventHelperType.SqlRuleSetMapper)
                         {

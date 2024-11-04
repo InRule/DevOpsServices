@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Dynamic;
-using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using InRule.Repository;
-using Newtonsoft.Json;
 
 namespace InRule.DevOps.Helpers
 {
@@ -16,16 +11,24 @@ namespace InRule.DevOps.Helpers
         private static readonly string moniker = "Webhook";
         public static string Prefix = "Webhook - ";
         #endregion
-        public static async Task PostToWebhook(ExpandoObject eventDataSource, RuleApplicationDef ruleAppDef, string ruleAppXml)
+        public static async Task PostToWebhook(string ruleAppXml)
         {
 
             string WebhookURL = SettingsManager.Get($"{moniker}.WebhookURL");
+
+            if (string.IsNullOrEmpty(WebhookURL))
+            {
+                await NotificationHelper.NotifyAsync("Webhook URL is not configured.", Prefix, "Error");
+                return;
+            }
+
             try
             {
                 var client = new HttpClient();
-                var req = new HttpRequestMessage(HttpMethod.Post, new Uri("https://webhook.site/7cd26514-9e9c-46d0-90c6-ba514ed04744"))
+        
+                var req = new HttpRequestMessage(HttpMethod.Post, new Uri(WebhookURL))
                 {
-                    Content = new StringContent(ruleAppXml, Encoding.UTF8, "application/json")
+                    Content = new StringContent(ruleAppXml, Encoding.UTF8, "application/xml")
                 };
                 var res = await client.SendAsync(req);
                 var postResponse = await res.Content.ReadAsStringAsync();
